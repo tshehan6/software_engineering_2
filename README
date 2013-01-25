@@ -1,0 +1,18 @@
+How to compile the lisp program:
+--------------------------------
+
+	run ProofPad with "java -jar proofpad.jar"
+
+	open "worker.lisp"
+
+	click the hammer and build as "worker"
+
+How to run the python server:
+-----------------------------
+
+	execute "python3 interface.py" from the command line
+
+How to view the result:
+-----------------------
+
+	browse to http://localhost:12358
