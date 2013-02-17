@@ -1,21 +1,49 @@
 # tom shehan
-# 1/22/2012
 # team stroustrup
 
 # import bottlepy framework and the subprocess module
-import subprocess
+import subprocess, os
 from bottle import *
 
+# create a JSON file representing the user's request
+def write_request_file():
 
-# route the root url to our (not so) cleverly named function
+	request_type = request.query['type']
+
+	content = '{"type":"'+str(request_type)+'"}'
+
+	with open ('request.json', 'w') as f:
+		f.write (content)
+
+# remove the request file
+def remove_request_file():
+	os.remove('request.json')
+
+# route the root url to some statically defined html
 @route('/')
-def run_executable_then_get_contents_of_a_file_then_delete_that_file():
-	subprocess.call(['./worker'])
-	with open('output.html') as f:
+def app():
+
+	with open('app.html') as f:
 		output = f.read()
-	subprocess.call(['rm','output.html'])
+
 	return output
 
-# start the bottlepy server on http://localhost:12358
+# route the interface url the interface function.
+# this prepares the input, calls the ACL2 executable, and handles the results
+@route('/interface')
+def handler():
+
+	write_request_file()
+	subprocess.call(['./worker'])
+
+	with open('output.html') as f:
+		output = f.read()
+
+	os.remove('output.html')
+	remove_request_file()
+
+	return output
+
+# start the bottlepy server on http://localhost
 # by running "python3 interface.py"
-run(host='localhost', port='12358')
+run(host='localhost', reloader=True)
