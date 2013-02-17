@@ -18,10 +18,26 @@
   (file->string file state) 
 )
 
+; get the request type
+; this will be redefined once we have a json parser
+(defun requestType ()
+  (fromFile state "request.json")   
+)
+
 ; point of entry
 (defun main (state)
-	; write the contents of the request file to the output file
- 	; this is the first interactive version of the program, however simple
-	(toFile state (fromFile state "request.json") "output.html")
+	(let* ((rtype (requestType)))
+       (if (equal rtype "refresh")
+           (toFile state "you made a refresh request" "output.html")
+           (if (equal rtype "join")
+             (toFile state "you joined a game" "output.html")
+             (if (equal rtype "play")
+               (toFile state "you took a turn" "output.html")  
+               (toFile state "invalid request type" "output.html")  
+             )
+           )
+       )
+  	)
 )
+
 

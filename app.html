@@ -1,1 +1,74 @@
-This will be the base application including all the html and javascript required to get things started
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Texas Holdem Webapp</title>
+		<script type='text/javascript' src='knockout.js'></script>
+		<script type='text/javascript' src='jquery.js'></script>
+		<script>
+
+			// This ViewModel object represents the player's knowledge of the game
+			function THViewModel() {
+				this.lastRequest = ko.observable("None");
+			}
+
+			// Refresh request via AJAX
+			function refreshRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "refresh" }
+				}).done(function(result) {
+					th.lastRequest(result);	
+				}).fail(function() { 
+					alert("unable to refresh game"); 
+				});
+			}
+
+			// Join request via AJAX
+			function joinRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "join" }
+				}).done(function(result) {
+					th.lastRequest(result);	
+				}).fail(function() { 
+					alert("unable to join game"); 
+				});
+			}
+
+			// Play request via AJAX
+			function playRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "play" }
+				}).done(function(result) {
+					th.lastRequest(result);	
+				}).fail(function() { 
+					alert("unable to play turn"); 
+				});
+			}
+
+
+			$(document).ready(function(){
+
+				// Apply the bindings to our ViewModel
+				th = new THViewModel();
+				ko.applyBindings(th);
+
+				// set up the auto refresh
+
+				// bind the buttons to AJAX requests
+
+
+			});
+		</script>
+	</head>
+	<body>
+		<p>Last Request Type: <strong data-bind="text: lastRequest"></strong></p>
+		<input type="submit" onclick="refreshRequest()" value="Refresh">
+		<input type="submit" onclick="joinRequest()" value="Join">
+		<input type="submit" onclick="playRequest()" value="Play">
+	</body>
+</html>

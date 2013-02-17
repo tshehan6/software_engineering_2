@@ -10,7 +10,8 @@ def write_request_file():
 
 	request_type = request.query['type']
 
-	content = '{"type":"'+str(request_type)+'"}'
+	#content = '{"type":"'+str(request_type)+'"}'
+	content = str(request_type)
 
 	with open ('request.json', 'w') as f:
 		f.write (content)
@@ -22,10 +23,22 @@ def remove_request_file():
 # route the root url to some statically defined html
 @route('/')
 def app():
-
 	with open('app.html') as f:
 		output = f.read()
+	return output
 
+# route the root url to the knockout library
+@route('/knockout.js')
+def knockout():
+	with open('knockout-2.2.1.js') as f:
+		output = f.read()
+	return output
+
+# route the root url to the jQuery library
+@route('/jquery.js')
+def knockout():
+	with open('jquery-1.9.1.min.js') as f:
+		output = f.read()
 	return output
 
 # route the interface url the interface function.
