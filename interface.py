@@ -9,9 +9,11 @@ from bottle import *
 def write_request_file():
 
 	request_type = request.query['type']
+	request_player = request.query['player']
+	request_bet = request.query['bet']
+	request_ready = request.query['ready']
 
-	#content = '{"type":"'+str(request_type)+'"}'
-	content = str(request_type)
+	content = """{'type':'"""+str(request_type)+"""', 'player':'"""+str(request_player)+"""', 'bet':'"""+str(request_bet)+"""', 'ready':'"""+str(request_ready)+"""' }"""
 
 	with open ('request.json', 'w') as f:
 		f.write (content)

@@ -1,16 +1,15 @@
 ; includes and setup
 (include-book "io-utilities" :dir :teachpacks)
-(set-state-ok t) 
-
+(include-book "JSONEncode")
+(include-book "structs")
+(set-state-ok t)
 ; writes content to file and returns state
 (defun toFile (state content file) 
-	(let*((state 
 		(string-list->file	
 			file 
 			(list content)
 			state
 		) 
-	)))
 )
 
 ; returns the file as a string
@@ -18,26 +17,31 @@
   (file->string file state) 
 )
 
-; get the request type
-; this will be redefined once we have a json parser
-(defun requestType ()
-  (fromFile state "request.json")   
-)
 
-; point of entry
 (defun main (state)
-	(let* ((rtype (requestType)))
-       (if (equal rtype "refresh")
-           (toFile state "you made a refresh request" "output.html")
-           (if (equal rtype "join")
-             (toFile state "you joined a game" "output.html")
-             (if (equal rtype "play")
-               (toFile state "you took a turn" "output.html")  
-               (toFile state "invalid request type" "output.html")  
-             )
-           )
-       )
-  	)
+	(let*	(
+			(json (fromFile state "request.json"))
+			(request (JSON->request json))
+			(type (request-type request))
+		)
+		(if (string-equal type "bet")
+
+			(toFile state (concatenate 'string "You bet " (rat->str(request-bet request) 0) " dollars") "output.html")
+		
+			(if (string-equal type "join")
+			
+				(toFile state (concatenate 'string "You have joined the game as " (request-player request)) "output.html")
+			
+				(if (string-equal type "refresh")
+
+					(toFile state (concatenate 'string "As of this refresh your status is " (if (request-ready request) "READY" "NOT READY") ) "output.html")
+
+					(toFile state "Invalid request type" "output.html")
+
+				)
+
+			)
+
+		)
+	) 
 )
-
-
