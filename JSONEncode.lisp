@@ -116,15 +116,14 @@
 )
 
 ; get the JSON in the correct form for tokenizing, tokenize it, parse it, and extract the result from its wrapper
-(defun getParseTree (JSON)
-	(car(car (parser(tokenize (str->chrs JSON)) "" )))
+(defun JSON->tree (JSON)
+	(car(car(parser(tokenize (str->chrs JSON)) "" )))
 )
 
 ; convert a parse tree to a request structure
 ; expects a list of the form '(("type" "join|bet|refresh") ("player" "name") ("bet" "amount") ("ready" "T|F"))
-(defun JSON->request (JSON)
+(defun tree->request (parsedJSON)
 	(let*	(
-		 	(parsedJSON (getParseTree JSON))
 			(type (second (first parsedJSON)))
 			(player (second (second parsedJSON)))
 			(bet (str->rat(second (third parsedJSON))))
@@ -134,5 +133,10 @@
 	)
 )
 
+;convert a JSON string to a request structure directly
+(defun JSON->request (JSON)
+	(tree->request(JSON->tree JSON))
+)
 
-(JSON->request "{'type':'join','player':'Tom','bet':'12358','ready':'yes'}")
+
+;(JSON->request "{'type':'join','player':'Tom','bet':'12358','ready':'yes'}")
