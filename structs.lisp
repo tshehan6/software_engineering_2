@@ -3,10 +3,10 @@
 
 ; added by Tom - feel free to reformat and remove this comment, just let me know if anything important changes
 (defstructure request
-   (type (:assert (stringp type)))
-   (player (:assert (stringp player)))
-   (bet (:assert (integerp bet)))
-   (ready (:assert (booleanp ready))))
+   (type       (:assert (stringp  type)))
+   (player     (:assert (stringp  player)))
+   (bet        (:assert (integerp bet)))
+   (ready      (:assert (booleanp ready))))
 
 (defstructure card
    (suit  		(:assert (integerp suit)))
