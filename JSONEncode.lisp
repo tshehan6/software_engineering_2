@@ -120,17 +120,44 @@
 	(car(car(parser(tokenize (str->chrs JSON)) "" )))
 )
 
-; convert a parse tree to a request structure
-; expects a list of the form '(("type" "join|bet|refresh") ("player" "name") ("bet" "amount") ("ready" "T|F"))
-(defun tree->request (parsedJSON)
-	(let*	(
-			(type (second (first parsedJSON)))
-			(player (second (second parsedJSON)))
-			(bet (str->rat(second (third parsedJSON))))
-			(ready (if(string-equal "yes" (second (fourth parsedJSON))) T nil))
-		)
-		(request type player bet ready)
+; convert an ACL2 list to the request structure
+(defun tree->request (tree)
+  
+	(if (consp tree)
+            
+		(let* ((theRest (tree->request (cdr tree))))
+                  
+			(if (string-equal (first (first tree)) "type") 
+
+				(update-request theRest :type (second (first tree)))  
+
+				(if (string-equal (first (first tree)) "player")
+
+					(update-request theRest :player (second (first tree)))  
+
+					(if (string-equal (first (first tree)) "bet")
+
+						(update-request theRest :bet (str->rat(second (first tree))))  
+
+						(if (string-equal (first (first tree)) "ready")
+
+							(update-request theRest :ready (if(string-equal "yes" (second (first tree))) T nil)) 
+							theRest
+										
+						)
+
+					)
+					
+				)
+
+			)
+
+		)	
+
+		(request "" "" 0 nil)
+
 	)
+
 )
 
 ;convert a JSON string to a request structure directly
@@ -139,4 +166,4 @@
 )
 
 
-;(JSON->request "{'type':'join','player':'Tom','bet':'12358','ready':'yes'}")
+(JSON->request "{'type':'join','player':'Tom','bet':'12358','ready':'yes'}")
