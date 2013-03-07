@@ -25,5 +25,4 @@
 (defstructure request
    (type       (:assert (stringp  type)))
    (player     (:assert (player-p player)))
-   (bet        (:assert (integerp bet)))
-   (ready      (:assert (booleanp ready))))
+   (bet        (:assert (integerp bet))))
