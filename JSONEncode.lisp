@@ -120,30 +120,30 @@
 	(car(car(parser(tokenize (str->chrs JSON)) "" )))
 )
 
-; convert an ACL2 list to the request structure
+; convert an ACL2 list to a request structure
 (defun tree->request (tree)
   
 	(if (consp tree)
             
 		(let* ((theRest (tree->request (cdr tree))))
                   
-			(if (string-equal (first (first tree)) "type") 
+			(if (string-equal (first (first tree)) "type")
 
-				(update-request theRest :type (second (first tree)))  
+				(update-request theRest :type (second (first tree)))
 
 				(if (string-equal (first (first tree)) "player")
 
-					(update-request theRest :player (second (first tree)))  
+					(update-request theRest :player (second (first tree)))
 
 					(if (string-equal (first (first tree)) "bet")
 
-						(update-request theRest :bet (str->rat(second (first tree))))  
+						(update-request theRest :bet (str->rat(second (first tree))))
 
 						(if (string-equal (first (first tree)) "ready")
 
 							(update-request theRest :ready (if(string-equal "yes" (second (first tree))) T nil)) 
 							theRest
-										
+
 						)
 
 					)
@@ -152,7 +152,7 @@
 
 			)
 
-		)	
+		)
 
 		(request "" "" 0 nil)
 
@@ -160,10 +160,33 @@
 
 )
 
-;convert a JSON string to a request structure directly
+;convert a JSON string to a request structure
 (defun JSON->request (JSON)
 	(tree->request(JSON->tree JSON))
 )
 
 
-(JSON->request "{'type':'join','player':'Tom','bet':'12358','ready':'yes'}")
+; convert a card structure to a JSON string
+(defun card->JSON (card)
+	(let* ((suite (card-suit card)) (value (card-value card)) )
+		(concatenate 'string "{ 'suite' : '" (rat->str suite 0 ) "', 'value' : '" (rat->str value 0) "' }")
+	)  
+)
+
+; helper for hand->JSON to keep interface consistent
+(defun helper_hand->JSON (cards)
+	(if (consp cards)
+		(concatenate 'string (card->JSON (car cards)) (if (consp (cdr cards))", " "") (helper_hand->JSON (cdr cards)) )	
+		""
+	)  
+)
+
+;convert a hand structure to a JSON string
+(defun hand->JSON (hand)
+	(let* ((cardlist (hand-cards hand)))
+		(concatenate 'string "[" (helper_hand->JSON cardlist) "]") 
+	)  
+)
+
+
+(hand->JSON (hand (list (card 0 10) (card 1 12) (card 2 6))))
