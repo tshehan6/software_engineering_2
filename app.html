@@ -1,14 +1,113 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
+		<style>
+
+			/* Miscellaneous */
+			h1{
+				text-align: center ;
+				color: #000000; 
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: #41a317;
+			}
+
+			/* Player Info Boxes*/
+			div.player{
+				border-radius: 10px;
+				display: inline-block ;
+				border: solid 1px #000000;
+				padding: 10px;
+				margin: 10px;
+				background: #c9be62;
+			}
+			div.player h3{
+				margin: 0 0 10px 0;
+			}
+			div#self_player.player{
+				border: solid 3px #cc0000;
+			}
+
+			/* Community Cards */
+			div#community{
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #ada96e;
+				height: 250px;
+			}
+			div#community h3{
+				margin: 0 0 10px 0;
+			}
+
+			/* Pot */
+			div#pot{
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #ada96e;
+				height: 250px;
+				width : 250px;
+			}
+			div#pot h3{
+				margin: 0 0 10px 0;
+			}
+
+
+			.card{
+				display: inline-block ;
+				border: solid 1px #000000;
+				width: 100px;
+				height: 200px;	
+			}
+
+		</style>
+
 		<title>Texas Holdem Webapp</title>
 		<script type='text/javascript' src='knockout.js'></script>
 		<script type='text/javascript' src='jquery.js'></script>
 		<script>
 
 			// This ViewModel object represents the player's knowledge of the game
-			function THViewModel() {
-				this.lastRequest = ko.observable("None");
+			function THViewModel(){
+
+				// player representation
+				this.player_cards = ko.observableArray([{card : 1},{card : 2}]);
+				this.player_money = ko.observable(0);
+				this.player_name = ko.observable("test player");
+
+				// other players
+				this.other_players = ko.observableArray([{name: 'test', money: '12358', cards: [{card: '1'},{card : '2'}]},{name: 'testing', money: '85321', cards: [{card: '1'},{card : '2'}]}]);	
+
+				// community cards
+				this.community_cards = ko.observableArray([{card : 1},{ card: 2},{card : 3},{card : 4},{card : 5}]);
+
+				// pot
+				this.pot = ko.observable(0);
+
+			}
+
+			// update the viewmodel
+			function updateModel(model, JSON){
+				
+				model.player_cards(JSON['player_cards']);
+				model.player_money(JSON['player_money']);
+				model.player_name(JSON['player_name']);
+				model.other_players(JSON['other_players']);
+				model.community_cards(JSON['community_cards']);
+				model.pot(JSON['pot']);
+
+			}
+
+			function test(){
+				updateModel(th,{player_cards : ['card1','card2'], player_money : '10', player_name : 'tom', other_players : [{name: 'bob',money : '100',cards :'yes'}], community_cards : [{card : 'cardtest'},{card : 'testing'}], pot : '1234'});
 			}
 
 			// Refresh request via AJAX
@@ -51,6 +150,7 @@
 			}
 
 
+
 			$(document).ready(function(){
 
 				// Apply the bindings to our ViewModel
@@ -66,13 +166,37 @@
 		</script>
 	</head>
 	<body>
-		<p>Last Request Type: <strong data-bind="text: lastRequest"></strong></p>
-		<input type="submit" onclick="refreshRequest()" value="Refresh">
+		<h1>ACL2 Texas Holdem</h1>
+		<!-- Display the community cards and pot-->
+		<div id="pot"><h3>Pot:</h3>
+			<div data-bind="text: pot"></div>
+		</div>
+		<div id="community">
+			<h3>Community Cards:</h3>
+			<div data-bind="foreach: community_cards">
+				<div class="card" data-bind="text: card"></div>
+			</div>	
+		</div>
+
 		<br>
-		<label>Player Name</label><input type="text" id="name">
-		<input type="submit" onclick="joinRequest()" value="Join">
-		<br>
-		<label>Bet Amount</label><input type="text" id="bet">
-		<input type="submit" onclick="playRequest()" value="Bet">
+
+		<!-- Display the player -->	
+		<div class="player" id="self_player">
+			<h3><span data-bind="text: player_name"></span> $<span data-bind="text: player_money"></span></h3>
+			<div data-bind="foreach: player_cards">
+				<div class="card" data-bind="text: card"></div>
+			</div>	
+		</div>
+		<!-- Display the other players -->
+		<div style="display: inline-block;" data-bind="foreach: other_players">
+			<div class="player" >
+				<h3><span data-bind="text: name"></span> $<span data-bind="text: money"></span></h3>
+				<div data-bind="foreach: cards">
+					<img class="card" data-bind="attr: { src: card }">
+				</div>	
+			</div>
+		</div>
+
+	
 	</body>
 </html>
