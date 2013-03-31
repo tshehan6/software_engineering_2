@@ -8,12 +8,11 @@ from bottle import *
 # create a JSON file representing the user's request
 def write_request_file():
 
-	request_type = request.query['type']
-	request_player = request.query['player']
-	request_bet = request.query['bet']
-	request_ready = request.query['ready']
+	request_type = request.query.get('type','')
+	request_player = request.query.get('player','')
+	request_bet = request.query.get('bet','')
 
-	content = """{'type':'"""+str(request_type)+"""', 'player':'"""+str(request_player)+"""', 'bet':'"""+str(request_bet)+"""', 'ready':'"""+str(request_ready)+"""' }"""
+	content = """{'type':'"""+str(request_type)+"""', 'player':'"""+str(request_player)+"""', 'bet':'"""+str(request_bet)+"""'}"""
 
 	with open ('request.json', 'w') as f:
 		f.write (content)
@@ -51,11 +50,11 @@ def handler():
 	write_request_file()
 	subprocess.call(['./worker'])
 
-	with open('output.html') as f:
+	with open('response.json') as f:
 		output = f.read()
 
-	os.remove('output.html')
-	remove_request_file()
+	os.remove('response.json')
+#	remove_request_file()
 
 	return output
 

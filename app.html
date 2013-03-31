@@ -19,6 +19,7 @@
 
 			/* Player Info Boxes*/
 			div.player{
+				vertical-align: top;
 				border-radius: 10px;
 				display: inline-block ;
 				border: solid 1px #000000;
@@ -35,6 +36,7 @@
 
 			/* Community Cards */
 			div#community{
+				vertical-align: top;
 				border-radius: 10px;
 				display: inline-block ;
 				padding: 10px;
@@ -48,6 +50,7 @@
 
 			/* Pot */
 			div#pot{
+				vertical-align: top;
 				border-radius: 10px;
 				display: inline-block ;
 				padding: 10px;
@@ -66,6 +69,14 @@
 				border: solid 1px #000000;
 				width: 100px;
 				height: 200px;	
+			}
+
+			div#control{
+				margin: 10px;
+				border-radius: 10px;
+				padding: 10px;
+				display: inline-block ;
+				background: #ffffff;
 			}
 
 		</style>
@@ -107,7 +118,7 @@
 			}
 
 			function test(){
-				updateModel(th,{player_cards : ['card1','card2'], player_money : '10', player_name : 'tom', other_players : [{name: 'bob',money : '100',cards :'yes'}], community_cards : [{card : 'cardtest'},{card : 'testing'}], pot : '1234'});
+				updateModel(th,{player_cards : [{card: 'card1'},{card : 'card2'}], player_money : '10', player_name : 'tom', other_players : [{name: 'bob',money : '100',cards : [{card: 'test'},{card: 'test'}]}], community_cards : [{card : 'cardtest'},{card : 'testing'}], pot : '1234'});
 			}
 
 			// Refresh request via AJAX
@@ -115,9 +126,9 @@
 				$.ajax({
 					type: "GET",
 					url: "interface",
-					data: { type: "refresh", player : $("#name").val() , bet: $("#bet").val() , ready: 'yes'}
+					data: { type: "refresh", player : $("#name").val()}
 				}).done(function(result) {
-					th.lastRequest(result);	
+					updateModel(th,$.parseJSON(result));	
 				}).fail(function() { 
 					alert("unable to refresh game"); 
 				});
@@ -128,9 +139,9 @@
 				$.ajax({
 					type: "GET",
 					url: "interface",
-					data: { type: "join", player : $("#name").val() , bet: $("#bet").val() , ready: 'yes'}
+					data: { type: "join", player : $("#name").val() , ready: $("#ready").val()}
 				}).done(function(result) {
-					th.lastRequest(result);	
+					updateModel(th,$.parseJSON(result));	
 				}).fail(function() { 
 					alert("unable to join game"); 
 				});
@@ -141,9 +152,9 @@
 				$.ajax({
 					type: "GET",
 					url: "interface",
-					data: { type: "bet", player : $("#name").val() , bet: $("#bet").val() , ready: 'yes'}
+					data: { type: "play", player : $("#name").val() , bet: $("#bet").val()}
 				}).done(function(result) {
-					th.lastRequest(result);	
+					updateModel(th,$.parseJSON(result));	
 				}).fail(function() { 
 					alert("unable to play turn"); 
 				});
@@ -156,7 +167,6 @@
 				// Apply the bindings to our ViewModel
 				th = new THViewModel();
 				ko.applyBindings(th);
-
 				// set up the auto refresh
 
 				// bind the buttons to AJAX requests
@@ -166,28 +176,58 @@
 		</script>
 	</head>
 	<body>
+
+		<!-- Header -->
 		<h1>ACL2 Texas Holdem</h1>
-		<!-- Display the community cards and pot-->
+		
+		<!-- Pot-->
 		<div id="pot"><h3>Pot:</h3>
 			<div data-bind="text: pot"></div>
 		</div>
+
+		<!-- Community Cards -->
 		<div id="community">
 			<h3>Community Cards:</h3>
 			<div data-bind="foreach: community_cards">
 				<div class="card" data-bind="text: card"></div>
 			</div>	
 		</div>
+	
+		<!-- Controls-->
+		<div id="control">
+			<label for="name">Player Name:</label><input type="text" id="name"><br><br>
+			<label for="ready">Status: </label><select id="ready">
+				<option value="no">Not Ready</option>
+				<option value="yes">Ready</option>
+			</select><br><br>
+			<input type="submit" value="Join Game / Update Status" onclick="joinRequest();">
+			<br><br>
+			<hr>
+			<br>
+			<label for="bet">Amount:</label><input type="text" id="bet">
+			<br>
+			<input type="submit" value="Make Bet" onclick="playRequest();">
+			<br><br>
+			<hr>	
+			<br>
+			<input type="submit" value="Call" onclick="$('#bet').val(0);playRequest();$('#bet').val('')">
+			<input type="submit" value="Fold" onclick="$('#bet').val(-1);playRequest();$('#bet').val('')">
+			<br><br>
+			<input type="submit" value="Refresh" onclick="refreshRequest();">
 
+		</div>
 		<br>
 
-		<!-- Display the player -->	
+
+		<!-- Local Player -->	
 		<div class="player" id="self_player">
 			<h3><span data-bind="text: player_name"></span> $<span data-bind="text: player_money"></span></h3>
 			<div data-bind="foreach: player_cards">
 				<div class="card" data-bind="text: card"></div>
 			</div>	
 		</div>
-		<!-- Display the other players -->
+
+		<!-- Other Players -->
 		<div style="display: inline-block;" data-bind="foreach: other_players">
 			<div class="player" >
 				<h3><span data-bind="text: name"></span> $<span data-bind="text: money"></span></h3>
@@ -197,6 +237,5 @@
 			</div>
 		</div>
 
-	
 	</body>
 </html>
