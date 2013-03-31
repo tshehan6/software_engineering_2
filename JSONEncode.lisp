@@ -139,12 +139,8 @@
 
 						(update-request theRest :bet (str->rat(second (first tree))))
 
-						(if (string-equal (first (first tree)) "ready")
+						theRest
 
-							(update-request theRest :ready (if(string-equal "yes" (second (first tree))) T nil)) 
-							theRest
-
-						)
 
 					)
 					
@@ -154,7 +150,7 @@
 
 		)
 
-		(request "" "" 0 nil)
+		(request "" "" 0)
 
 	)
 
@@ -189,4 +185,3 @@
 )
 
 
-(hand->JSON (hand (list (card 0 10) (card 1 12) (card 2 6))))
