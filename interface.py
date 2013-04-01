@@ -4,6 +4,7 @@
 # import bottlepy framework and the subprocess module
 import subprocess, os
 from bottle import *
+from bottle import static_file
 
 # create a JSON file representing the user's request
 def write_request_file():
@@ -27,6 +28,11 @@ def app():
 	with open('app.html') as f:
 		output = f.read()
 	return output
+
+# route the card image urls
+@route('/cards/<filename>')
+def server_static(filename):
+	    return static_file(filename, root='/home/tom/se2/software_engineering_2/cards')
 
 # route the root url to the knockout library
 @route('/knockout.js')
@@ -60,4 +66,4 @@ def handler():
 
 # start the bottlepy server on http://localhost
 # by running "python3 interface.py"
-run(host='localhost', reloader=True)
+run(host='192.168.0.29', reloader=True)

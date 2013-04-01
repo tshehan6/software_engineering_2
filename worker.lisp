@@ -7,19 +7,19 @@
 ;;;;These should be defined elsewhere by somebody else;;;;;;;;;;
 (defun refreshRequest (request)
    	(let* ((dontUse request))
-     "{\"player_cards\" : [{\"card\":\"test\"},{\"card\":\"test\"}], \"player_money\" : \"10\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"test\"},{\"card\":\"test\"}]}], \"community_cards\" : [{\"card\" : \"cardtest\"},{\"card\" : \"testing\"}], \"pot\" : \"1234\"}"                         
+     "{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"100\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"}], \"pot\" : \"1234\"}"                         
      )
 )
 (defun playRequest (request)
    	(let* ((dontUse request))
-     "{\"player_cards\" : [{\"card\":\"test\"},{\"card\":\"test\"}], \"player_money\" : \"50\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"test\"},{\"card\":\"test\"}]}], \"community_cards\" : [{\"card\" : \"cardtest\"},{\"card\" : \"testing\"}], \"pot\" : \"1234\"}"                         
+     "{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"3864\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"},{\"card\" : \"cards/c13.png\"}], \"pot\" : \"1234\"}"                         
      )
-)
+ )
 (defun joinRequest (request)
    	(let* ((dontUse request))
-     "{\"player_cards\" : [{\"card\":\"test\"},{\"card\":\"test\"}], \"player_money\" : \"1234\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"test\"},{\"card\":\"test\"}]}], \"community_cards\" : [{\"card\" : \"cardtest\"},{\"card\" : \"testing\"}], \"pot\" : \"1234\"}"                         
+     "{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"87934\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"},{\"card\" : \"cards/c13.png\"},{\"card\" : \"cards/d4.png\"}], \"pot\" : \"1234\"}"                         
      )
-)
+ )
 ;;;;End of things that someone else needs to do somewhere else;;;;;;
 
 :set-state-ok t
