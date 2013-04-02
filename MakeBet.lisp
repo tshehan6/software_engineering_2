@@ -6,6 +6,7 @@
 ; Adds specified amount of chips to the gamestate pot.
 (defun addPot (game amount)
    (gamestate (gamestate-players game) 
+              (gamestate-deck game) 
               (gamestate-common game) 
               (gamestate-last-raise game) 
               (gamestate-seed game) 
@@ -17,9 +18,18 @@
 (defun removePlayerChips (curPlayer amount)
    (player (player-name curPlayer) 
            (- (player-chips curPlayer) amount) 
-           (player-call-amount curPlayer) 
+           0 
            (player-ready curPlayer) 
            (player-hand curPlayer)))
+
+
+(defun addToCallAmount (curPlayer amount)
+   (player (player-name curPlayer)
+           (player-chips curPlayer)
+           (+ (player-call-amount curPlayer) amount)
+           (player-ready curPlayer)
+           (player-hand curPlayer)))
+
 
 ; Loops through a list of players looking for the specified name.
 ; Subtracts the amount of chips to make and returns the list of players.
@@ -33,9 +43,11 @@
                        amount)
            (findPlayer (cdr players) 
                        curPlayer 
-                       (cons restPlayers (car players)) 
+                       (cons restPlayers (addToCallAmount (car players) 
+                                                          amount) )
                        amount))
            restPlayers))
+
 
 (defun setBetHistory (game amount)
 ;   (gamestate (gamestate-players game)
@@ -46,19 +58,30 @@
    (+ (gamestate-last-raise game) amount))
 
 
+; Given a list of players and a string, iterates through the list
+; looking for the player whose name matches the given string.
+(defun getPlayer (players reqname)
+   (if (consp players)
+       (if (equal (player-name (car players)) reqname)
+           (car players)
+           (getPlayer (cdr players) reqname))
+       nil))
+
+
 ; Main bet function. 
 ; Given a player that is betting a certain amount,
-; 	it looks through the list of players and adjusts
+;    it looks through the list of players and adjusts
 ; 	that players chip amounts while adding it to the pot total.
 ; Also adds to how much has been bet for future players.
 (defun makeBet (game req)
    (let* ((amount (request-bet req)))
    (gamestate (findPlayer (gamestate-players game) 
-                          (request-player req) 
+                          (getPlayer (gamestate-players game) 
+                                     (request-player req))
                           nil 
                           amount) 
+              (gamestate-deck game) 
               (gamestate-common game) 
               (setBetHistory game amount) 
               (gamestate-seed game) 
               (addPot game amount))))
-
