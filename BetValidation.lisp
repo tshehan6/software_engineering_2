@@ -17,15 +17,25 @@
      		t
      		nil))
 
+; Given a list of players and a string, iterates through the list
+; looking for the player whose name matches the given string.
+(defun getPlayer (players reqname)
+   (if (consp players)
+       (if (equal (player-name (car players)) reqname)
+           (car players)
+           (getPlayer (cdr players) reqname))
+       nil))
 
 ; Main function called by game
 ; Determines if the bet given by the player is valid
 ; 	by checking if they have enough chips and it
 ;	is a legal move to do in the current situation.
-(defun isBetValid (req)
+(defun isBetValid (game req)
    (let* ((amount (request-bet req)))
    (if (and
         (isBetLegal amount)
-        (isBetSufficient (request-player req) amount))
+        (isBetSufficient (getPlayer (gamestate-players game) 
+                                    (request-player req)) 
+                         amount))
        		t
          		nil)))
