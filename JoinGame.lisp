@@ -22,7 +22,7 @@
 
 ; Creates a new player given a particular string value for the name
 (defun generatePlayerStruct (name)
-  (player 
+	(player 
   		name 		; player name
          	1000 		; initial chips
           0 			; call amount (game hasn't started)
@@ -34,6 +34,7 @@
 (defun addPlayer (game newPlayer)
    (gamestate 
     		(cons (gamestate-players game) newPlayer)
+           (gamestate-deck game) 
 		(gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
@@ -73,9 +74,9 @@
 (defun readyPlayer (game playerName)
    (gamestate
     		(findPlayerToReady (gamestate-players game) nil playerName)
+          (gamestate-deck game) 
           (gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
           (gamestate-pot game)))
-
 
