@@ -30,3 +30,16 @@
 	         (type (:assert (stringp type)))
 		    (player (:assert (stringp player)))
 		       (bet (:assert (integerp bet))))
+
+(defstructure response-other-player
+   	(name  (:assert (stringp name)))
+   	(money (:assert (integerp money)))
+   	(cards (:assert (hand-p cards))))
+
+(defstructure response
+   	(player-cards (:assert (hand-p player-cards)))
+   	(player-money (:assert (integerp player-money)))
+   	(player-name  (:assert (stringp player-name)))
+   	(other-players (:assert (listp other-players)))
+   	(community-cards (:assert (hand-p community-cards)))
+   	(pot (:assert (integerp pot))))

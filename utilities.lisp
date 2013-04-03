@@ -189,3 +189,25 @@
                        (gamestate-common gamestate)))))
        (dealCardToCommonPile gamestate)
        Nil))
+
+;recursive helper for getPlayer
+;returns a player struct if there is a match with the playerName
+	;returns Nil if there is no match
+(defun getPlayerHelper (playerName playersList)
+   (if (and (stringp playerName)
+            (listp playersList)
+            (player-p (car playersList))
+            (not (endp playersList)))
+       (let* ((curPlayer (car playersList))
+              (curPlayerName (player-name curPlayer)))
+             (if (equal playerName curPlayerName)
+                 curPlayer
+                 (getPlayerHelper playerName (cdr playersList))))
+       Nil))
+
+;finds and returns a player struct if there is a player with a name matching playerName
+(defun getPlayer (playerName gamestate)
+   (if (and (stringp playerName)
+            (gamestate-p gamestate))
+       (getPlayerHelper playerName (gamestate-players gamestate))
+       Nil))
