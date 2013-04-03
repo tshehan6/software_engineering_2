@@ -8,6 +8,9 @@
 (defstructure hand
 	         (cards (:assert (listp cards))))
 
+(defstructure deck
+   			(cards (:assert (listp cards))))
+
 (defstructure player
 	        (name	(:assert (stringp name)))
 		  (chips (:assert (integerp chips)))
@@ -20,7 +23,8 @@
 		    (common	(:assert (hand-p common)))
 		       (last-raise	(:assert (player-p last-raise)))
 		          (seed	(:assert (integerp seed)))
-			     (pot	(:assert (integerp pot))))
+			     (pot	(:assert (integerp pot)))
+			(deck (:assert (deck-p deck))))
 
 (defstructure request
 	         (type (:assert (stringp type)))
