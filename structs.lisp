@@ -15,6 +15,7 @@
 (defstructure player
   (name (:assert (stringp name)))
   (chips (:assert (integerp chips)))
+  (call-amount (:assert (integerp call-amount)))
   (ready (:assert (booleanp ready)))
   (cards (:assert (hand-p cards))))
 
