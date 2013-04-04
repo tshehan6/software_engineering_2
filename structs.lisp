@@ -22,7 +22,7 @@
 (defstructure gamestate
   (players (:assert (listp players)))
   (common (:assert (hand-p common)))
-  (last-raise (:assert (player-p last-raise)))
+  (last-raise (:assert (stringp last-raise)))
   (seed (:assert (integerp seed)))
   (pot (:assert (integerp pot)))
   (deck (:assert (deck-p deck))))
