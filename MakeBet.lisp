@@ -6,11 +6,11 @@
 ; Adds specified amount of chips to the gamestate pot.
 (defun addPot (game amount)
    (gamestate (gamestate-players game) 
-              (gamestate-deck game) 
               (gamestate-common game) 
               (gamestate-last-raise game) 
               (gamestate-seed game) 
-              (+ (gamestate-pot game)amount)))
+              (+ (gamestate-pot game)amount)
+              (gamestate-deck game)))
 
 
 ; Removes the specified amount of chips from the players total.
@@ -20,7 +20,7 @@
            (- (player-chips curPlayer) amount) 
            0 
            (player-ready curPlayer) 
-           (player-hand curPlayer)))
+           (player-cards curPlayer)))
 
 
 (defun addToCallAmount (curPlayer amount)
@@ -28,7 +28,7 @@
            (player-chips curPlayer)
            (+ (player-call-amount curPlayer) amount)
            (player-ready curPlayer)
-           (player-hand curPlayer)))
+           (player-cards curPlayer)))
 
 
 ; Loops through a list of players looking for the specified name.
@@ -49,13 +49,13 @@
            restPlayers))
 
 
-(defun setBetHistory (game amount)
+(defun setBetHistory (req)
 ;   (gamestate (gamestate-players game)
 ;              (gamestate-common game)
 ;              (+ (gamestate-last-raise game) amount)
 ;              (gamestate-seed game)
 ;              (gamestate-pot game)))
-   (+ (gamestate-last-raise game) amount))
+   (request-player req))
 
 
 ; Given a list of players and a string, iterates through the list
@@ -80,8 +80,10 @@
                                      (request-player req))
                           nil 
                           amount) 
-              (gamestate-deck game) 
               (gamestate-common game) 
-              (setBetHistory game amount) 
+              (if (> (request-bet req) 0)
+                  (setBetHistory req) 
+                  (gamestate-last-raise game))
               (gamestate-seed game) 
-              (addPot game amount))))
+              (addPot game amount)
+              (gamestate-deck game))))
