@@ -21,31 +21,26 @@
 
 
 ; Creates a new player given a particular string value for the name
-(defun generatePlayerStruct (name)
+(defun generatePlayerStruct (name ready)
 	(player 
   		name 		; player name
          	1000 		; initial chips
           0 			; call amount (game hasn't started)
-          nil 			; is player ready (just created player)
-          (hand nil)))	; card hand (game hasn't started)
+          ready 		; is player ready (just created player)
+          (hand nil nil)))	; card hand (game hasn't started)
 
 
 ; Adds a player to the gamestate structure
 (defun addPlayer (game newPlayer)
    (gamestate 
     		(cons (gamestate-players game) newPlayer)
-           (gamestate-deck game) 
 		(gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
-          (gamestate-pot game)))
+          (gamestate-pot game)
+          (gamestate-deck game)))
 
 
-; Main Join Game function
-;  Registers players, assigns chip amounts, and sets the flag 
-;  to allow the game to start once all players are ready.
-(defun joinGame (game playerName)
-   (addPlayer game (generatePlayerStruct playerName)))
 
 
 ; Given a list of players, find the one with a particular name
@@ -60,7 +55,7 @@
                                    	(player-chips thisPlayer)
                                    	(player-call-amount thisPlayer)
                					t
-               					(player-hand thisPlayer))
+               					(player-cards thisPlayer))
                  				restPlayers)
                     		playerName)
            (findPlayertoReady (cdr curPlayers) 
@@ -74,9 +69,29 @@
 (defun readyPlayer (game playerName)
    (gamestate
     		(findPlayerToReady (gamestate-players game) nil playerName)
-          (gamestate-deck game) 
           (gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
-          (gamestate-pot game)))
+          (gamestate-pot game)
+          (gamestate-deck game)))
 
+
+(defun playerExists (players playerName)
+   (if (consp players)
+       (if (equal (player-name (car players)) playerName)
+           t
+           (playerExists (cdr players) playerName))
+       nil))
+
+
+; Main Join Game function
+;  Registers players, assigns chip amounts, and sets the flag 
+;  to allow the game to start once all players are ready.
+(defun joinGame (game playerName ready)
+	(if (playerExists (gamestate-players game) playerName)
+		(if ready
+			(readyPlayer game playerName)
+			game)
+		(addPlayer game (generatePlayerStruct playerName ready)))))
+   
+   
