@@ -82,8 +82,12 @@
                    :deck *newdeck*
                    :players (list *player1* *player2* *player3*)
                    :common (make-hand :cards Nil :handRank Nil);(list *c3* *c1*))
+                   :current-player-turn "player_1"
                    :last-raise "player_1"
-                   :pot 0))
+                   :pot 0
+                   :game-status-message "test status message"
+                   :is-hand-over Nil
+                   :error-message "test error message"))
 
 ;shuffles a deck using the Fisher-Yates shuffle and returns the shuffled deck
 ;args: deck can be any deck structure, randoms should be a list of reandom ints (created using the generate-randoms function) 

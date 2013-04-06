@@ -25,7 +25,11 @@
   (last-raise (:assert (stringp last-raise)))
   (seed (:assert (integerp seed)))
   (pot (:assert (integerp pot)))
-  (deck (:assert (deck-p deck))))
+  (deck (:assert (deck-p deck)))
+  (current-player-turn (:assert (stringp current-player-turn)))
+  (game-status-message (:assert (stringp game-status-message)))
+  (is-hand-over (:assert (booleanp is-hand-over)))
+  (error-message (:assert (stringp error-message))))
 
 (defstructure request
   (type (:assert (stringp type)))
@@ -43,4 +47,8 @@
    	(player-name  (:assert (stringp player-name)))
    	(other-players (:assert (listp other-players)))
    	(community-cards (:assert (hand-p community-cards)))
-   	(pot (:assert (integerp pot))))
+   	(pot (:assert (integerp pot)))
+   	(current-player-turn (:assert (stringp current-player-turn)))
+   	(game-status-message (:assert (stringp game-status-message)))
+   	(is-hand-over (:assert (booleanp is-hand-over)))
+   	(error-message (:assert (stringp error-message))))

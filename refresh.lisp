@@ -29,5 +29,9 @@
                             :player-name playerName
                             :other-players otherPlayers
                             :community-cards (gamestate-common gamestate)
-                            :pot (gamestate-pot gamestate)))
+                            :pot (gamestate-pot gamestate)
+                            :current-player-turn (gamestate-current-player-turn gamestate)
+                            :game-status-message (gamestate-game-status-message gamestate)
+                            :is-hand-over (gamestate-is-hand-over gamestate)
+                            :error-message (gamestate-error-message gamestate)))
         Nil))
