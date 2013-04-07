@@ -39,14 +39,14 @@
 (defstructure response-other-player
    	(name  (:assert (stringp name)))
    	(money (:assert (integerp money)))
-   	(cards (:assert (hand-p cards))))
+   	(cards (:assert (listp cards))))
 
 (defstructure response
-   	(player-cards (:assert (hand-p player-cards)))
+   	(player-cards (:assert (listp player-cards)))
    	(player-money (:assert (integerp player-money)))
    	(player-name  (:assert (stringp player-name)))
    	(other-players (:assert (listp other-players)))
-   	(community-cards (:assert (hand-p community-cards)))
+   	(community-cards (:assert (listp community-cards)))
    	(pot (:assert (integerp pot)))
    	(current-player-turn (:assert (stringp current-player-turn)))
    	(game-status-message (:assert (stringp game-status-message)))

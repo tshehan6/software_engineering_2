@@ -3,6 +3,21 @@
 (include-book "structs")
 (include-book "util_helpers")
 
+;initial gamestate used when running the program for the first time
+;intiializes all values to Nil
+(defconst *new-gamestate*
+   (make-gamestate :players Nil
+                   :common (make-hand :cards Nil
+                                      :handRank Nil)
+                   :last-raise ""
+                   :seed -1
+                   :pot -1
+                   :deck (make-deck :cards Nil)
+                   :current-player-turn ""
+                   :game-status-message ""
+                   :is-hand-over Nil
+                   :error-message ""))
+                   
 
 ;creates a deck, shuffles the deck, and then deals two cards to each player
 ;this should be used once all players are ready to play a new hand

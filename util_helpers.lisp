@@ -116,7 +116,8 @@
               (card2 (nth numPlayers cards))
               (newCards (remove card2 (remove card1 cards))))
              (cons (update-player (car players)
-                                  :cards (make-hand :cards (list card1 card2) :handRank Nil))
+                                  :cards (make-hand :cards (list card1 card2) 
+                                                    :handRank Nil))
                    (dealCardsToPlayers newCards (cdr players))))
        Nil))
 
