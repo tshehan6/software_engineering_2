@@ -2,14 +2,16 @@
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "structs")
 (include-book "JSONEncode")
+(include-book "utilities")
+(include-book "refresh")
 
 
 ;;;;These should be defined elsewhere by somebody else;;;;;;;;;;
-(defun refreshRequest (request)
-   	(let* ((dontUse request))
-     "{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"100\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"}], \"pot\" : \"1234\"}"                         
-     )
-)
+;(defun refreshRequest (request)
+   	;(let* ((dontUse request))
+     ;"{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"100\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"}], \"pot\" : \"1234\"}"                         
+     ;)
+;)
 (defun playRequest (request)
    	(let* ((dontUse request))
      "{\"player_cards\" : [{\"card\":\"cards/c1.png\"},{\"card\":\"cards/h5.png\"}], \"player_money\" : \"3864\", \"player_name\" : \"tom\", \"other_players\" :     [{\"name\": \"bob\",\"money\" : \"100\",\"cards\" :[{\"card\":\"cards/s9.png\"},{\"card\":\"cards/s2.png\"}]}], \"community_cards\" : [{\"card\" : \"cards/d12.png\"},{\"card\" : \"cards/h8.png\"},{\"card\" : \"cards/c13.png\"}], \"pot\" : \"1234\"}"                         
@@ -38,7 +40,8 @@
 )
 
 (defun processRequest (request)
-	(let* ((requestStruct (JSON->request request)) (requestType (request-type requestStruct)) )
+	(let* ((requestStruct (JSON->request request)) 
+        	  (requestType (request-type requestStruct)))
 		(if (string-equal requestType "refresh") 
 			(refreshRequest requestStruct)
       		(if (string-equal requestType "play")  

@@ -1,37 +1,14 @@
 (in-package "ACL2")
 (include-book "structs")
 (include-book "utilities")
+(include-book "refresh_helpers")
 
-;recursive helper to build a list of response-other-player structs
-;adds an entry for all players except the player corresponding to thisPlayerName
-(defun getOtherPlayers (thisPlayerName playersList)
-   (if (and (stringp thisPlayerName)
-            (listp playersList)
-            (player-p (car playersList))
-            (not (endp playersList)))
-       (if (equal thisPlayerName (player-name (car playersList)))
-           (getOtherPlayers thisPlayerName (cdr playersList))
-           (cons (make-response-other-player 
-                  	:name (player-name (car playersList))
-                    :money (player-chips (car playersList))
-                    :cards (player-cards (car playersList)))
-                 (getOtherPlayers thisPlayerName (cdr playersList))))
+;read in gamestate, create a response struct for the player specified in request-player
+	;and the write the gamestate out to the file
+(defun refreshRequest (request)
+   (if (request-p request)
+       ;TODO: need to read in the gamestate from file using let*
+            (updateResponseStructForPlayer (request-player request) (dealHands (shuffleDeck *test-gamestate*)))
+       ;TODO: need to write the result above out to file
        Nil))
-
-;returns a response struct for the player represented by playerName
-(defun updateResponseStructForPlayer (playerName gamestate)
-   (if (and (stringp playerName)
-            (gamestate-p gamestate))
-       (let* ((playerStruct (getPlayer playerName gamestate))
-              (otherPlayers (getOtherPlayers playerName (gamestate-players gamestate))))
-             (make-response :player-cards (player-cards playerStruct)
-                            :player-money (player-chips playerStruct)
-                            :player-name playerName
-                            :other-players otherPlayers
-                            :community-cards (gamestate-common gamestate)
-                            :pot (gamestate-pot gamestate)
-                            :current-player-turn (gamestate-current-player-turn gamestate)
-                            :game-status-message (gamestate-game-status-message gamestate)
-                            :is-hand-over (gamestate-is-hand-over gamestate)
-                            :error-message (gamestate-error-message gamestate)))
-        Nil))
+         

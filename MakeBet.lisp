@@ -10,7 +10,11 @@
               (gamestate-last-raise game) 
               (gamestate-seed game) 
               (+ (gamestate-pot game)amount)
-              (gamestate-deck game)))
+              (gamestate-deck game)
+              (gamestate-current-player-turn game)
+              (gamestate-game-status-message game)
+              (gamestate-is-hand-over game)
+              (gamestate-error-message game)))
 
 
 ; Removes the specified amount of chips from the players total.
@@ -86,4 +90,8 @@
                   (gamestate-last-raise game))
               (gamestate-seed game) 
               (addPot game amount)
-              (gamestate-deck game))))
+              (gamestate-deck game)
+              (gamestate-current-player-turn game)
+              (gamestate-game-status-message game)
+              (gamestate-is-hand-over game)
+              (gamestate-error-message game))))
