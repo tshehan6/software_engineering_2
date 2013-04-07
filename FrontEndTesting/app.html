@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style>
+
+			/* Miscellaneous */
+			h1{
+				font-family:Palatino Linotype;
+				text-align: center ;
+				color:#ffd400; 
+			}
+			h3{
+				color:#ffd400; 
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-image:url('cardTable.jpg');
+				background-size:cover;
+			}
+
+			/* Player Info Boxes*/
+			div.player{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				border: solid 1px #000000;
+				padding: 10px;
+				margin: 10px;
+				background: #ffd400;
+			}
+			div.player h3{
+				margin: 0 0 10px 0;
+			}
+			div#self_player.player{
+				border: solid 3px #ffd400;
+			}
+
+			/* Community Cards */
+			div#community{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #358f04;
+				height: 270px;
+			}
+			div#community h3{
+				margin: 0 0 10px 0;
+			}
+
+			/* Pot */
+			div#pot{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #358f04;
+				height: 270px;
+				width : 250px;
+			}
+			div#pot h3{
+				margin: 0 0 10px 0;
+			}
+
+
+			.card{
+				display: inline-block ;
+				border: solid 1px #000000;
+			}
+
+			div#control{
+				margin: 10px;
+				border-radius: 10px;
+				padding: 10px;
+				display: inline-block ;
+				background: #ffffff;
+				height: 270px;
+			}
+
+		</style>
+
+		<title>Texas Holdem Webapp</title>
+		<script type='text/javascript' src='knockout.js'></script>
+		<script type='text/javascript' src='jquery.js'></script>
+		<script>
+
+			// This ViewModel object represents the player's knowledge of the game
+			function THViewModel(){
+
+				// player representation
+				this.player_cards = ko.observableArray([]);
+				this.player_money = ko.observable(0);
+				this.player_name = ko.observable("Please Join");
+
+				// other players
+				this.other_players = ko.observableArray([]);	
+
+				// community cards
+				this.community_cards = ko.observableArray([]);
+
+				// pot
+				this.pot = ko.observable(0);
+
+			}
+
+			// update the viewmodel
+			function updateModel(model, JSON){
+				
+				model.player_cards(JSON['player_cards']);
+				model.player_money(JSON['player_money']);
+				model.player_name(JSON['player_name']);
+				model.other_players(JSON['other_players']);
+				model.community_cards(JSON['community_cards']);
+				model.pot(JSON['pot']);
+
+			}
+
+			// Refresh request via AJAX
+			function refreshRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "refresh", player : $("#name").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to refresh game"); 
+				});
+			}
+
+			// Join request via AJAX
+			function joinRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "join", player : $("#name").val() , ready: $("#ready").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to join game"); 
+				});
+			}
+
+			// Play request via AJAX
+			function playRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "play", player : $("#name").val() , bet: $("#bet").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to play turn"); 
+				});
+			}
+
+
+
+			$(document).ready(function(){
+
+				// Apply the bindings to our ViewModel
+				th = new THViewModel();
+				ko.applyBindings(th);
+				// set up the auto refresh
+
+				// bind the buttons to AJAX requests
+
+
+			});
+		</script>
+	</head>
+	<body>
+		<!-- Header -->
+		<h1>ACL2 Texas Hold'em</h1>
+
+		<!-- Controls-->
+		<div id="control">
+			<label for="name">Player Name:</label><input type="text" id="name"><br><br>
+			<label for="ready">Status: </label><select id="ready">
+				<option value="no">Not Ready</option>
+				<option value="yes">Ready</option>
+			</select><br><br>
+			<input type="submit" value="Join Game / Update Status" onclick="joinRequest();">
+			<br><br>
+			<hr>
+			<br>
+			<label for="bet">Amount:</label><input type="text" id="bet">
+			<br><br>
+			<input type="submit" value="Make Bet" onclick="playRequest();">
+			<input type="submit" value="Call" onclick="$('#bet').val(0);playRequest();$('#bet').val('')">
+			<input type="submit" value="Fold" onclick="$('#bet').val(-1);playRequest();$('#bet').val('')">
+			<br><br>
+			<input type="submit" value="Refresh" onclick="refreshRequest();">
+
+		</div>
+	
+		<!-- Pot-->
+		<div id="pot"><h3>Pot:</h3>
+			<div data-bind="text: pot"></div>
+		</div>
+
+		<!-- Community Cards -->
+		<div id="community">
+			<h3>Community Cards:</h3>
+			<div data-bind="foreach: community_cards">
+				<img class="card" data-bind="attr: {src: card}">
+			</div>	
+		</div>
+	
+		<br>
+
+
+		<!-- Local Player -->	
+		<div class="player" id="self_player">
+			<h3><span data-bind="text: player_name"></span> $<span data-bind="text: player_money"></span></h3>
+			<div data-bind="foreach: player_cards">
+				<img class="card" data-bind="attr: {src: card}">
+			</div>	
+		</div>
+
+		<!-- Other Players -->
+		<div style="display: inline-block;" data-bind="foreach: other_players">
+			<div class="player" >
+				<h3><span data-bind="text: name"></span> $<span data-bind="text: money"></span></h3>
+				<div data-bind="foreach: cards">
+					<img class="card" data-bind="attr: { src: card }">
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>

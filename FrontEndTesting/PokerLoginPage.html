@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style>
+
+			/* Miscellaneous */
+			h1{
+				position: absolute;
+				//width:70%;
+				left: 40%;
+				border-radius: 10px;
+				border: solid 1px #000000;
+				padding: 10px;
+				margin: 10px;
+				background: #85280d;
+				font-family:Georgia;
+				text-align: center ;
+				color:#ffd400; 
+			}
+			h3{
+				color:#ffd400; 
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-image:url('cardTable.jpg');
+				background-size:cover;
+			}
+
+			/* Player Info Boxes*/
+			div.player{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				border: solid 1px #000000;
+				padding: 10px;
+				margin: 10px;
+				background: #ffd400;
+			}
+			div.player h3{
+				margin: 0 0 10px 0;
+			}
+			div#self_player.player{
+				border: solid 3px #ffd400;
+			}
+
+			/* Community Cards */
+			div#community{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #358f04;
+				height: 270px;
+			}
+			div#community h3{
+				margin: 0 0 10px 0;
+			}
+
+			/* Pot */
+			div#pot{
+				vertical-align: top;
+				border-radius: 10px;
+				display: inline-block ;
+				padding: 10px;
+				margin: 10px;
+				background: #358f04;
+				height: 270px;
+				width : 250px;
+			}
+			div#pot h3{
+				margin: 0 0 10px 0;
+			}
+
+
+			.card{
+				display: inline-block ;
+				border: solid 1px #000000;
+			}
+			.center{
+				margin:auto;
+				width:70%;
+			}
+			div#control{
+				position:absolute;
+				left: 45%;
+				top: 50%;
+				margin: 10px;
+				border-radius: 10px;
+				padding: 10px;
+				background: #ffffff;
+				//height: 270px;
+			}
+			div#cards{
+				position: absolute;
+				left: 30%;
+				top: 20%;
+				background-image:url('cardTable.jpg');
+			}
+
+		</style>
+
+		<title>Texas Holdem Webapp</title>
+		<script type='text/javascript' src='knockout.js'></script>
+		<script type='text/javascript' src='jquery.js'></script>
+		<script>
+
+			// This ViewModel object represents the player's knowledge of the game
+			function THViewModel(){
+
+				// player representation
+				this.player_cards = ko.observableArray([]);
+				this.player_money = ko.observable(0);
+				this.player_name = ko.observable("Please Join");
+
+				// other players
+				this.other_players = ko.observableArray([]);	
+
+				// community cards
+				this.community_cards = ko.observableArray([]);
+
+				// pot
+				this.pot = ko.observable(0);
+
+			}
+
+			// update the viewmodel
+			function updateModel(model, JSON){
+				
+				model.player_cards(JSON['player_cards']);
+				model.player_money(JSON['player_money']);
+				model.player_name(JSON['player_name']);
+				model.other_players(JSON['other_players']);
+				model.community_cards(JSON['community_cards']);
+				model.pot(JSON['pot']);
+
+			}
+
+			// Refresh request via AJAX
+			function refreshRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "refresh", player : $("#name").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to refresh game"); 
+				});
+			}
+
+			// Join request via AJAX
+			function joinRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "join", player : $("#name").val() , ready: $("#ready").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to join game"); 
+				});
+			}
+
+			// Play request via AJAX
+			function playRequest(){
+				$.ajax({
+					type: "GET",
+					url: "interface",
+					data: { type: "play", player : $("#name").val() , bet: $("#bet").val()}
+				}).done(function(result) {
+					updateModel(th,$.parseJSON(result));	
+				}).fail(function() { 
+					alert("unable to play turn"); 
+				});
+			}
+
+
+
+			$(document).ready(function(){
+
+				// Apply the bindings to our ViewModel
+				th = new THViewModel();
+				ko.applyBindings(th);
+				// set up the auto refresh
+
+				// bind the buttons to AJAX requests
+
+
+			});
+		</script>
+	</head>
+	<body>
+		<!-- Header -->
+		<h1>ACL2 Texas Hold'em</h1>
+		<div id="cards"; align="center";>
+			<img src="cards/s1.png"></img>
+			<img src="cards/s13.png"></img>
+			<img src="cards/s12.png"></img>
+			<img src="cards/s11.png"></img>
+			<img src="cards/s10.png"></img>
+		</div>
+		<!-- Controls-->
+		<div id="control"; align="center";>
+			<label for="name">Player Name: </label><input type="text" id="name"><br><br>
+			<input type="submit" value="Join Game" onclick="window.open('app.html', '_self')">
+
+		</div>
+	</body>
+</html>
