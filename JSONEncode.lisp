@@ -245,6 +245,44 @@
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Deck Converters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ACL2 list to structure
+(defun tree->deck (tree)
+  
+	(if (consp tree)
+            
+		(let* ((theRest (tree->deck (cdr tree))))
+                  
+			(if (string-equal (first (first tree)) "cards")
+
+				(update-deck theRest :cards (cardListList->cardStructList (second (first tree))))
+
+				theRest
+				
+			)
+
+		)
+
+		(deck '())
+
+	)
+
+)
+;structure to JSON string
+(defun deck->JSON (deck)
+	(let* ((cardlist (deck-cards deck)))
+		(concatenate 'string "{'cards' : " "[" (helper_hand->JSON cardlist) "] }") 
+	)  
+)
+; JSON string to structure
+(defun JSON->deck (JSON)
+  
+	(tree->deck(JSON->tree JSON))
+  
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Player Converters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -296,17 +334,121 @@
 )
 ;JSON string to structure
 (defun JSON->player (JSON)
-	(tree->player(JSON->tree JSON))  
+	(tree->player(JSON->tree JSON))
 )
 
 ; structure to JSON string
 (defun player->JSON (player)
 	(let* ((cards (hand->JSON (player-cards player))))
 		(concatenate 'string "{'name' : '" (player-name player) "', 'cards' : " cards " , 'ready' : '" ( if (player-ready player) "yes" "no") "', 'chips' : '" (rat->str(player-chips player) 0) "', 'call-amount' : '" (rat->str(player-call-amount player) 0) "' }") 
-	)  
+	)
+)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Gamestate Converters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; helper - list of ACL2 lists to list of player structures
+(defun playerListList->playerStructList (players)
+
+  (if (consp (cdr players))
+
+      (cons (tree->player (car players)) (playerListList->playerStructList (cdr players)))
+      
+      (list  (tree->player (car players)))
+      
+  )
+  
+)
+
+; ACL2 list to structure
+(defun tree->gamestate (tree)
+
+	(if (consp tree)
+            
+		(let* ((theRest (tree->gamestate (cdr tree))))
+                  
+			(if (string-equal (first (first tree)) "players")
+
+				(update-gamestate theRest :players (playerListList->playerStructList(second (first tree))) )
+
+                          	(if (string-equal (first (first tree)) "pot")
+
+                                    (update-gamestate theRest :pot (str->rat(second (first tree))) )
+
+                                    (if (string-equal (first (first tree)) "common")
+
+                                        (update-gamestate theRest :common (tree->hand(second (first tree))) )
+
+                                        (if (string-equal (first (first tree)) "last-raise")
+
+                                            (update-gamestate theRest :last-raise (second (first tree)) )
+
+                                            (if (string-equal (first (first tree)) "seed")
+
+                                                (update-gamestate theRest :seed (str->rat(second (first tree))) )
+
+                                                (if (string-equal (first (first tree)) "current-player-turn")
+
+                                                    (update-gamestate theRest :current-player-turn (second (first tree)) )
+
+                                                    (if (string-equal (first (first tree)) "game-status-message")
+
+                                                        (update-gamestate theRest :game-status-message (second (first tree)) )
+
+                                                        (if (string-equal (first (first tree)) "is-hand-over")
+
+                                                            (update-gamestate theRest :is-hand-over (if (string-equal "yes" (second (first tree))) T nil) )
+
+                                                            (if (string-equal (first (first tree)) "error-message")
+
+                                                                (update-gamestate theRest :error-message (second (first tree)) )
+
+                                                                (if (string-equal (first (first tree)) "deck")
+
+                                                                    (update-gamestate theRest :deck (tree->deck(second (first tree)) ))
+
+                                                                    theRest	
+					
+                                                                )	
+					
+                                                            )	
+					
+                                                        )	
+					
+                                                    )	
+					
+                                                )	
+					
+                                            )		
+					
+                                        )	
+	
+                                    )	
+				
+                           )
+					
+			)
+
+		)
+
+		(gamestate '() '() "" 0 0 '() "" "" nil "")
+
+	)
+
+)
+
+
+;JSON string to structure
+(defun JSON->gamestate (JSON)
+	(tree->gamestate(JSON->tree JSON))
 )
 
 
 ;test
+(deck->JSON(JSON->deck "{'cards' : [['1','1'],['2','3'],['4','5']]  }" ))
 (hand->JSON(JSON->hand "{'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['10','20'] }" ))
 (player->JSON (JSON->player(player->JSON (JSON->player "{'name': 'tom', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }"))))
+(JSON->gamestate "{'players' : [{'name': 'alice', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' },{'name': 'bob', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }] , 'common' : {'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['0','0'] } , 'last-raise' : 'eve' , 'seed' : '1235813' , 'pot' : '999' , 'current-player-turn' : 'alice' , 'game-status-message' : 'bob wins' , 'is-hand-over' : 'yes' , 'error-message' :'eve hacked it' , 'deck' : {'cards' : [['5','5'],['6','6'],['7','8']]  } }")
