@@ -32,7 +32,8 @@
                                          pivot
                                          value))
                 (if (equal value "hands")
-                    (if (<= (car(hand-handRank front)) (car(hand-handRank pivot)))
+                    (if (<= (car(hand-handRank front)) 
+                            (car(hand-handRank pivot)))
                         (quickSortHelper (cdr h)
                                              (cons front lesser)
                                              greater
@@ -94,35 +95,51 @@
             (isThreeKind (cdr h))))))
 
 (defun isFlush (h)
+  (if (not (consp (cddddr h)))
+      nil
   (let* ((sortedBySuit (quickSort h "suit"))
          (firstCard (first sortedBySuit))
          (firstCardSuit (card-suit firstCard))
          (secondCard (second sortedBySuit))
          (thirdCard (third sortedBySuit))
          (fourthCard (fourth sortedBySuit))
-         (fifthCard (fifth sortedBySuit)))
-    (if (not (consp (cddddr sortedBySuit)))
-        nil
+         (fifthCard (fifth sortedBySuit))
+         (sortedbyValue (quickSort (list firstCard
+                                        secondCard
+                                        thirdCard
+                                        fourthCard
+                                        fifthCard) "value")))
         (if (and (equal firstCardSuit (card-suit secondCard))
                  (equal firstCardSuit (card-suit thirdCard))
                  (equal firstCardSuit (card-suit fourthCard))
                  (equal firstCardSuit (card-suit fifthCard)))
-            (mv 5 (card-value firstCard)) ;TODO will need better tie breaking figures
+            (mv 5 sortedByValue) ;TODO will need better tie breaking figures
             (isFlush (cdr sortedBySuit))))))
 
 (defun isStraight (h)
   (if (not (consp (cddddr h)))
       nil
       (let* ((highCardValue (card-value (first h)))
-             (lowCardValue (card-value (fifth h))))
-        (if (equal 4 (- highCardValue lowCardValue))
+             (secondCard (card-value (second h)))
+             (thirdCard (card-value (third h)))
+             (fourthCard (card-value (fourth h)))
+             (lowCardValue (card-value (fifth h)))
+             (setOfCards (add-to-set-eql lowCardValue 
+                         (add-to-set-eql fourthCard 
+                         (add-to-set-eql thirdCard 
+                         (add-to-set-eql secondCard 
+                                         (list highCardValue)))))))
+        (if (and (equal 5 (length setOfCards))
+                 (equal 4 (- highCardValue lowCardValue)))
             (mv 6 highCardValue)
             (isStraight (cdr h))))))
 
 (defun isFullHouse (h)
   (if (not (consp (cdddr h)))
       nil
-      (let* ((firstThreeKind (isThreeKind (list (first h) (second h) (third h))))
+      (let* ((firstThreeKind (isThreeKind (list (first h) 
+                                                (second h) 
+                                                (third h))))
              (firstPair (isPair (cdddr h)))
              (secondThreeKind (isThreeKind (cddr h)))
              (secondPair (isPair (list (first h) (second h)))))
@@ -162,10 +179,19 @@
         (if (and (isFlush fiveCardHand) (isStraight fiveCardHand))
             (mv 9 (card-value (first fiveCardHand)))
             (isStraightFlush (cdr h))))))
-;(defun isGameOver (gamestate))
-;(defun isHandOver (gamestate))
-;(defun rankHands (hands))
 
+(defun isRoundOver (gamestate)
+  (if (equal (gamestate-last-raise gamestate)
+             (gamestate-current-player-turn gamestate))
+      t
+      nil))
+
+(defun isHandOver (gamestate)
+  (if (and (isRoundOver gamestate)
+           (equal 5 (length (gamestate-common gamestate))))
+      t
+      nil))
+;(defun rankHands (hands))
 (defun getHandRank (hand)
   (let* ((straightFlush (isStraightFlush hand))
          (fourKind (isFourKind hand))
@@ -207,13 +233,13 @@
          (handRank (getHandRank cards)))
     (hand cards handRank)))
 (defconst *tester4* 
-  (let* ((cards (quickSort (list *D12* *H9* *D5* *H4* *C12* *D2* *H1*) "value"))
+  (let* ((cards (quickSort (list *D13* *H12* *D11* *H9* *C10* *D2* *H1*) "value"))
          (handRank (getHandRank cards)))
     (hand cards handRank)))
 ;*tester*
 ;*tester2*
 ;*tester3*
-;*tester4*
+*tester4*
 
 (quickSort (list *tester* *tester2* *tester3* *tester4*) "hands")
 ;(quickSort (hand-cards *tester*) "suit")
