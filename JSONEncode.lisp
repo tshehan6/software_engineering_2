@@ -175,7 +175,23 @@
 		(concatenate 'string "['" (rat->str suite 0 ) "','" (rat->str value 0) "']")
 	)
 )
-
+(defun toLetter (n)
+  (if (= n 0)
+      "d"
+      (if (= n 1)
+          "h"
+          (if (= n 0)
+              "c"
+              "s"
+          )
+      )
+  )
+)
+(defun cardimg->JSON (card)
+	(let* ((suite (card-suit card)) (value (card-value card)) )
+		(concatenate 'string "'" (toLetter suite) (rat->str value 0) ".png' ")
+	)
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hand Converters
@@ -439,11 +455,39 @@
 	)
 
 )
-
-
 ;JSON string to structure
 (defun JSON->gamestate (JSON)
 	(tree->gamestate(JSON->tree JSON))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Response Converters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; helper for hand->JSON to keep interface consistent
+(defun helper_cardimgs->JSON (cards)
+	(if (consp cards)
+		(concatenate 'string (cardimg->JSON (car cards)) (if (consp (cdr cards))", " "") (helper_cardimgs->JSON (cdr cards)) )	
+		""
+	)
+)
+
+(defun others->JSON (others)
+
+  (if (consp others )
+      
+      (concatenate 'string "{ 'name' : '" (response-other-player-name (car others)) "', 'money' : '" (rat->str(response-other-player-money (car others)) 0) "',  'cards' : [" (helper_cardimgs->JSON(response-other-player-cards (car others)))"]}" (if (consp (cdr others)) "," "") (others->JSON (cdr others)))
+      ""
+      
+  )
+  
+)
+
+;structure to JSON string
+(defun response->JSON (response)
+	(let* ((others (concatenate 'string "["(others->JSON(response-other-players response ))"]")))
+		(concatenate 'string "{'player_cards' : " "[" (helper_cardimgs->JSON (response-player-cards response)) "], 'pot' : '" (rat->str(response-pot response) 0) "' , 'other_players' : "others" }") 
+	)  
 )
 
 
@@ -452,3 +496,4 @@
 (hand->JSON(JSON->hand "{'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['10','20'] }" ))
 (player->JSON (JSON->player(player->JSON (JSON->player "{'name': 'tom', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }"))))
 (JSON->gamestate "{'players' : [{'name': 'alice', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' },{'name': 'bob', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }] , 'common' : {'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['0','0'] } , 'last-raise' : 'eve' , 'seed' : '1235813' , 'pot' : '999' , 'current-player-turn' : 'alice' , 'game-status-message' : 'bob wins' , 'is-hand-over' : 'yes' , 'error-message' :'eve hacked it' , 'deck' : {'cards' : [['5','5'],['6','6'],['7','8']]  } }")
+(response->JSON (response (list(card 5 5) (card 4 4)) 10 "tom" (list (response-other-player "test" 123 (list (card 1 2) (card 3 4))) (response-other-player "testing" 6543 (list (card 1 2) (card 3 4)))) nil 40 ))
