@@ -6,15 +6,28 @@
 
 			/* Miscellaneous */
 			h1{
+				position: absolute;
+				//width:70%;
+				left: 40%;
+				border-radius: 10px;
+				border: solid 1px #000000;
+				padding: 10px;
+				margin: 10px;
+				background: #85280d;
+				font-family:Georgia;
 				text-align: center ;
-				color: #000000; 
+				color:#ffd400; 
+			}
+			h3{
+				color:#ffd400; 
 			}
 			*{
 				margin: 0;
 				padding: 0;
 			}
 			body{
-				background: #41a317;
+				background-image:url('cardTable.jpg');
+				background-size:cover;
 			}
 
 			/* Player Info Boxes*/
@@ -25,13 +38,13 @@
 				border: solid 1px #000000;
 				padding: 10px;
 				margin: 10px;
-				background: #c9be62;
+				background: #ffd400;
 			}
 			div.player h3{
 				margin: 0 0 10px 0;
 			}
 			div#self_player.player{
-				border: solid 3px #cc0000;
+				border: solid 3px #ffd400;
 			}
 
 			/* Community Cards */
@@ -41,7 +54,7 @@
 				display: inline-block ;
 				padding: 10px;
 				margin: 10px;
-				background: #ada96e;
+				background: #358f04;
 				height: 270px;
 			}
 			div#community h3{
@@ -55,7 +68,7 @@
 				display: inline-block ;
 				padding: 10px;
 				margin: 10px;
-				background: #ada96e;
+				background: #358f04;
 				height: 270px;
 				width : 250px;
 			}
@@ -68,14 +81,25 @@
 				display: inline-block ;
 				border: solid 1px #000000;
 			}
-
+			.center{
+				margin:auto;
+				width:70%;
+			}
 			div#control{
+				position:absolute;
+				left: 45%;
+				top: 50%;
 				margin: 10px;
 				border-radius: 10px;
 				padding: 10px;
-				display: inline-block ;
 				background: #ffffff;
-				height: 270px;
+				//height: 270px;
+			}
+			div#cards{
+				position: absolute;
+				left: 30%;
+				top: 20%;
+				background-image:url('cardTable.jpg');
 			}
 
 		</style>
