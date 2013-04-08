@@ -37,7 +37,7 @@
             (deck-p deck))
        (let* ((pos1 (position c1 (deck-cards deck)))
               (pos2 (position c2 (deck-cards deck))))
-             (make-deck :cards;create new deck
+			  (make-deck :cards ;create new deck
                         (update-nth pos1 c2 ;swap card2
                                     (update-nth pos2 c1 (deck-cards deck)))));swap card1 in the cards list
              Nil))
@@ -61,30 +61,37 @@
                 :chips 50
                 :call-amount 0
                 :ready t
-                :cards (make-hand :cards Nil :handRank Nil)))
+                :cards (make-hand :cards (list *D7* *S1*) :handRank Nil)))
 
 (defconst *player2*
    (make-player :name "player_2"
                 :chips 50
                 :call-amount 0
                 :ready t
-                :cards (make-hand :cards Nil :handRank Nil)))
+                :cards (make-hand :cards (list *C3* *H8*) :handRank Nil)))
 
 (defconst *player3*
    (make-player :name "player_3"
                 :chips 50
                 :call-amount 0
                 :ready t
-                :cards (make-hand :cards Nil :handRank Nil)))
+                :cards (make-hand :cards (list *D13* *H2*) :handRank Nil)))
+				
+(defconst *player4*
+   (make-player :name "player_4"
+                :chips 50
+                :call-amount 0
+                :ready t
+                :cards (make-hand :cards (list *H13* *H9*) :handRank Nil)))
 
 (defconst *test-gamestate*
    (make-gamestate :seed 23423
                    :deck *newdeck*
-                   :players (list *player1* *player2* *player3*)
-                   :common (make-hand :cards Nil :handRank Nil);(list *c3* *c1*))
+                   :players (list *player1* *player2* *player3* *player4*)
+                   :common (make-hand :cards (list *D10* *H12* *S4* *S11* *D1*) :handRank Nil);(list *c3* *c1*))
                    :current-player-turn "player_1"
-                   :last-raise "player_1"
-                   :pot 0
+                   :last-raise "player_2"
+                   :pot 500
                    :game-status-message "test status message"
                    :is-hand-over Nil
                    :error-message "test error message"))
