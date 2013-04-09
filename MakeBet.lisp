@@ -46,17 +46,17 @@
        (if (equal (player-name (car players)) (player-name curPlayer) )
            (findPlayer (cdr players) 
                        curPlayer 
-                       (if (not restPlayers)
-                           (removePlayerChips (car players) amount)
-                            (cons restPlayers 
-                              (removePlayerChips (car players) amount) ) )
+                      ; (if (not restPlayers)
+                          ; (removePlayerChips (car players) amount)
+                            (cons (removePlayerChips (car players) amount)
+                                  restPlayers ) ;)
                        amount)
            (findPlayer (cdr players) 
                        curPlayer 
-                       (if (not restPlayers)
-                           (addToCallAmount (car players) amount)
-					  (cons restPlayers 
-                           	(addToCallAmount (car players) amount) ) )
+                      ; (if (not restPlayers)
+                           ;(addToCallAmount (car players) amount)
+					  (cons (addToCallAmount (car players) amount) 
+            				    restPlayers) ;)
                        amount))
            restPlayers))
 
@@ -100,7 +100,7 @@
 ; Also adds to how much has been bet for future players.
 (defun makeBet (game req)
    (let* ((amount (request-bet req)))
-   (gamestate (findPlayer (gamestate-players game) 
+   (gamestate (findPlayer (reverse (gamestate-players game) )
                           (getPlayer (gamestate-players game) 
                                      (request-player req))
                           nil 
@@ -116,3 +116,10 @@
               (gamestate-game-status-message game)
               (gamestate-is-hand-over game)
               (gamestate-error-message game))))
+
+
+; debugging
+(defconst *p1* (player "bob1" 123 0 t nil))
+(defconst *p2* (player "bob2" 123 0 t nil))
+(defconst *p3* (player "bob3" 123 0 t nil))
+(defconst *pl* (list *p1* *p2* *p3*))
