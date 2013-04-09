@@ -339,7 +339,7 @@
                              	:game-status-message (string-append (player-name updatedWinner)
                                                                   " won the game!" )))
         (if (isRoundOver gamestate)
-            t
+            gamestate;set last-raise to Nil/deal next card/
             gamestate)))
 			
 ;(defconst *tester* 
