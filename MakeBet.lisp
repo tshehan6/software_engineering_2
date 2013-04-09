@@ -46,14 +46,16 @@
        (if (equal (player-name (car players)) (player-name curPlayer) )
            (findPlayer (cdr players) 
                        curPlayer 
-                       (cons restPlayers 
-                             (removePlayerChips (car players) amount)) 
+                       (if (not restPlayers)
+                           (removePlayerChips (car players) amount)
+                            (cons restPlayers 
+                              (removePlayerChips (car players) amount) ) )
                        amount)
            (findPlayer (cdr players) 
                        curPlayer 
                        (if (not restPlayers)
                            (addToCallAmount (car players) amount)
-   				  (cons restPlayers 
+					  (cons restPlayers 
                            	(addToCallAmount (car players) amount) ) )
                        amount))
            restPlayers))
