@@ -4,29 +4,32 @@
 
 
 ; Adds specified amount of chips to the gamestate pot.
-;(defun addPot (game amount)
-   ;(gamestate (gamestate-players game) 
-              ;(gamestate-common game) 
-              ;(gamestate-last-raise game) 
-             ; (gamestate-seed game) 
-             ; (+ (gamestate-pot game)amount)
-             ; (gamestate-deck game)
-              ;(gamestate-current-player-turn game)
-             ; (gamestate-game-status-message game)
-             ; (gamestate-is-hand-over game)
-              ;(gamestate-error-message game)))
+(defun addPot (game amount)
+   (gamestate (gamestate-players game) 
+              (gamestate-common game) 
+              (gamestate-last-raise game) 
+              (gamestate-seed game) 
+              (+ (gamestate-pot game)amount)
+              (gamestate-deck game)
+              (gamestate-current-player-turn game)
+              (gamestate-game-status-message game)
+              (gamestate-is-hand-over game)
+              (gamestate-error-message game)))
 
 
 ; Removes the specified amount of chips from the players total.
 ; Assumes validation has already been made for having enough chips.
 (defun removePlayerChips (curPlayer amount)
    (player (player-name curPlayer) 
-           (- (player-chips curPlayer) amount) 
+           (if (<= (- (player-chips curPlayer) amount) 0) 
+               0
+               (- (player-chips curPlayer) amount))
            0 
            (player-ready curPlayer) 
            (player-cards curPlayer)))
 
 
+; Adds a specified number of chips to how much the player needs to call.
 (defun addToCallAmount (curPlayer amount)
    (player (player-name curPlayer)
            (player-chips curPlayer)
@@ -37,6 +40,7 @@
 
 ; Loops through a list of players looking for the specified name.
 ; Subtracts the amount of chips to make and returns the list of players.
+; For every other player, adds to how much they need to call.
 (defun findPlayer (players curPlayer restPlayers amount)
    (if (consp players)
        (if (equal (player-name (car players)) (player-name curPlayer) )
@@ -47,8 +51,10 @@
                        amount)
            (findPlayer (cdr players) 
                        curPlayer 
-                       (cons restPlayers (addToCallAmount (car players) 
-                                                          amount) )
+                       (if (not restPlayers)
+   				  (cons restPlayers 
+                           	(addToCallAmount (car players) amount) )
+                           (addToCallAmount (car players) amount) )
                        amount))
            restPlayers))
 
@@ -72,26 +78,42 @@
        nil))
 
 
+; Given a list of players and a string, iterates through the list
+; looking for the player whose name matches the given string.
+; Then select the player after that for whose turn it is next.
+(defun getNextPlayer (players firstPlayer reqname)
+   (if (consp players)
+       (if (equal (player-name (car players)) reqname)
+           (if (> (len players) 1)
+           	(cadr players)
+               firstPlayer)
+           (getNextPlayer (cdr players) firstPlayer reqname))
+       nil))
+
+
 ; Main bet function. 
 ; Given a player that is betting a certain amount,
-;    it looks through the list of players and adjusts
+; 	it looks through the list of players and adjusts
 ; 	that players chip amounts while adding it to the pot total.
 ; Also adds to how much has been bet for future players.
 (defun makeBet (game req)
    (let* ((amount (request-bet req)))
-   (make-gamestate :players (findPlayer (gamestate-players game) 
+   (gamestate (findPlayer (gamestate-players game) 
                           (getPlayer (gamestate-players game) 
                                      (request-player req))
                           nil 
                           amount) 
-              :common (gamestate-common game) 
-              :last-raise (if (> (request-bet req) 0)
-                  			(setBetHistory req) 
-                  			(gamestate-last-raise game))
-              :seed (gamestate-seed game) 
-              :pot (+ (gamestate-pot game) amount);
-              :deck (gamestate-deck game)
-              :current-player-turn (gamestate-current-player-turn game)
-              :game-status-message (gamestate-game-status-message game)
-              :is-hand-over (gamestate-is-hand-over game)
-              :error-message (gamestate-error-message game))))
+              (gamestate-common game) 
+              (if (> amount 0)
+                  (setBetHistory req) 
+                  (gamestate-last-raise game))
+              (gamestate-seed game) 
+              (+ (gamestate-pot game) amount)
+              (gamestate-deck game)
+              (getNextPlayer (gamestate-players game)
+                             (car (gamestate-players game))
+                             (request-player req)) 
+              (gamestate-game-status-message game)
+              (gamestate-is-hand-over game)
+              (gamestate-error-message game))))
+
