@@ -83,14 +83,14 @@
 ; Given a list of players and a string, iterates through the list
 ; looking for the player whose name matches the given string.
 ; Then select the player after that for whose turn it is next.
-(defun getNextPlayer (players firstPlayer reqname)
-   (if (consp players)
-       (if (equal (player-name (car players)) reqname)
-           (if (> (len players) 1)
-           	(cadr players)
-               firstPlayer)
-           (getNextPlayer (cdr players) firstPlayer reqname))
-       nil))
+;(defun getNextPlayer (players firstPlayer reqname)
+;   (if (consp players)
+;       (if (equal (player-name (car players)) reqname)
+;           (if (> (len players) 1)
+;           	(cadr players)
+;               firstPlayer)
+;           (getNextPlayer (cdr players) firstPlayer reqname))
+;       nil))
 
 
 ; Main bet function. 
@@ -112,9 +112,7 @@
               (gamestate-seed game) 
               (+ (gamestate-pot game) amount)
               (gamestate-deck game)
-              (getNextPlayer (gamestate-players game)
-                             (car (gamestate-players game))
-                             (request-player req)) 
+              (gamestate-current-player-turn game) 
               (gamestate-game-status-message game)
               (gamestate-is-hand-over game)
               (gamestate-error-message game))))
