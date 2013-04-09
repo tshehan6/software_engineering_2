@@ -167,7 +167,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Card Converters 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; structure to JSON string
 (defun card->JSON (card)
@@ -189,7 +189,7 @@
 )
 (defun cardimg->JSON (card)
 	(let* ((suite (card-suit card)) (value (card-value card)) )
-		(concatenate 'string "'" (toLetter suite) (rat->str value 0) ".png' ")
+		(concatenate 'string "{'card' : 'cards/" (toLetter suite) (rat->str value 0) ".png' }")
 	)
 )
 
@@ -486,7 +486,7 @@
 ;structure to JSON string
 (defun response->JSON (response)
 	(let* ((others (concatenate 'string "["(others->JSON(response-other-players response ))"]")))
-		(concatenate 'string "{'player_cards' : " "[" (helper_cardimgs->JSON (response-player-cards response)) "], 'pot' : '" (rat->str(response-pot response) 0) "' , 'other_players' : "others" }") 
+		(concatenate 'string "{'player_cards' : " "[" (helper_cardimgs->JSON (response-player-cards response)) "], 'player_money' : '" (rat->str(response-player-money response)0) "', 'player_name' : '"(response-player-name response)"', 'pot' : '" (rat->str(response-pot response) 0) "' , 'other_players' : "others", 'community_cards' : [" (helper_cardimgs->JSON(response-community-cards response)) "] }") 
 	)  
 )
 
@@ -496,4 +496,4 @@
 (hand->JSON(JSON->hand "{'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['10','20'] }" ))
 (player->JSON (JSON->player(player->JSON (JSON->player "{'name': 'tom', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }"))))
 (JSON->gamestate "{'players' : [{'name': 'alice', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' },{'name': 'bob', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }] , 'common' : {'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['0','0'] } , 'last-raise' : 'eve' , 'seed' : '1235813' , 'pot' : '999' , 'current-player-turn' : 'alice' , 'game-status-message' : 'bob wins' , 'is-hand-over' : 'yes' , 'error-message' :'eve hacked it' , 'deck' : {'cards' : [['5','5'],['6','6'],['7','8']]  } }")
-(response->JSON (response (list(card 5 5) (card 4 4)) 10 "tom" (list (response-other-player "test" 123 (list (card 1 2) (card 3 4))) (response-other-player "testing" 6543 (list (card 1 2) (card 3 4)))) nil 40 ))
+(response->JSON (response (list(card 5 5) (card 4 4)) 10 "tom" (list (response-other-player "test" 123 (list (card 1 2) (card 3 4))) (response-other-player "testing" 6543 (list (card 1 2) (card 3 4)))) (list (card 1 1) (card 2 2)) 40 "" "" nil ""))

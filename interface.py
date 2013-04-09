@@ -57,7 +57,7 @@ def handler():
 	subprocess.call(['./worker'])
 
 	with open('response.json') as f:
-		output = f.read()
+		output = f.read().replace("'","\"")
 
 	os.remove('response.json')
 #	remove_request_file()
@@ -66,4 +66,4 @@ def handler():
 
 # start the bottlepy server on http://localhost
 # by running "python3 interface.py"
-run(host='192.168.0.29', reloader=True)
+run(host='localhost', reloader=True)
