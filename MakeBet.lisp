@@ -52,9 +52,9 @@
            (findPlayer (cdr players) 
                        curPlayer 
                        (if (not restPlayers)
+                           (addToCallAmount (car players) amount)
    				  (cons restPlayers 
-                           	(addToCallAmount (car players) amount) )
-                           (addToCallAmount (car players) amount) )
+                           	(addToCallAmount (car players) amount) ) )
                        amount))
            restPlayers))
 
@@ -116,4 +116,3 @@
               (gamestate-game-status-message game)
               (gamestate-is-hand-over game)
               (gamestate-error-message game))))
-
