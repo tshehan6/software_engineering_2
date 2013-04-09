@@ -54,7 +54,7 @@
 
 (defconst *pre-bet-1-gamestate*
    (make-gamestate :players (list *player-1* *player-2* *player-3*)
-                   :common (make-hand :cards (list *s2* *s4*)
+                   :common (make-hand :cards (list *s2* *s4* *c1*)
                                       :handRank Nil)
                    :last-raise ""
                    :seed 234234
