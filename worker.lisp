@@ -48,6 +48,12 @@
 (defun writeGamestate (state gamestate)
    (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
 
+(defun readGamestate (state)
+	(mv-let (input-string error state)
+		(fromFile state "gamestate.txt")
+          (mv input-string error state)))
+
+      
 (defun processRequest (state request)
 	(let* (;(requestStruct (JSON->request request)) 
         	  (requestType (request-type request)))
