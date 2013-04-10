@@ -460,6 +460,22 @@
 	(tree->gamestate(JSON->tree JSON))
 )
 
+; list of players to json list
+(defun playerlist->JSON (players)
+  (if (consp players )
+      (concatenate 'string (player->JSON (car players)) (if (consp (cdr players)) "," "") (playerlist->JSON (cdr players)))
+      ""
+  )
+  
+)
+
+;structure to JSON string
+(defun gamestate->JSON (gamestate)
+	(let* ((players (concatenate 'string "["(playerlist->JSON(gamestate-players gamestate ))"]")))
+          (concatenate 'string "{'players' : " players ", 'common' :" (hand->JSON (gamestate-common gamestate)) ", 'last-raise' : '"(gamestate-last-raise gamestate)"', 'seed' : '" (rat->str(gamestate-seed gamestate) 0) "', 'pot':'"(rat->str(gamestate-pot gamestate)0)"', 'current-player-turn' : '" (gamestate-current-player-turn gamestate) "', 'game-status-message' : '" (gamestate-game-status-message gamestate) "' , 'is-hand-over' : '" (if (gamestate-is-hand-over gamestate) "yes" "no") "', 'error-message':'" (gamestate-error-message gamestate) "' , 'deck':" (deck->JSON(gamestate-deck gamestate)) " }") 
+	)
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Response Converters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -483,6 +499,7 @@
   
 )
 
+
 ;structure to JSON string
 (defun response->JSON (response)
 	(let* ((others (concatenate 'string "["(others->JSON(response-other-players response ))"]")))
@@ -492,8 +509,8 @@
 
 
 ;test
-(deck->JSON(JSON->deck "{'cards' : [['1','1'],['2','3'],['4','5']]  }" ))
-(hand->JSON(JSON->hand "{'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['10','20'] }" ))
-(player->JSON (JSON->player(player->JSON (JSON->player "{'name': 'tom', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }"))))
-(JSON->gamestate "{'players' : [{'name': 'alice', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' },{'name': 'bob', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }] , 'common' : {'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['0','0'] } , 'last-raise' : 'eve' , 'seed' : '1235813' , 'pot' : '999' , 'current-player-turn' : 'alice' , 'game-status-message' : 'bob wins' , 'is-hand-over' : 'yes' , 'error-message' :'eve hacked it' , 'deck' : {'cards' : [['5','5'],['6','6'],['7','8']]  } }")
-(response->JSON (response (list(card 5 5) (card 4 4)) 10 "tom" (list (response-other-player "test" 123 (list (card 1 2) (card 3 4))) (response-other-player "testing" 6543 (list (card 1 2) (card 3 4)))) (list (card 1 1) (card 2 2)) 40 "" "" nil ""))
+;(deck->JSON(JSON->deck "{'cards' : [['1','1'],['2','3'],['4','5']]  }" ))
+;(hand->JSON(JSON->hand "{'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['10','20'] }" ))
+;(player->JSON (JSON->player(player->JSON (JSON->player "{'name': 'tom', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }"))))
+;(JSON->gamestate(gamestate->JSON(JSON->gamestate "{'players' : [{'name': 'alice', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' },{'name': 'bob', 'cards' : {'cards' : [['1','1'],['2','3'],['4','5']], 'handRank' : ['3','4']} , 'ready' : 'yes', 'chips' : '10' , 'call-amount' : '123' }] , 'common' : {'cards' : [['1','1'],['2','3'],['4','5']] , 'handRank' : ['0','0'] } , 'last-raise' : 'eve' , 'seed' : '1235813' , 'pot' : '999' , 'current-player-turn' : 'alice' , 'game-status-message' : 'bob wins' , 'is-hand-over' : 'yes' , 'error-message' :'eve hacked it' , 'deck' : {'cards' : [['5','5'],['6','6'],['7','8']]  } }")))
+;(response->JSON (response (list(card 5 5) (card 4 4)) 10 "tom" (list (response-other-player "test" 123 (list (card 1 2) (card 3 4))) (response-other-player "testing" 6543 (list (card 1 2) (card 3 4)))) (list (card 1 1) (card 2 2)) 40 "" "" nil ""))
