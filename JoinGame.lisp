@@ -16,7 +16,7 @@
     (gamestate-players game)))
 
 
-; ? - I don't know what to do with this
+; Authenticity (for later)
 ;(generatePlayerKey (gamestate))
 
 
@@ -33,12 +33,16 @@
 ; Adds a player to the gamestate structure
 (defun addPlayer (game newPlayer)
    (gamestate 
-    		(cons (gamestate-players game) newPlayer)
+    		(reverse (cons newPlayer (reverse (gamestate-players game))))
 		(gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
           (gamestate-pot game)
-          (gamestate-deck game)))
+          (gamestate-deck game)
+		(gamestate-current-player-turn game)
+		(gamestate-game-status-message game)
+		(gamestate-is-hand-over game)
+		(gamestate-error-message game)))
 
 
 
@@ -56,7 +60,7 @@
                                    	(player-call-amount thisPlayer)
                					t
                					(player-cards thisPlayer))
-                 				restPlayers)
+                                    restPlayers)
                     		playerName)
            (findPlayertoReady (cdr curPlayers) 
                               (cons thisPlayer restPlayers) 
@@ -68,12 +72,16 @@
 ;  Returns the gamestate with the updated player.
 (defun readyPlayer (game playerName)
    (gamestate
-    		(findPlayerToReady (gamestate-players game) nil playerName)
+    		(findPlayerToReady (reverse (gamestate-players game)) nil playerName)
           (gamestate-common game)
           (gamestate-last-raise game)
           (gamestate-seed game)
           (gamestate-pot game)
-          (gamestate-deck game)))
+          (gamestate-deck game)
+		(gamestate-current-player-turn game)
+		(gamestate-game-status-message game)
+		(gamestate-is-hand-over game)
+		(gamestate-error-message game)))
 
 
 (defun playerExists (players playerName)
@@ -92,6 +100,6 @@
 		(if ready
 			(readyPlayer game playerName)
 			game)
-		(addPlayer game (generatePlayerStruct playerName ready)))))
+		(addPlayer game (generatePlayerStruct playerName ready))))
    
    
