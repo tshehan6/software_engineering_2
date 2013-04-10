@@ -319,7 +319,19 @@
                                                    :handRank (getHandRank mergedHand)))
                          (addCommonCardsToPlayersAndSort (cdr players) commonCards)) 
                     "players"))))
-					
+				
+;called after a round of beting
+;sets the last-raise to an empty string and deals the next common card	
+(defun readyGamestateForNextRound (gamestate)
+   (if (gamestate-p gamestate)
+       (let* ((numCommons (len (hand-cards (gamestate-common gamestate))))
+              (newGamestate (cond ((equal numCommons 0) (dealFlop gamestate))
+                                  ((equal numCommons 3) (dealTurn gamestate))
+                                  ((equal numCommons 4) (dealRiver gamestate))
+                                  (t gamestate))))
+             (update-gamestate newGamestate :last-raise ""))
+       Nil))
+
 ;afterTurn is the main function of the module
 ;It checks to see if a hand is over and if a round of betting is over and
 ;modifies the gamestate accordingly
@@ -335,12 +347,12 @@
           	(updatedWinner (update-player winner :chips (+ (gamestate-pot game) (player-chips winner)))))
         	(update-gamestate game
           				:players (append updatedWinner (cdr (gamestate-players game)))
-                          	:last-raise nil 
+                          	:last-raise ""
                              	:game-status-message (string-append (player-name updatedWinner)
                                                                   " won the game!" )))
-        (if (isRoundOver gamestate)
-            t
-            gamestate)))
+        (if (isRoundOver gamestate);if the round of betting is over
+            (readyGamestateForNextRound gamestate);set last-raise to "" & deal next card
+            gamestate)));othewise a round of betting is still going on, let the gamestate pass through without being modified
 			
 ;(defconst *tester* 
 ;  (let* ((cards (quickSort (list *D12* *S9* *C5* *H4* *D3* *D2* *D1*) "value"))

@@ -16,7 +16,7 @@
                    :current-player-turn ""
                    :game-status-message ""
                    :is-hand-over Nil
-                   :error-message ""))
+                   :error-message "pl"))
                    
 
 ;creates a deck, shuffles the deck, and then deals two cards to each player
@@ -57,8 +57,8 @@
        Nil))
 
 ;finds and returns a player struct if there is a player with a name matching playerName
-(defun getPlayer (playerName gamestate)
+(defun findPlayerInPlayersList (playerName gamestate)
    (if (and (stringp playerName)
             (gamestate-p gamestate))
        (getPlayerHelper playerName (gamestate-players gamestate))
-       Nil))
+       t));Nil))
