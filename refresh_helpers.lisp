@@ -27,7 +27,7 @@
 (defun updateResponseStructForPlayer (playerName gamestate)
    (if (and (stringp playerName)
             (gamestate-p gamestate))
-       (let* ((playerStruct (getPlayer playerName gamestate))
+       (let* ((playerStruct (findPlayerInPlayersList playerName gamestate))
               (otherPlayers (getOtherPlayers playerName (gamestate-players gamestate))))
              (make-response :player-cards (player-cards playerStruct)
                             :player-money (player-chips playerStruct)

@@ -1,8 +1,4 @@
-; Tom Shehan
-; Team Stroustrup
-; Encode / Decode Module
-
-; includes and setup
+(in-package "ACL2")
 (include-book "list-utilities" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "structs")

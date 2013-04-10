@@ -4,6 +4,8 @@
 (include-book "testing" :dir :teachpacks)
 (include-book "TakeTurn")
 
+
+
 ;TEST #1
 ;test for standard case of making a bet that does not end the round
 (defconst *bet-1-request*
