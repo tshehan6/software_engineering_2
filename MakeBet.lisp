@@ -23,7 +23,8 @@
    (player (player-name curPlayer) 
            (if (<= (- (player-chips curPlayer) amount) 0) 
                0
-               (- (player-chips curPlayer) amount))
+               (- (player-chips curPlayer) 
+                  (+ (player-call-amount curPlayer) amount)))
            0 
            (player-ready curPlayer) 
            (player-cards curPlayer)))
