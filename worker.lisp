@@ -41,28 +41,24 @@
   (file->string file state) 
 )
 
-(defun writeGamestate (state gamestate)
-   (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
-
 (set-guard-checking :none);
 (defun writeResponse (state response)
    (toFile state (response->JSON response) "response.txt"))
 
-(defun processRequest (request)
-	(let* ((requestStruct (JSON->request request)) 
-        	  (requestType (request-type requestStruct)))
-		(if (string-equal requestType "refresh") 
-			(refreshRequest requestStruct)
-      		(if (string-equal requestType "play")  
-            		(playRequest requestStruct)
-              		(if (string-equal requestType "join")  
-            			(joinRequest requestStruct)
-              			"bad request type"
-            		)
-            	)
-		)	  
-	)
-)
+(defun writeGamestate (state gamestate)
+   (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
+
+(defun processRequest (state request)
+	(let* (;(requestStruct (JSON->request request)) 
+        	  (requestType (request-type request)))
+		(cond ((string-equal requestType "refresh") 
+				(writeResponse state (refreshRequest request)))
+        		((string-equal requestType "play") 
+           		(mv "PLAY REQUEST" state))
+        		((string-equal requestType "join") (mv "join request" state))
+        		(t (mv nil state)))
+	)	  
+  )
 
 (defun main (state)
 	    (toFile state (processRequest (fromFile state "request.json")) "response.json")
