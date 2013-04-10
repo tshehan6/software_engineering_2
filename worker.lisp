@@ -44,11 +44,9 @@
 (defun writeGamestate (state gamestate)
    (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
 
+(set-guard-checking :none);
 (defun writeResponse (state response)
    (toFile state (response->JSON response) "response.txt"))
-
-(defun readGamestate (state)
-   (JSON->gamestate (fromFile state "gamestate.txt")))
 
 (defun processRequest (request)
 	(let* ((requestStruct (JSON->request request)) 
@@ -64,7 +62,6 @@
             	)
 		)	  
 	)
-	
 )
 
 (defun main (state)
