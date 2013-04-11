@@ -5,6 +5,8 @@
 (include-book "structs")
 (include-book "utilities")
 (include-book "refresh")
+(include-book "JoinGame")
+(include-book "TakeTurn")
 
 
 ;;;;These should be defined elsewhere by somebody else;;;;;;;;;;
@@ -65,26 +67,43 @@
 (defun readGamestate (state)
 	(mv-let (input-string error state)
 		(fromFile state "gamestate.txt")
-          (mv input-string error state)))
+          (mv (JSON->gamestate input-string) error state)))
+
+
 
       
-(defun processRequest (request state)
-	(let* (;(requestStruct (JSON->request request)) 
-        	  (requestType (request-type request)))
-		(cond ((string-equal requestType "refresh") 
-				(writeResponse state (refreshRequest request)))
-        		((string-equal requestType "play") state)
-        		((string-equal requestType "join") state)
-        		(t state))
-	)	  
+(defun processRequest (request state game)
+	(let* ((req (JSON->request request)) 
+        	  (requestType (request-type req)))
+		(cond ((string-equal requestType "refresh")
+         		(let* ((state (writeResponse state (refreshRequest request))))
+       				(mv game req state)))
+        		((string-equal requestType "play") 
+           		(mv (takeTurn game req) req state))
+        		((string-equal requestType "join") 
+           		(mv (joinGame game (request-player req) t) req state))
+        		(t (mv game req state)))
+	)
   )
 
+
+(defconst *game* (gamestate nil nil nil 12345 0 nil nil nil nil nil))
+
 (defun main (state)
+   (mv-let (game state)
+	   (mv-let (game error state) 
+	           (readGamestate state)
+	      (if error
+	          (mv *game* state)
+	          (mv game state)))
 	(mv-let (str1 error state)
 		(fromFile state "request.json")
-		(declare (ignore error))
-		(processRequest str1 state)))
-     		
-			;(toFile state str2 "response.json"))))
-
-
+		(if error
+    			(toFile state "Request failed" "error.txt")
+			(mv-let (game req state)
+           		(processRequest str1 state game)
+      			(writeGamestateAndResponse state game (getResponse req game))
+)))))
+   
+   
+   
