@@ -68,7 +68,7 @@
           (mv input-string error state)))
 
       
-(defun processRequest (state request)
+(defun processRequest (request state)
 	(let* (;(requestStruct (JSON->request request)) 
         	  (requestType (request-type request)))
 		(cond ((string-equal requestType "refresh") 
@@ -80,6 +80,11 @@
   )
 
 (defun main (state)
-	    (toFile state (processRequest (fromFile state "request.json")) "response.json")
+	(mv-let (str1 error state)
+		(fromFile state "request.json")
+		(declare (ignore error))
+		(processRequest str1 state)))
+     		
+			;(toFile state str2 "response.json"))))
 
-)
+
