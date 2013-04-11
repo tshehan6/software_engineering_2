@@ -51,7 +51,6 @@
 (defun writeGamestate (state gamestate)
    (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
 
-<<<<<<< HEAD
 (defun writeGamestateAndResponse (state gamestate response)
    (let* ((state (writeResponse state response)))
          (writeGamestate state gamestate)))
@@ -63,23 +62,20 @@
        (updateResponseStructForPlayer (request-player request) gamestate)
        Nil))
 
-=======
 (defun readGamestate (state)
 	(mv-let (input-string error state)
 		(fromFile state "gamestate.txt")
           (mv input-string error state)))
 
       
->>>>>>> 0d76f18d74aa83cebe8c566ae654fca62deb5ce2
 (defun processRequest (state request)
 	(let* (;(requestStruct (JSON->request request)) 
         	  (requestType (request-type request)))
 		(cond ((string-equal requestType "refresh") 
 				(writeResponse state (refreshRequest request)))
-        		((string-equal requestType "play") 
-           		(mv "PLAY REQUEST" state))
-        		((string-equal requestType "join") (mv "join request" state))
-        		(t (mv nil state)))
+        		((string-equal requestType "play") state)
+        		((string-equal requestType "join") state)
+        		(t state))
 	)	  
   )
 
