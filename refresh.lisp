@@ -4,16 +4,6 @@
 (include-book "utilities")
 (include-book "refresh_helpers")
 
-(set-state-ok t)
-
-(defun toFile (state content file) 
-		(string-list->file	
-			file 
-			(list content)
-			state
-		)
-)
-
 ;read in gamestate, create a response struct for the player specified in request-player
 	;and the write the gamestate out to the file
 (defun refreshRequest (request)
@@ -22,4 +12,6 @@
             (updateResponseStructForPlayer (request-player request) (dealHands (shuffleDeck *test-gamestate*)))
        ;(toFile state (list "one" "two") "testfile.txt")
        Nil))
+
+
          

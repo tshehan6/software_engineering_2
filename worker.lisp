@@ -43,10 +43,24 @@
 
 (set-guard-checking :none);
 (defun writeResponse (state response)
-   (toFile state (response->JSON response) "response.txt"))
+   (mv-let (error state)
+           (toFile state (response->JSON response) "response.json")
+      	(declare (ignore error))
+      	state))
 
 (defun writeGamestate (state gamestate)
    (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
+
+(defun writeGamestateAndResponse (state gamestate response)
+   (let* ((state (writeResponse state response)))
+         (writeGamestate state gamestate)))
+
+;creates a response struct for the player who intitated a request
+;used to get the response to be written out after a join or takeTurn request
+(defun getResponse (request gamestate)
+   (if (gamestate-p gamestate)
+       (updateResponseStructForPlayer (request-player request) gamestate)
+       Nil))
 
 (defun processRequest (state request)
 	(let* (;(requestStruct (JSON->request request)) 

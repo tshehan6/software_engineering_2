@@ -4,7 +4,7 @@
 
 (defconst *test-request*
    (make-request :type "refresh"
-   :player "player_1"
+   :player "player_2"
    :bet 0))
 
 ;recursive helper to build a list of response-other-player structs
