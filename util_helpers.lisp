@@ -114,7 +114,7 @@
        Nil));return Nil if invalid args were provided
 
 ;recursive helper to deal a list of cards to players in order
-(defun dealCardsToPlayers (cards players)
+(defun dealCardsToPlayers (cards players otherPlayers)
    (if (and (listp cards)
             (listp players)
             (not (endp players)));base case, all players have been updated
@@ -125,8 +125,9 @@
              (cons (update-player (car players)
                                   :cards (make-hand :cards (list card1 card2) 
                                                     :handRank Nil))
-                   (dealCardsToPlayers newCards (cdr players))))
-       Nil))
+                   (dealCardsToPlayers newCards (cdr players) 
+                                       (cons (car players) otherPlayers))))
+       otherPlayers))
 
 
 ;deals two cards from the deck to each of the players
@@ -137,7 +138,8 @@
               (cardsToDeal (take (* numPlayers 2) 
                                  (deck-cards (gamestate-deck gamestate))))
               (newPlayers (dealCardsToPlayers cardsToDeal 
-                                              (gamestate-players gamestate)))
+                                              (gamestate-players gamestate)
+                                              nil))
               (newDeck (nthcdr (* numPlayers 2) (deck-cards 
                                                  (gamestate-deck gamestate)))))
              (update-gamestate gamestate
