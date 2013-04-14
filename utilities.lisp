@@ -11,12 +11,12 @@
                                       :handRank Nil)
                    :last-raise ""
                    :seed -1
-                   :pot -1
+                   :pot 0
                    :deck (make-deck :cards Nil)
                    :current-player-turn ""
                    :game-status-message ""
                    :is-hand-over Nil
-                   :error-message "pl"))
+                   :error-message ""))
                    
 
 ;creates a deck, shuffles the deck, and then deals two cards to each player

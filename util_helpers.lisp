@@ -88,10 +88,10 @@
    (make-gamestate :seed 23423
                    :deck *newdeck*
                    :players (list *player1* *player2* *player3* *player4*)
-                   :common (make-hand :cards (list *D10* *H12* *S4* *S11* *D1*) :handRank Nil);(list *c3* *c1*))
+                   :common (make-hand :cards Nil :handRank Nil);(list *c3* *c1*))
                    :current-player-turn "player_1"
                    :last-raise "player_2"
-                   :pot 500
+                   :pot 0
                    :game-status-message "test status message"
                    :is-hand-over Nil
                    :error-message "test error message"))
