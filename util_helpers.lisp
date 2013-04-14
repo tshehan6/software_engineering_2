@@ -27,10 +27,6 @@
   
 ;swaps the position of cards c1 and c2 returns a new deck
 ;used by the deck shuffling algorithm
-;TODO... test the following:
-	;1) no cards are lost in result
-	;2) size of deck is preserved
-	;3) no cards are duplicated in the result 
 (defun swapCards (c1 c2 deck)
    (if (and (card-p c1)
             (card-p c2)
