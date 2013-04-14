@@ -69,7 +69,19 @@
 		(fromFile state "gamestate.txt")
           (mv (JSON->gamestate input-string) error state)))
 
-
+(defun startGame (game playerName)
+   (dealFlop (shuffleDeck
+    	(gamestate
+    		(gamestate-players game)
+          (gamestate-common game)
+          (gamestate-last-raise game)
+          (gamestate-seed game)
+          (gamestate-pot game)
+          (gamestate-deck game)
+		playerName
+		(gamestate-game-status-message game)
+		(gamestate-is-hand-over game)
+		(gamestate-error-message game)))))
 
       
 (defun processRequest (request state game)
@@ -81,7 +93,10 @@
         		((string-equal requestType "play") 
            		(mv (takeTurn game req) req state))
         		((string-equal requestType "join") 
-           		(mv (joinGame game (request-player req) t) req state))
+           		(mv (startGame
+                  			(joinGame game (request-player req) t) 
+                            (request-player req))
+                            req state))
         		(t (mv game req state)))
 	)
   )

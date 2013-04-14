@@ -32,7 +32,7 @@ def app():
 # route the card image urls
 @route('/cards/<filename>')
 def server_static(filename):
-	    return static_file(filename, root='/home/tom/se2/software_engineering_2/cards')
+	    return static_file(filename, root='C:/Users/Michael/School/SoftwareEngineering2/src/Git/cards')
 
 # route the root url to the knockout library
 @route('/knockout.js')
