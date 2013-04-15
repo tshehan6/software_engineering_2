@@ -9,10 +9,10 @@
 ;                       author: Thomas Lindley                           ;
 ;************************************************************************;
 
-;TODO: 	Fix ace-low straights
-;		Add kickers
-;		Tie-breaking
-;		Manage split pots
+;TODO: 	Write function for ace-low straights (isAceLowStraight)
+;		Fix bug that breaks program if there are multiple winners
+;		Manage split pots 
+;		Hook up determineWinner() to afterTurn()
 
 
 ;Helper method for quicksort algorithm
@@ -350,11 +350,54 @@
           (pair pair) ; 3
           (highCard highCard)))) ; 4
 
-(defun breakTie (players rankLength n)
-   (if (equal n rankLength)
-       players
-       ())
+;Finds the max value in at index n in a set of handRanks
+;
+;@param players: players to search through
+;@param n: intdex to search at
+;@param maxValue: highest found so far
+;@return: returns max value at n from player handRanks
+(defun maxAtNth (players n maxValue)
+   (if (not (consp players))
+       maxValue
+       (let* ((thisValue (nth n (hand-handRank (player-cards (car players))))))
+       	(if (> 	thisValue
+            		maxValue)
+              (maxAtNth (cdr players) n thisValue)
+              (maxAtNth (cdr players) n maxValue)))))
 
+;Breaks ties between a set of players with the same integer handRank (1-9)
+;
+;loop through all of the players
+;compare the value at n to the known highest value at n (maxAtN) in the lists
+;add any players higher than this to the return list
+;	function that receives the return list checks the length of 
+;	return list and last checked n vs highest n
+;
+;this function makes me feel all dirty inside :(
+;CURRENTLY BREAKS FOR MULTIPLE WINNERS
+;
+;@param players: players to break
+;@param return: return list to build
+;@param n: current index being viewed
+;@param rankLength: obvious
+;@param loopsLeft: obvious
+;@param maxAtN: max value at index n in the player handRanks
+;@return: list of winners
+(defun breakTie (players return n rankLength loopsLeft maxAtN)
+   	(if (or 	(and (equal 1 (length players)) (equal 0 (length return)))
+         		(equal n rankLength))
+         players
+         (if (equal loopsLeft 0)
+             (breakTie return '() (+ 1 n) rankLength (length return) (maxAtNth return (+ 1 n) 0))
+             (if (equal maxAtN (nth n (hand-handRank (player-cards (car players)))))
+                 (breakTie (cdr players) (cons (car players) return) n rankLength (- loopsLeft 1) maxAtN)
+                 (breakTie (cdr players) return n rankLength (- loopsLeft 1) maxAtN)))))
+
+;Finds a list of players with the same integer handRank
+;
+;@param player: players to search through
+;@param rank: rank to compare to
+;@return: returns list of players with handRank integer rank
 (defun playersWithSameHand (players rank)
    (if (not (consp players))
        nil
@@ -369,14 +412,11 @@
 ;@return: returns the player(s)
 (defun determineWinner (players)
    (let* ((sortedPlayers (quickSort players "players"))
-          (firstPlayer (first sortedPlayers))
-          (bestIntRank ((car (hand-handRank (player-cards firstPlayer)))))
-          (secondPlayer (second sortedPlayers))
-          (tiedPlayers '()))
-         (if (equal bestIntRank
-                    (car (hand-handRank (player-cards secondPlayer))))
-             (breakTie (list firstPlayer secondPlayer))
-             t)))
+          (bestIntRank (car (hand-handRank (player-cards (car sortedPlayers)))))
+          (potentialWinners (playersWithSameHand sortedPlayers bestIntRank))
+          (winners (breakTie potentialWinners '() 0 (length (hand-handRank (player-cards (car sortedPlayers))))
+                            (length potentialWinners) (maxAtNth potentialWinners 0 0))))
+         winners))
 
 
 ;isRoundOver checks to see if the round of betting has concluded
@@ -456,9 +496,10 @@
         (if (isRoundOver gamestate);if the round of betting is over
             (readyGamestateForNextRound gamestate);set last-raise to "" & deal next card
             gamestate)));othewise a round of betting is still going on, let the gamestate pass through without being modified
-			
+
+;****************************Test Constants******************************;
 (defconst *tester* 
-  (let* ((cards (quickSort(list *C1* *S1* *D1* *H11* *D11* *D2* *D8*) "value"))
+  (let* ((cards (quickSort(list *C1* *S1* *D10* *H11* *D11* *D2* *D8*) "value"))
          (handRank (getHandRank cards)))
     (hand cards handRank)))
 
@@ -468,7 +509,7 @@
     (hand cards handRank)))
 
 (defconst *tester3* 
-  (let* ((cards (quickSort(list *C12* *S12* *D12* *H9* *D9* *C8* *H2*) "value"))
+  (let* ((cards (quickSort(list *C13* *S13* *D12* *H10* *D10* *C1* *H3*) "value"))
          (handRank (getHandRank cards)))
     (hand cards handRank)))
 
