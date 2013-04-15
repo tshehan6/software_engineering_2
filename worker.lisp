@@ -51,7 +51,7 @@
       	state))
 
 (defun writeGamestate (state gamestate)
-   (toFile state (gamestate->JSON gamestate) "gamestate.txt"))
+	(toFile state (gamestate->JSON gamestate) "gamestate.txt"))
 
 (defun writeGamestateAndResponse (state gamestate response)
    (let* ((state (writeResponse state response)))
@@ -102,7 +102,7 @@
   )
 
 
-(defconst *game* (gamestate nil nil nil 12345 0 nil nil nil nil nil))
+(defconst *game* (gamestate nil (hand nil nil) "" 12345 0 (deck nil) "" "" nil ""))
 
 (defun main (state)
    (mv-let (game state)

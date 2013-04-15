@@ -6,15 +6,19 @@
 
 ;************************************************************************;
 ;                              After Turn                                ;
+;                       author: Thomas Lindley                           ;
 ;************************************************************************;
 
-;TODO: 	Make sure ace-high hands win.
+;TODO: 	Fix ace-low straights
+;		Add kickers
 ;		Tie-breaking
+;		Manage split pots
+
 
 ;Helper method for quicksort algorithm
 ;
-;@param h: 			the list of items to be sorted
-;@param lesser:		list of items lower than the pivot item
+;@param h: 		the list of items to be sorted
+;@param lesser:	list of items lower than the pivot item
 ;@param greater:	list of items greater than pivot item
 ;@param pivot:		item being compared against
 ;@param value:		the data type to sort by
@@ -23,53 +27,53 @@
   (if (not(consp h))
       (list lesser greater)
       (let ((front (car h)))
-		;Sort hand by card value
-        (if (equal value "value")
+        (cond 
+            ;Sort hand by card value
+		  ((equal value "value")
             (if (<= (card-value front) (card-value pivot))
+                (quickSortHelper (cdr h)
+                                 (cons front lesser) 
+                                 greater 
+                                 pivot
+                                 value)
                 (quickSortHelper (cdr h) 
-                                     (cons front lesser) 
-                                     greater 
-                                     pivot
-                                     value)
+                                 lesser 
+                                 (cons front greater) 
+                                 pivot
+                                 value)))
+		  ;Sort hand by card suit
+            ((equal value "suit") 
+            (if (<= (card-suit front) (card-suit pivot))
                 (quickSortHelper (cdr h) 
-                                     lesser 
-                                     (cons front greater) 
-                                     pivot
-                                     value))
-			;Sort hand by card suit
-            (if (equal value "suit") 
-                (if (<= (card-suit front) (card-suit pivot))
-                    (quickSortHelper (cdr h) 
-                                         (cons front lesser) 
-                                         greater 
-                                         pivot
-                                         value)
-                    (quickSortHelper (cdr h) 
-                                         lesser 
-                                         (cons front greater) 
-                                         pivot
-                                         value))
-				;Sort players by handRank
-                (if (equal value "players")
-                    (if (<= (car(hand-handRank (player-cards front))) 
-                            (car(hand-handRank (player-cards pivot))))
-                        (quickSortHelper (cdr h)
-                                             (cons front lesser)
-                                             greater
-                                             pivot
-                                             value)
-                        (quickSortHelper (cdr h)
-                                             lesser
-                                             (cons front greater)
-                                             pivot
-                                             value))
-                    nil))))))
+                                 (cons front lesser) 
+                                 greater 
+                                 pivot
+                                 value)
+                (quickSortHelper (cdr h) 
+                                 lesser 
+                                 (cons front greater) 
+                                 pivot
+                                 value)))
+	       ;Sort players by handRank
+            ((equal value "players")
+            (if (<= (car(hand-handRank (player-cards front))) 
+                    (car(hand-handRank (player-cards pivot))))
+                (quickSortHelper (cdr h)
+                                 (cons front lesser)
+                                 greater
+                                 pivot
+                                 value)
+                (quickSortHelper (cdr h)
+                                 lesser
+                                 (cons front greater)
+                                 pivot
+                                 value)))))))
 					
 ;Quick Sort algorithm used to sort hands and players.
 ;
-;@param h: 		the list of items to be sorted
+;@param h: the list of items to be sorted
 ;@param value:	the data type to sort by
-;@return:		sorted hand or players
+;@return: sorted hand or players
 (defun quickSort (h value)
   (if (or (not(consp  h)) (<= (length h) 1))
       h
@@ -86,17 +90,54 @@
         (append (quickSort(first landg) value)
                 (list pivot)
                 (quickSort(second landg) value)))))
-				
+
+;Sorts by value the hand broken up by suit
+;
+;@param hand: the hand to be sorted
+;@return: sorted hand
+(defun sortBrokenUpHand (hand)
+   (if (not (consp hand))
+       nil
+       (append (quickSort (car hand) "value")
+               (sortBrokenUpHand (cdr hand)))))
+
+;Finds the cards in a hand for a suit
+;
+;@param n: the suit
+;@param hand: the hand to search through
+;@return: list of cards matching suit n
+(defun findCardsInSuit (n hand)
+   (if (not (consp hand))
+       nil
+       (if (equal n (card-suit (car hand)))
+           (cons (car hand) (findCardsInSuit n (cdr hand)))
+           (findCardsInSuit n (cdr hand)))))
+
+;Breaks up the hand into suits, so the cards can be sorted by value 
+;within their suit by their value
+;
+;@param hand: the hand to be broken up
+;@return: the cards in the hand sorted by suit and value
+(defun breakUpSuits (hand)
+   (if (not (consp hand))
+       nil
+       (let* ((diamonds (findCardsInSuit 0 hand))
+              (hearts (findCardsInSuit 1 hand))
+              (clubs (findCardsInSuit 2 hand))
+              (spades (findCardsInSuit 3 hand)))
+             (sortBrokenUpHand(list diamonds hearts clubs spades)))))
+	
 ;isHighCard checks to see if a hand's rank is highCard
 ;
-;@param h:	the hand being checked
-;@return:	the hand integer rank (1) along with the value of the card
+;@param h: the hand being checked
+;@return:	the hand integer rank (1) 
+;		along with the value of the card
 (defun isHighCard (h)
   (list 1 (card-value (car h))))
   
 ;isPair checks to see if a hand's rank is twoPair
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (2) along with the value of the pair
 (defun isPair (h)
   (if (not (consp (cdr h)))
@@ -107,9 +148,9 @@
 		  
 ;isTwoPair checks to see if a hand's rank is twoPair
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (3) 
-;			along with the values of the two cards making up the twoPair
+;		along with the values of the two cards making up the twoPair
 (defun isTwoPair (h)
   (if (not (consp (cddr h)))
       nil
@@ -121,9 +162,9 @@
 		   
 ;isThreeKind checks to see if a hand's rank is threeKind
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (4) 
-;			along with the value of the threeKind
+;		along with the value of the threeKind
 (defun isThreeKind (h)
   (if (not (consp (cddr h)))
       nil
@@ -135,39 +176,40 @@
                  (equal firstCardRank (card-value thirdCard)))
             (list 4 firstCardRank)
             (isThreeKind (cdr h))))))
-			
+
+(defun valuesOfCards (cards)
+  (if (not (consp cards))
+      nil
+      (cons (card-value (car cards)) 
+            (valuesOfCards (cdr cards)))))
 ;isFlush checks to see if a hand's rank is flush
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (5)
-;			along with the cards of the flush sorted by value
+;		along with the cards of the flush sorted by value
 (defun isFlush (h)
   (if (not (consp (cddddr h)))
       nil
-  (let* ((sortedBySuit (quickSort h "suit"))
+  (let* ((sortedBySuit (breakUpSuits(quickSort h "suit")))
          (firstCard (first sortedBySuit))
          (firstCardSuit (card-suit firstCard))
          (secondCard (second sortedBySuit))
          (thirdCard (third sortedBySuit))
          (fourthCard (fourth sortedBySuit))
-         (fifthCard (fifth sortedBySuit))
-         (sortedbyValue (quickSort (list firstCard
-                                        secondCard
-                                        thirdCard
-                                        fourthCard
-                                        fifthCard) "value")))
+         (fifthCard (fifth sortedBySuit)))
         (if (and (equal firstCardSuit (card-suit secondCard))
                  (equal firstCardSuit (card-suit thirdCard))
                  (equal firstCardSuit (card-suit fourthCard))
                  (equal firstCardSuit (card-suit fifthCard)))
-            (list 5 sortedByValue)
+            (append '(5) (valuesOfCards (list firstCard secondCard
+                                         thirdCard fourthCard fifthCard)))
             (isFlush (cdr sortedBySuit))))))
 			
 ;isStraight checks to see if a hand's rank is straight
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (6) 
-;			along with the value of the highest card in the straight
+;		along with the value of the highest card in the straight
 (defun isStraight (h)
   (if (not (consp (cddddr h)))
       nil
@@ -188,9 +230,9 @@
 			
 ;isFullHouse checks to see if a hand's rank is fullHouse
 ;
-;@param h:	the hand being checked
-;@return:	the hand integer rank (7) 
-;			along with the value threeKind followed by the value Pair
+;@param h: the hand being checked
+;@return: the hand integer rank (7) 
+;		along with the value threeKind followed by the value Pair
 (defun isFullHouse (h)
   (if (not (consp (cdddr h)))
       nil
@@ -208,9 +250,9 @@
 				
 ;isFourKind checks to see if a hand's rank is fourKind
 ;
-;@param h:	the hand being checked
-;@return:	the hand integer rank (8) 
-;			along with the value of the fourKind
+;@param h: the hand being checked
+;@return: the hand integer rank (8) 
+;		along with the value of the fourKind
 (defun isFourKind (h)
   (if (not (consp (cdddr h)))
       nil
@@ -227,26 +269,116 @@
 			
 ;isStraightFlush checks to see if a hand's rank is straightFlush
 ;
-;@param h:	the hand being checked
+;@param h: the hand being checked
 ;@return:	the hand integer rank (9) 
-;			along with the value of the highest card in the straight
+;		along with the value of the highest card in the straight
 (defun isStraightFlush (h)
   (if (not (consp (cddddr h)))
       nil
-      (let* ((sortedBySuit (quickSort h "suit"))
+      (let* ((sortedBySuit (breakUpSuits(quickSort h "suit")))
              (firstCard (first sortedBySuit))
              (secondCard (second sortedBySuit))
              (thirdCard (third sortedBySuit))
              (fourthCard (fourth sortedBySuit))
              (fifthCard (fifth sortedBySuit))
              (fiveCardHand (quickSort(list firstCard secondCard
-                                               thirdCard fourthCard
-                                               fifthCard)
-                                         "value")))
+                                           thirdCard fourthCard
+                                           fifthCard)
+                                     "value")))
         (if (and (isFlush fiveCardHand) (isStraight fiveCardHand))
             (list 9 (card-value (first fiveCardHand)))
             (isStraightFlush (cdr h))))))
-			
+
+;Gets the correct number of kicker cards for a hand
+;
+;@param ranking: ranking of hand w/o kickers
+;@param hand: hand to choose kickers from
+;@param n: number of kickers to get
+;@return: returns a list of kickers
+(defun getKickers (ranking hand n)
+   (let* ((icards (cdr ranking))
+  		(icardsClone icards))
+         (if (equal n 0)
+       	   nil
+             (if (equal (length icards) (length (add-to-set-eql (card-value (car hand)) 
+                                                               icardsClone)))
+                 (getKickers ranking (cdr hand) n)
+                 (cons (card-value (car hand))
+                       (getKickers ranking (cdr hand) (- n 1)))))))
+
+;Adds the kicker cards to a hand's ranking
+;
+;@param ranking: current hand rank
+;@param hand: hand to rank
+;@return: returns the new ranking with kickers added
+(defun addKickers (ranking hand)
+   (let* ((integerRank (car ranking)))
+         (cond ((equal integerRank 8)
+                (append ranking (getKickers ranking hand 1)))
+               ((equal integerRank 4)
+                (append ranking (getKickers ranking hand 2)))
+               ((equal integerRank 3)
+                (append ranking (getKickers ranking hand 1)))
+               ((equal integerRank 2)
+                (append ranking (getKickers ranking hand 3)))
+               ((equal integerRank 1)
+                (append ranking (getKickers ranking hand 4))))))	
+
+;getHandRank gets the rank for a hand
+;
+;@param hand:	the hand to be ranked
+;@return:		the rank of the jand provided by the correct helper f(n)
+(defun getHandRank (hand)
+  (let* ((straightFlush (isStraightFlush hand))
+         (fourKind (addKickers (isFourKind hand) hand))
+         (fullHouse (isFullHouse hand))
+         (straight (isStraight hand))
+         (flush (isFlush hand))
+         (threeKind (addKickers (isThreeKind hand) hand))
+         (twoPair (addKickers (isTwoPair hand) hand))
+         (pair (addKickers (isPair hand) hand))
+         (highCard (addKickers (isHighCard hand) hand)))
+        
+    ;Assign the highest value to the hand possible    
+    (cond (straightFlush straightFlush) 
+          (fourKind fourKind) ; 1
+          (fullHouse fullHouse)
+          (straight straight) 
+          (flush flush) 
+          (threeKind threeKind) ; 2
+          (twoPair twoPair) ; 1
+          (pair pair) ; 3
+          (highCard highCard)))) ; 4
+
+(defun breakTie (players rankLength n)
+   (if (equal n rankLength)
+       players
+       ())
+
+(defun playersWithSameHand (players rank)
+   (if (not (consp players))
+       nil
+       (if (equal rank
+            	   (car (hand-handRank ( player-cards (car players)))))
+             (cons (car players) (playersWithSameHand (cdr players) rank))
+             nil)))
+
+;Determines the winner(s) from a list of players
+;
+;@param players: players to pick winner from
+;@return: returns the player(s)
+(defun determineWinner (players)
+   (let* ((sortedPlayers (quickSort players "players"))
+          (firstPlayer (first sortedPlayers))
+          (bestIntRank ((car (hand-handRank (player-cards firstPlayer)))))
+          (secondPlayer (second sortedPlayers))
+          (tiedPlayers '()))
+         (if (equal bestIntRank
+                    (car (hand-handRank (player-cards secondPlayer))))
+             (breakTie (list firstPlayer secondPlayer))
+             t)))
+
+
 ;isRoundOver checks to see if the round of betting has concluded
 ;It does this by checking to see if the player to last raise matches the
 ;current player.
@@ -270,40 +402,8 @@
            (equal 5 (length (hand-cards (gamestate-common gamestate)))))
       t
       nil))
-	  
-;getHandRank gets the rank for a hand
-;
-;@param hand:	the hand to be ranked
-;@return:		the rank of the jand provided by the correct helper f(n)
-(defun getHandRank (hand)
-  (let* ((straightFlush (isStraightFlush hand))
-         (fourKind (isFourKind hand))
-         (fullHouse (isFullHouse hand))
-         (straight (isStraight hand))
-         (flush (isFlush hand))
-         (threeKind (isThreeKind hand))
-         (twoPair (isTwoPair hand))
-         (pair (isPair hand))
-         (highCard (isHighCard hand)))
-    (if straightFlush
-        straightFlush
-        (if fourKind
-            fourKind
-            (if fullHouse
-                fullHouse
-                (if straight
-                    straight
-                    (if flush
-                        flush
-                        (if threeKind
-                            threeKind
-                            (if twoPair
-                                twoPair
-                                (if pair
-                                    pair
-                                    highCard))))))))))
-									
-;addCommonCardsToPlayersAndSort adds the common cards to the players hands
+
+;addCommonCardsToPlayersAndSort adds the common cards to the players' hands
 ;and sorts the players using QuickSort
 ;
 ;@param players: 		players from the gamestate
@@ -315,9 +415,10 @@
              (mergedHand (quickSort (append (hand-cards commonCards) 
                                             (hand-cards (player-cards thisPlayer))) 
                                     "value")))
-      	(quickSort (cons (update-player thisPlayer :cards (make-hand :cards mergedHand
-                                                   :handRank (getHandRank mergedHand)))
-                         (addCommonCardsToPlayersAndSort (cdr players) commonCards)) 
+      	(quickSort (cons 
+                   	    (update-player thisPlayer :cards (make-hand :cards mergedHand 
+                                                                    :handRank (getHandRank mergedHand)))
+                        (addCommonCardsToPlayersAndSort (cdr players) commonCards)) 
                     "players"))))
 				
 ;called after a round of beting
@@ -341,10 +442,12 @@
 (defun afterTurn (gamestate)
     (if (isHandOver gamestate)
         (let* ((game (update-gamestate gamestate 
-                                  :players (addCommonCardsToPlayersAndSort (gamestate-players gamestate)
-                                                                    (gamestate-common gamestate))))
+                                  			:players (addCommonCardsToPlayersAndSort 
+                                            			(gamestate-players gamestate)
+                                            			(gamestate-common gamestate))))
           	(winner (car (gamestate-players game)))
-          	(updatedWinner (update-player winner :chips (+ (gamestate-pot game) (player-chips winner)))))
+          	(updatedWinner (update-player winner 
+                                         	:chips (+ (gamestate-pot game) (player-chips winner)))))
         	(update-gamestate game
           				:players (append updatedWinner (cdr (gamestate-players game)))
                           	:last-raise ""
@@ -354,10 +457,41 @@
             (readyGamestateForNextRound gamestate);set last-raise to "" & deal next card
             gamestate)));othewise a round of betting is still going on, let the gamestate pass through without being modified
 			
-;(defconst *tester* 
-;  (let* ((cards (quickSort (list *D12* *S9* *C5* *H4* *D3* *D2* *D1*) "value"))
-;         (handRank (getHandRank cards)))
-;    (hand cards handRank)))
+(defconst *tester* 
+  (let* ((cards (quickSort(list *C1* *S1* *D1* *H11* *D11* *D2* *D8*) "value"))
+         (handRank (getHandRank cards)))
+    (hand cards handRank)))
+
+(defconst *tester2* 
+  (let* ((cards (quickSort(list *C13* *S13* *D13* *H10* *D10* *C1* *H3*) "value"))
+         (handRank (getHandRank cards)))
+    (hand cards handRank)))
+
+(defconst *tester3* 
+  (let* ((cards (quickSort(list *C12* *S12* *D12* *H9* *D9* *C8* *H2*) "value"))
+         (handRank (getHandRank cards)))
+    (hand cards handRank)))
+
+(defconst *tester4* 
+  (let* ((cards (quickSort(list *C2* *S2* *D3* *H5* *D5* *C9* *H4*) "value"))
+         (handRank (getHandRank cards)))
+    (hand cards handRank)))
+
+(defconst *player1*
+   (player "1" 0 0 1 *tester*))
+
+(defconst *player2*
+   (player "2" 0 0 1 *tester2*))
+
+(defconst *player3*
+   (player "3" 0 0 1 *tester3*))
+
+(defconst *player4*
+   (player "4" 0 0 1 *tester4*))
+
+(defconst *testPlayers* 
+   (list *player1* *player2* *player3* *player4*))
+
 ;(defconst *tester2* 
 ;  (let* ((cards (quickSort (list *D12* *C9* *D5* *H4* *D11* *C2* *D1*) "value"))
 ;         (handRank (getHandRank cards)))
