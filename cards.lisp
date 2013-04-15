@@ -3,7 +3,7 @@
 (include-book "structs")
 
 ;Diamonds
-(defconst *D1* (card 0 1))
+(defconst *D1* (card 0 14))
 (defconst *D2* (card 0 2))
 (defconst *D3* (card 0 3))
 (defconst *D4* (card 0 4))
@@ -18,7 +18,7 @@
 (defconst *D13* (card 0 13))
 
 ;Hearts
-(defconst *H1* (card 1 1))
+(defconst *H1* (card 1 14))
 (defconst *H2* (card 1 2))
 (defconst *H3* (card 1 3))
 (defconst *H4* (card 1 4))
@@ -33,7 +33,7 @@
 (defconst *H13* (card 1 13))
 
 ;Clubs
-(defconst *C1* (card 2 1))
+(defconst *C1* (card 2 14))
 (defconst *C2* (card 2 2))
 (defconst *C3* (card 2 3))
 (defconst *C4* (card 2 4))
@@ -48,7 +48,7 @@
 (defconst *C13* (card 2 13))
 
 ;Spades
-(defconst *S1* (card 3 1))
+(defconst *S1* (card 3 14))
 (defconst *S2* (card 3 2))
 (defconst *S3* (card 3 3))
 (defconst *S4* (card 3 4))
