@@ -27,10 +27,6 @@
   
 ;swaps the position of cards c1 and c2 returns a new deck
 ;used by the deck shuffling algorithm
-;TODO... test the following:
-	;1) no cards are lost in result
-	;2) size of deck is preserved
-	;3) no cards are duplicated in the result 
 (defun swapCards (c1 c2 deck)
    (if (and (card-p c1)
             (card-p c2)
@@ -88,10 +84,10 @@
    (make-gamestate :seed 23423
                    :deck *newdeck*
                    :players (list *player1* *player2* *player3* *player4*)
-                   :common (make-hand :cards (list *D10* *H12* *S4* *S11* *D1*) :handRank Nil);(list *c3* *c1*))
+                   :common (make-hand :cards Nil :handRank Nil);(list *c3* *c1*))
                    :current-player-turn "player_1"
                    :last-raise "player_2"
-                   :pot 500
+                   :pot 0
                    :game-status-message "test status message"
                    :is-hand-over Nil
                    :error-message "test error message"))

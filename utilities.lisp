@@ -11,12 +11,12 @@
                                       :handRank Nil)
                    :last-raise ""
                    :seed -1
-                   :pot -1
+                   :pot 0
                    :deck (make-deck :cards Nil)
                    :current-player-turn ""
                    :game-status-message ""
                    :is-hand-over Nil
-                   :error-message "pl"))
+                   :error-message ""))
                    
 
 ;creates a deck, shuffles the deck, and then deals two cards to each player
@@ -28,7 +28,7 @@
 
 ;deals the flop (top three cards) to the common pile 
 (defun dealFlop (gamestate)
-   ;(if (gamestate-p gamestate)
+   (if (gamestate-p gamestate)
        (let* ((cardsToDeal (take 3 (deck-cards 
                                     (gamestate-deck gamestate))))
               (newDeck (nthcdr 3 (deck-cards 
@@ -37,8 +37,8 @@
             	gamestate
              	:common (make-hand :cards cardsToDeal
                                   :handRank Nil)
-             	:deck (make-deck :cards newDeck))))
-   ; Nil))
+             	:deck (make-deck :cards newDeck)))
+   Nil))
 
 ;deals the turn (4th common card) out to the common pile
 (defun dealTurn (gamestate)
