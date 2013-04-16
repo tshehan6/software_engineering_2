@@ -1,0 +1,658 @@
+name: Thomas Shehan
+date: April 14, 2013
+program: Team Stroustrup Project
+instructor: Dr. Page
+language: ACL2
+
+time log:
+
+	- date: Feb 16, 2013
+	  start time: 9:30pm
+	  end time: 9:42pm
+	  phase: Implementation
+	  comment: Created the write_request_file() function
+		
+	- date: Feb 16, 2013
+	    start time: 9:46pm
+	  end time: 9:47pm
+	  phase: Implementation
+	  comment: Created the remove_request_file() function
+		
+	- date: Feb 16, 2013
+	  start time: 9:47pm
+	  end time: 9:53pm
+	  phase: Implementation
+	  comment: Created the app() function
+	
+	- date: Feb 16, 2013
+	  start time: 9:55pm
+	  end time: 10:07pm
+	  phase: Implementation
+	  comment: Created the interface() function, partially from existing code
+	
+	- date: Feb 16, 2013
+	  start time: 10:08pm
+	  end time: 10:13pm
+	  phase: Implementation
+	  comment: Created the (toFile) function from existing code
+	
+	- date: Feb 16, 2013
+	  start time: 10:13pm
+	  end time: 10:16pm
+	  phase: Implementation
+	  comment: Created the (fromFile) function
+	
+	- date: Feb 16, 2013
+	  start time: 10:16pm
+	  end time: 10:22pm
+	  phase: Implementation
+	  comment: Modified the (main) function
+	
+	- date: Feb 17, 2013
+	  start time: 10:28am
+	  end time: 10:33am
+	  phase: Implementation
+	  comment: Created the knockout() function, outputs a javacsript file
+	
+	- date: Feb 17, 2013
+	  start time: 10:33am
+	  end time: 10:35am
+	  phase: Implementation
+	  comment: Created the jquery() function, outputs a javacsript file
+	
+	- date: Feb 17, 2013
+	  start time: 10:35am
+	  end time: 10:52am
+	  phase: Research
+	  comment: Followed Knockout.js tutorials to learn how the library works
+	
+	- date: Feb 17, 2013
+	  start time: 10:53am
+	  end time: 11:02am
+	  phase: Implementation
+	  comment: Created the Knockout ViewModel and supporting code 
+	
+	- date: Feb 17, 2013
+	  start time: 11:02am
+	  end time: 11:15am
+	  phase: Implementation
+	  comment: Created the jQuery AJAX request functions
+	
+	- date: Feb 17, 2013
+	  start time: 11:17am
+	  end time: 11:23am
+	  phase: Implementation
+	  comment: Created the the HTML portion of the frontend
+	
+	- date: Feb 17, 2013
+	  start time: 11:24am
+	  end time: 11:25am
+	  phase: Implementation
+	  comment: Created the (requestType) function, to be changed later
+	
+	
+	- date: Feb 17, 2013
+	  start time: 11:25am
+	  end time: 11:37am
+	  phase: Implementation
+	  comment: Modified the (main) function to determine the request type and behave acccordingly
+	
+	- date: Feb 23, 2013
+	  start time: 2:47pm
+	  end time: 3:04pm
+	  phase: Design
+	  comment: Created the JSON output format
+
+	- date: Feb 27, 2013
+	  start time: 9:53pm
+	  end time: 10:20pm
+	  phase: Planning
+	  comment: Attempted to come up with a clever strategy for parsing
+	
+	- date: Feb 27, 2013
+	  start time: 12:09pm
+	  end time: 1:17pm
+	  phase: Planning
+	  comment: Continued thinking about the parser and realized a simple solution was not possible
+
+	- date: Feb 27, 2013
+	  start time: 3:02pm
+	  end time: 4:15pm
+	  phase: Implementation
+	  comment: Started implementing the tokenize and getStringToken functions
+
+	- date: Feb 27, 2013
+	  start time: 8:27pm
+	  end time: 9:04pm
+	  phase: Implementation
+	  comment: Finished implementing the tokenize and getStringToken functions
+
+	- date: Feb 28, 2013
+	  start time: 11:12pm
+	  end time: 11:35pm
+	  phase: Implementation
+	  comment: Began the implementation of the parser function
+	
+
+	- date: Mar 2, 2013
+	  start time: 9:00am
+	  end time: 12:42pm
+	  phase: Implementation
+	  comment: Implemented the parser function
+
+	- date: Mar 2, 2013
+	  start time: 12:55pm
+	  end time: 1:02pm
+	  phase: Implementation
+	  comment: Implemented the makeNameContentPairs function
+
+	- date: Mar 2, 2013
+	  start time: 1:12pm
+	  end time: 1:34pm
+	  phase: Implementation
+	  comment: Modified the parser function to work with dictionaries
+
+	- date: Mar 2, 2013
+	  start time: 1:37pm
+	  end time: 1:53pm
+	  phase: Implementation
+	  comment: Implemented the JSON->request function
+
+	- date: Mar 2, 2013
+	  start time: 6:40pm
+	  end time: 6:48pm
+	  phase: Implementation
+	  comment: Refactored to include a JSON->tree function. This changes some function signatures		
+
+	- date: Mar 2, 2013
+	  start time: 7:26pm
+	  end time: 8:02pm
+	  phase: Implementation
+	  comment: Modified the python interface to work with the new parser
+	
+	- date: Mar 5, 2013
+	  start time: 4:19pm
+	  end time: 5:34pm
+	  phase: Implementation
+	  comment: Rewrote the tree->request function for efficiency
+	
+	- date: Mar 7, 2013
+	  start time: 10:37pm
+	  end time: 10:49pm
+	  phase: Implementation
+	  comment: Wrote the card->JSON function to turn a card structure into a JSON string
+
+	- date: Mar 7, 2013
+	  start time: 10:50pm
+	  end time: 11:13pm
+	  phase: Implementation
+	  comment: Wrote the helper_hand->JSON function to turn a list of card structures into a partial JSON string
+	
+	- date: Mar 7, 2013
+	  start time: 10:50pm
+	  end time: 11:13pm
+	  phase: Implementation
+	  comment: Wrote the hand->JSON function to turn a hand structure into a JSON string
+	
+	- date: Mar 12, 2013
+	  start time: 10:50am
+	  end time: 11:35am
+	  phase: Implementation
+	  comment: Attempted to modify the HTML/JS frontend
+
+	- date: Mar 14, 2013
+	  start time: 10:40am
+	  end time: 11:35am
+	  phase: Implementation
+	  comment: Got the HTML/JS frontend in place
+
+	- date: Mar 30, 2013
+	  start time: 8:57pm
+	  end time: 11:12pm
+	  phase: Implementation
+	  comment: Attempted to modify our main file to actually output a response structure, ran out of time working on a bug
+
+	- date: Apr 2, 2013
+	  start time: 10:38am
+	  end time: 11:02am
+	  phase: Implementation
+	  comment: Created the tree->hand function
+
+	- date: Apr 2, 2013
+	  start time: 11:07am
+	  end time: 11:22am
+	  phase: Implementation
+	  comment: Created the cardListList->cardStructList function
+
+	- date: Apr 2, 2013
+	  start time: 11:02am
+	  end time: 11:16am
+	  phase: Implementation
+	  comment: Created the JSON->hand function
+
+
+	- date: Apr 4, 2013
+	  start time: 10:35am
+	  end time: 11:09am
+	  phase: Implementation
+	  comment: Created the tree->player function
+
+	- date: Apr 4, 2013
+	  start time: 11:12am
+	  end time: 11:13am
+	  phase: Implementation
+	  comment: Created the JSON->player function
+
+	- date: Apr 4, 2013
+	  start time: 11:17am
+	  end time: 11:32am
+	  phase: Implementation
+	  comment: Created the player->JSON function
+
+	- date: Apr 7, 2013
+	  start time: 3:19pm
+	  end time: 3:25pm
+	  phase: Implementation
+	  comment: Created the tree->deck function
+
+	- date: Apr 7, 2013
+	  start time: 3:31pm
+	  end time: 3:34pm
+	  phase: Implementation
+	  comment: Created the JSON->deck function
+
+	- date: Apr 7, 2013
+	  start time: 3:38pm
+	  end time: 4:45pm
+	  phase: Implementation
+	  comment: Created the deck->JSON function
+
+	- date: Apr 7, 2013
+	  start time: 4:46pm
+	  end time: 5:50pm
+	  phase: Implementation
+	  comment: Created the tree->gamestate function
+
+	- date: Apr 7, 2013
+	  start time: 5:56pm
+	  end time: 5:57pm
+	  phase: Implementation
+	  comment: Created the JSON->gamestate function
+
+	- date: Apr 7, 2013
+	  start time: 6:03pm
+	  end time: 6:14pm
+	  phase: Implementation
+	  comment: Created the playerList->playerStructList function
+	
+	- date: Apr 7, 2013
+	  start time: 6:03pm
+	  end time: 6:14pm
+	  phase: Implementation
+	  comment: Created the others->JSON function
+	
+defect log:
+
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 2
+	  comment: used the wrong arguments for file->string, looked in old file to find fix
+	
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 4
+	  comment: when refactoring main to toFile, used wrong argument types.
+	
+	- date: Feb 17, 2013
+	  type: html/js
+	  fix time: 2
+	  comment: misspelled the data-bind attribute, Knockout didn't work.
+	
+	- date: Feb 17, 2013
+	  type: parenthesization
+	  fix time: 2
+	  comment: forgot the correct parenthesization of let*, got errors.
+	
+	- date: Feb 17, 2013
+	  type: parenthesiazation
+	  fix time: 3
+	  comment: messed up the parenthesization of the nested if statements.
+	
+	- date: Feb 27, 2013
+	  type: incorrect types
+	  fix time: 3
+	  comment: tried to pass char lists where chars were expected
+	
+	- date: Feb 27, 2013
+	  type: off by one
+	  fix time: 30
+	  comment: forgot to add one to the length of the tokens when determining how many characters were consumed. This caused the tokenizer to fail in a very confusing way.
+
+	- date: Mar 2, 2013
+	  type: include
+	  fix time: 20
+	  comment:  included the wrong book, didn't realize this was the problem because I was working in drracket today. ProofPad includes all books by default.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 25
+	  comment:  incorrectly counted the length of consumed tokens. needed to count the length of the child element plus the recursively gotten rest of the current level. Instead only added 1 to the recursive value.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 15
+	  comment:  took the cdr of several lists when I needed the cadr.
+
+	- date: Mar 2, 2013
+	  type: naming
+	  fix time: 2
+	  comment: used the wrong function names for update-struct.
+
+	- date: Mar 7, 2013
+	  type: naming
+	  fix time: 8
+	  comment: wrapped a list in extra parenthesis. Got an eror message that I did not understand, which took a while to track down.
+
+	- date: Mar 12, 2013
+	  type: naming
+	  fix time: 30
+	  comment: recieving lots of error messages that I do not understand. When I try reverting mostly back to the old code I get no error message but the Javascript is not executing. I am probably missing something stupid.
+
+	- date: Mar 30, 2013
+	  type: collaboration
+	  fix time: 135
+	  comment: I did not modify my tree->request function to reflect michaels changes to the request structure
+
+	- date: Apr 2, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 2
+	  comment: forgot to use the rat->str function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 1
+	  comment: forgot to include the decimal precision argument to rat->str
+
+	- date: Apr 4, 2013
+	  type: struct
+	  fix time: 6
+	  comment: misspelled the call-amount field as call_amount causing the parser to fail
+	  
+	  
+	  
+	  
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 2
+	  comment: used the wrong arguments for file->string, looked in old file to find fix
+	
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 4
+	  comment: when refactoring main to toFile, used wrong argument types.
+	
+	- date: Feb 17, 2013
+	  type: html/js
+	  fix time: 2
+	  comment: misspelled the data-bind attribute, Knockout didn't work.
+	
+	- date: Feb 17, 2013
+	  type: parenthesization
+	  fix time: 2
+	  comment: forgot the correct parenthesization of let*, got errors.
+	
+	- date: Feb 17, 2013
+	  type: parenthesiazation
+	  fix time: 3
+	  comment: messed up the parenthesization of the nested if statements.
+	
+	- date: Feb 27, 2013
+	  type: incorrect types
+	  fix time: 3
+	  comment: tried to pass char lists where chars were expected
+	
+	- date: Feb 27, 2013
+	  type: off by one
+	  fix time: 30
+	  comment: forgot to add one to the length of the tokens when determining how many characters were consumed. This caused the tokenizer to fail in a very confusing way.
+
+	- date: Mar 2, 2013
+	  type: include
+	  fix time: 20
+	  comment:  included the wrong book, didn't realize this was the problem because I was working in drracket today. ProofPad includes all books by default.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 25
+	  comment:  incorrectly counted the length of consumed tokens. needed to count the length of the child element plus the recursively gotten rest of the current level. Instead only added 1 to the recursive value.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 15
+	  comment:  took the cdr of several lists when I needed the cadr.
+
+	- date: Mar 2, 2013
+	  type: naming
+	  fix time: 2
+	  comment: used the wrong function names for update-struct.
+
+	- date: Mar 7, 2013
+	  type: naming
+	  fix time: 8
+	  comment: wrapped a list in extra parenthesis. Got an eror message that I did not understand, which took a while to track down.
+
+	- date: Mar 12, 2013
+	  type: naming
+	  fix time: 30
+	  comment: recieving lots of error messages that I do not understand. When I try reverting mostly back to the old code I get no error message but the Javascript is not executing. I am probably missing something stupid.
+
+	- date: Mar 30, 2013
+	  type: collaboration
+	  fix time: 135
+	  comment: I did not modify my tree->request function to reflect michaels changes to the request structure
+
+	- date: Apr 2, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 2
+	  comment: forgot to use the rat->str function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 1
+	  comment: forgot to include the decimal precision argument to rat->str
+
+	- date: Apr 4, 2013
+	  type: struct
+	  fix time: 6
+	  comment: misspelled the call-amount field as call_amount causing the parser to fail
+
+new objects:
+
+	- name: getStringToken
+	  estimated lines: 10
+	  type: calculation
+	
+	- name: tokenize
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: makeNameContentPairs
+	  estimated lines: 10
+	  type: calculation
+
+	- name: parser
+	  estimated lines: 30
+	  type: calculation
+		
+	- name: JSON->tree
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->request
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->request
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: card->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: toLetter
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: cardimg->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: cardListList->cardStructList
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: helper_hand->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: hand->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->hand
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->hand
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->deck
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: deck->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: JSON->deck
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->player
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->player
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: player->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: playerListList->playerStructList
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: tree->gamestate
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->gamestate
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: playerlist->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: gamestate->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: helper_cardimgs->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: others->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: response->JSON
+	  estimated lines: 5
+	  type: calculation	
+	
+	- name: THViewModel 
+	  estimated lines: 10
+	  type: javascript
+		
+	- name: updateModel
+	  estimated lines: 10
+	  type: javascript
+		
+	- name: refreshRequest
+	  estimated lines: 20
+	  type: javascript
+		
+	- name: joinRequest
+	  estimated lines: 20
+	  type: javascript
+		
+	- name: playRequest 
+	  estimated lines: 20
+	  type: javascript
+		
+	- name: write_request_file
+	  estimated lines: 5
+	  type: python
+		
+	- name: remove_request_file
+	  estimated lines: 5
+	  type: python
+		
+	- name: app
+	  estimated lines: 10
+	  type: python
+		
+	- name: server_static
+	  estimated lines: 5
+	  type: python
+		
+	- name: knockout
+	  estimated lines: 5
+	  type: python
+
+	- name: handler
+	  estimated lines: 5
+	  type: python
+			
+
+
+
+
+
+
+
+

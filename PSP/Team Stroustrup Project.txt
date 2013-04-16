@@ -1,0 +1,1679 @@
+name: Team Stroustrup
+date: Apr 16, 2013
+program: Team Stroustrup Project
+instructor: Dr. Page
+language: ACL2
+
+time log:
+	- date: Apr 16, 2013
+	  start time: 1:47 a.m.
+	  end time: 1:48 a.m.
+	  phase: PSP
+	  comment: <STRONG>This is a formatting break for PSP. The below logs represent the contributions of team member: THOMAS LINDLEY.</STRONG>
+	  
+	- date: Jan 17, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Bounced around ideas about what to work on for the semester project.
+
+	- date: Jan 22, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Decided to focus on the poker application idea. Began fleshing out a project schedule and design.  
+
+	- date: Jan 24, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Began working on the t2 and t3 deliverables. Focused primarily on the one level design and laid out a basic list of our engineering standards and procedures.
+	  
+	- date: Jan 29, 2013
+	  start time: 10:30 a.m.
+	  end time: 12:30 p.m.
+	  phase: Design
+	  comment: Worked on t2 and t3 deliverables. Thoroughly analyzed structure of project and made PROBE estimates.
+	
+	- date: Jan 31, 2013
+	  start time: 11:00 a.m.
+	  end time: 11:12 a.m.
+	  phase: Presentation
+	  comment: Presented topic to class. 
+	  
+	- date: Feb 5, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on second level design.
+
+	- date: Feb 7, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on the multi-level design deliverable. Also worked out a few new estimations on the PROBE estimate as we had some new functions to assess. 
+
+	- date: Feb 12, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: We worked on the design review and allocated responsibilities. I will be working on the take turn module as well as the join game module.
+
+	- date: Feb 14, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on the revised design deliverable. Michael created a UML while the rest of us added in helper functions and formalized our naming convention. It was decided that I would update the PROBE estimate to reflect changes in the design.
+	
+	- date: Feb 17, 2013
+	  start time: 2:34 p.m.
+	  end time: 4:08 p.m.
+	  phase: Design
+	  comment: Revised the probe estimate to reflect the newly revised design. This included updating function names and adding in new functions with the group's estimations. 
+
+	- date: Feb 19, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Had a progress report with Dr. Page. Talked about GitHub, our newly developed interface, and the revised plan for our JSON to defstructure transformation.
+
+	- date: Feb 20, 2013
+	  start time: 7:05 p.m.
+	  end time: 8:53 p.m.
+	  phase: Implementation
+	  comment: Began writing out test cases for poker game logic. This included writing tests to check the strength of a hand and the winner out of several hands. 
+	  
+	- date: Feb 21, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Started to look at a formal defect database design document. Also added some test cases to test suite. 
+	  
+	- date: Feb 26, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Created a preliminary defect database design document, and updated the design document to include the most recent changes.
+	  
+	- date: Feb 28, 2013
+	  start time: 7:12 a.m.
+	  end time: 9:43 a.m.
+	  phase: Design
+	  comment: Added new section to the defect database design. Updated the PROBE document to include the most recent changes. Also finished designing test suite for hand ranking portion of the project.
+	
+	- date: Feb 28, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Modified the design document to include the File Output format and submitted changes in the defect database for review from other team members. 
+	
+	- date: Mar 5, 2013
+	  start time: 8:07 a.m.
+	  end time: 9:50 a.m.
+	  phase: Implementation
+	  comment: Worked on my Quick Sort algorithm for sorting the cards in a hand. 
+	
+	- date: Mar 5, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Had a progress report with Dr. Page. Talked about the interfacing of our project, and demoed a new prototype of the project. Also talked about the advantages and disadvantages of using Quick Sort to sort the cards in a hand. He suggested I implement both Quick Sort and Bubble Sort and compare the performance. 
+
+	- date: Mar 7, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Implementation
+	  comment: Worked on implementing Bubble Sort. Also began to modify Quick Sort algorithm to work with Card defstructures (previously, it only worked with integers).
+	  
+	- date: Mar 12, 2013
+	  start time: 10:31 a.m.
+	  end time: 11:42 a.m.
+	  phase: Implementation
+	  comment: Finished implementing Quick Sort for defstructures. Got stuck trying to implement Bubble Sort. I couldn't find an easy way to swap two items without having to write a function myself, so I tabled the item for now. I will likely return to it after I complete the rest of my responsibilities for the project. 
+
+	- date: Mar 14, 2013
+	  start time: 10:35 a.m.
+	  end time: 11:15 a.m.
+	  phase: Design
+	  comment: Planned out my structure for card rank. I needed to spend quite a bit of time on it because without having the correct values, I could not accurately assess a cards rank compared to another similar hand (e.g. two full houses). I decided that each hand rank should have an integer value for the type of hand, and the important cards that define that hand.
+
+	- date: Mar 14, 2013
+	  start time: 11:20 a.m.
+	  end time: 11:47 a.m.
+	  phase: Implementation
+	  comment: Worked on the first couple of hand rank helper functions. No problems yet.
+
+	- date: Mar 24, 2013
+	  start time: 4:20 p.m.
+	  end time: 6:13 p.m.
+	  phase: Implementation
+	  comment: Finished up isHighCard, isPair, isThreeKind, and isFourKind. Decided that I should write these functions first as they could possibly be used to find some other hands.
+
+	- date: Mar 25, 2013
+	  start time: 8:46 p.m.
+	  end time: 11:02 p.m.
+	  phase: Implementation
+	  comment: Finished up isTwoPair and isFullHouse. Also modified my Quick Sort function to sort by suit or rank. This is handy because I can now use this to sort cards to easily check for a Flush. 
+
+	- date: Mar 26, 2013
+	  start time: 4:10 a.m.
+	  end time: 5:56 a.m.
+	  phase: Implementation
+	  comment: Finished up isFlush, isStraight, and isStraightFlush. Didn't take too long, and I was surprised at how short the functions turned out. 
+
+	- date: Mar 26, 2013
+	  start time: 10:52 a.m.
+	  end time: 11:05 a.m.
+	  phase: Design
+	  comment: Had a meeting with Dr. Page. We showed him the new front end for our project and again went over how that bit works. I explained to him my card ranking functions that I implemented, as well as how I adjusted my sorting algorithm to sort by suit or rank.
+
+	- date: Mar 26, 2013
+	  start time: 11:06 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Basically had a scrum meeting discussing what we need to have done by when. Commented on the need of an official timeline for when we should have things done.
+
+	- date: Mar 28, 2013
+	  start time: 10:36 a.m.
+	  end time: 11:41 a.m.
+	  phase: Design
+	  comment: Talked about the upcoming presentation, primarily about how we could fill up the time with good content. Decided on a thorough explanation of the structure of our program as well as demo of an actual game. We also worked on a timeline for when our things should be due. It was decided that something like this timeline would be included in our presentation. 
+
+	- date: Apr 7, 2013
+	  start time: 11:22 a.m.
+	  end time: 1:45 p.m.
+	  phase: Implementation
+	  comment: Fixed a couple of issues in my hand ranking helpers. Also, added the gamestate check functions (isRoundOver and isHandOver).
+
+	- date: Apr 7, 2013
+	  start time: 3:15 p.m.
+	  end time: 1:45 p.m.
+	  phase: Implementation
+	  comment: Modified QuickSort function to sort players instead of player hands. 
+	  
+	- date: Apr 8, 2013
+	  start time: 10:15 a.m.
+	  end time: 12:16 p.m.
+	  phase: Implementation
+	  comment: Merged the common cards with the players hand. This was necessary for hand ranking.
+	  
+	- date: Apr 8, 2013
+	  start time: 12:29 p.m.
+	  end time: 1:24 p.m.
+	  phase: Implementation
+	  comment: Got afterTurn() to modify and return the correct gamestate. Now ready to link to other parts of the project.
+	  
+	- date: Apr 8, 2013
+	  start time: 1:42 p.m.
+	  end time: 2:13 p.m.
+	  phase: Implementation
+	  comment: Commented AfterTurn module. Wanted to finish commenting before anyone else had to use my code. 
+	  
+	- date: Apr 10, 2013
+	  start time: 5:33 p.m.
+	  end time: 6:24 p.m.
+	  phase: Implementation
+	  comment: Met with group to see where we were with the integration process. Left briefly to get food.
+	  
+	- date: Apr 10, 2013
+	  start time: 6:30 p.m.
+	  end time: 11:45 p.m.
+	  phase: Implementation
+	  comment: Tried to help Michael debug the project. We kept running into bugs with writing the gamestate. I suspect it has something to do with the encoding or the parser. 
+	  
+	- date: Apr 11, 2013
+	  start time: 12:16 a.m.
+	  end time: 1:33 a.m.
+	  phase: Implementation
+	  comment: Tried to look for the bug myself at home. Basically a last-ditch effort. It could be messing up because we're didn't design to add multiple users from the same window. 
+	  
+	- date: Apr 11, 2013
+	  start time: 8:19 a.m.
+	  end time: 10:30 a.m.
+	  phase: Presentation
+	  comment: Prepared for presentation. Created the slides for defect prevention and project schedule. Helped order the final presentation and participated in a walkthrough. 
+	  
+	- date: Apr 11, 2013
+	  start time: 11:10 p.m.
+	  end time: 11:35 p.m.
+	  phase: Presentation
+	  comment: Presented project to class, Dr. Page, and special guests. Went okay for a failed project, I think. 
+	  
+	- date: Apr 11, 2013
+	  start time: 9:46 p.m.
+	  end time: 11:58 p.m.
+	  phase: Implementation
+	  comment: Tried to fix the project again. No luck so far. I've learned a lot about the parts of the project I didn't implement, though.
+	  
+	- date: Apr 13, 2013
+	  start time: 11:06 a.m.
+	  end time: 4:53 p.m.
+	  phase: Implementation
+	  comment: Looked for the encoding bug. Found a bug in encoding, but it didn't help solve the current problem. Stopped when I received an email from Tom explaining that Dr. Page intends for the next group to fix our project. 
+	  
+	- date: Apr 14, 2013
+	  start time: 12:03 a.m.
+	  end time: 1:05 a.m.
+	  phase: Implementation
+	  comment: Started looking into changing the values in the rankings to 14 for ace-high hands. Kept running into different problems. Ended up changing the value for the ace constant to 14 to narrow down my issue to only ace-low straights. 
+	  
+	- date: Apr 14, 2013
+	  start time: 8:42 a.m.
+	  end time: 9:26 a.m.
+	  phase: Implementation
+	  comment: Fixed a bug in my isStraightFlush helper function. The function was always returning false. Had to change the sorting of the cards to make it work. 
+	  
+	- date: Apr 14, 2013
+	  start time: 3:47 p.m.
+	  end time: 4:43 p.m.
+	  phase: Implementation
+	  comment: Decided to add kicker cards to the handRank to allow for multiple hands of the same integer rank to be evaluated.
+	  
+	- date: Apr 14, 2013
+	  start time: 5:53 p.m.
+	  end time: 6:45 p.m.
+	  phase: Implementation
+	  comment: Started outlining a determineWinner function. This will be called by the main function and will return the list of winners. 
+	  
+	- date: Apr 15, 2013
+	  start time: 5:15 a.m.
+	  end time: 7:52 a.m.
+	  phase: Implementation
+	  comment: Finished the determineWinner function. Took awhile to work out the structure. Packaged the code and sent it off to Team Morris.
+	  
+	- date: Apr 16, 2013
+	  start time: 12:33 a.m.
+	  end time: 3:02 p.m.
+	  phase: PSP
+	  comment: Worked on getting everybody's PSP logs together in the same file for the PSP report. The logs contain many syntax and structural errors, so the integration has been a bit tedious.
+	  
+	- date: Apr 16, 2013
+	  start time: 1:44 a.m.
+	  end time: 1:45 a.m.
+	  phase: PSP
+	  comment: <STRONG>This is a formatting break for PSP. The below logs represent the contributions of team member: RICK O'HARA.</STRONG>
+	  
+	- date: January 17, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Planning
+	  comment: Brainstormed with group about possible project ideas
+
+	- date: January 22, 2013
+	  start time: 10:30AM
+	  end time: 12:00PM
+	  phase: Planning
+	  comment: Brainstormed with group about possible project ideas, decided on actual project. Will be implementing a poker game in ACL2.
+
+	- date: January 24, 2013
+	  start time: 10:30AM
+	  end time: 12:00PM
+	  phase: Design
+	  comment: Worked on top-level design.
+
+	- date: January 29, 2013
+	  start time: 10:30AM
+	  end time: 12:00PM
+	  phase: Design
+	  comment: Worked on top-level design.
+
+	- date: January 30, 2013
+	  start time: 3:00PM
+	  end time: 4:00PM
+	  phase: Presentation
+	  comment: Met with team to plan project presentation and work on slides.
+
+	- date: February 5, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Began working on first-level design of the lisp program. 
+	  
+	- date: February 7, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Finished second-level design.
+
+	- date: February 14, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Second-level design revision team discussion.
+
+	- date: February 19, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Met with Dr. page. Discussed I/O file formatting as a team. 
+
+	- date: February 21, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Worked on defining I/O file format.
+
+	- date: February 28, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Team project implementation.
+
+	- date: Mar 5, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Progress discussion with Dr. Page.
+
+	- date: Mar 7, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Team project implementation.
+
+	- date: Mar 12, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Team project implementation.
+
+	- date: Mar 26, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Met with Dr. Page. Began working on project timeline.
+
+	- date: Mar 28, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Began discussing plans for project presentation. Worked on creating timeline for project completion.
+
+	- date: Mar 29, 2013
+	  start time: 12:43PM
+	  end time: 2:22PM
+	  phase: Planning
+	  comment: Researched pseudo-random number generation methods. Specifically looked at middle squares method and linear congruential method. Decided to use linear congruential method for generating random numbers for card shuffling function.
+
+	- date: Mar 29, 2013
+	  start time: 4:20PM
+	  end time: 6:18PM
+	  phase: Planning
+	  comment: Experimented with using sys-call function to create a random number seed generator function. Couldn't get sys-call to work with DrRacket, but could with proof pad. Decided against using sys-call for random number seed. Will use seed generated by python script instead.
+
+	- date: Mar 30, 2013
+	  start time: 9:12AM
+	  end time: 10:23AM
+	  phase: Implementation
+	  comment: Designed and coded rand-helper and generate-random functions.
+
+	- date: Mar 30, 2013
+	  start time: 10:30AM
+	  end time: 12:08PM	
+	  phase: Implementation
+	  comment: Experimented with using git. Cloned repo from github. Worked on the swap-cards function and defined the *newdeck* constant.
+
+	- date: Mar 30, 2013
+	  start time: 12:11PM
+	  end time: 1:25PM
+	  phase: Implementation
+	  comment: Designed & coded the fisher-yates-shuffle function. Ran into & fixed a bug.
+
+	- date: Mar 30, 2013
+	  start time: 1:26PM
+	  end time: 2:35PM
+	  phase: Implementation
+	  comment: Modified the shuffle function to work with the entire gamestate, instead of just a deck. Ran into & fixed a bug.
+
+	- date: Mar 30, 2013
+	  start time: 2:36PM
+	  end time: 3:10PM
+	  phase: Design
+	  comment: Documented the code in the utils.lisp file. Split the until helper functions into a new file. Pushed the day's code to the shared github repo.
+
+	- date: Mar 30, 2013
+	  start time: 4:45PM
+	  end time: 5:52PM
+	  phase: Design
+	  comment: Updated time log document with time notes from the past two days. Created development journal document.
+
+	- date: Mar 31, 2013
+	  start time: 6:43PM
+	  end time: 8:12PM
+	  phase: Implementation
+	  comment: Tried to get proof pad to compile ACL2 code. Running into problems. I think that I might have a version of ACL2 that is causing problems with proof pad. I am also getting an error saying that shuffle-helpers.lisp does not have a valid certificate. It looks like the Design is saying that this is due to the ACL2 version I am using. Still need to figure out solution.
+
+	- date: Apr 2, 2013
+	  start time: 4:55PM
+	  end time: 6:03PM
+	  phase: Implementation
+	  comment: Wrote function on paper for dealing cards to players. Need to put into code once I get proof pad working again. 
+
+	- date: Apr 2, 2013
+	  start time: 7:33PM
+	  end time: 7:57PM
+	  phase: Implementation
+	  comment: Figured out problem I was having with proof pad. Issue was caused by a bad git commit.
+
+	- date: Apr 2, 2013
+	  start time: 8:01PM
+	  end time: 9:47PM
+	  phase: Implementation
+	  comment: Finished dealPlayerCards, dealFlop, dealTurn, and dealRiver functions. Pushed changed to the git repository. Emailed teammates about changes.
+
+	- date: Apr 3, 2013
+	  start time: 5:53AM
+	  end time: 8:02AM
+	  phase: Implementation
+	  comment: Created updateResponseStructForPlayer function to be used by refresh request.
+
+	- date: Apr 4, 2013
+	  start time: 10:40AM
+	  end time: 12:00PM
+	  phase: Design
+	  comment: Planned through flow of the ACL2 program and made final design decisions. Assigned tasks to complete project.
+
+	- date: Apr 5, 2013
+	  start time: 6:02PM
+	  end time: 7:09PM
+	  phase: Implementation
+	  comment: Made changes to utility.lisp to reelect newest changes to structs.lisp. Refactored code from uitlities.lisp and put helper functions into util_helpers.lisp. Committed changes to repo.
+
+	- date: Apr 6, 2013
+	  start time: 11:22AM
+	  end time: 12:15PM
+	  phase: Design
+	  comment: Updated design with modifications discussed in Thursday's meeting. Updated structs.lisp to reflect changes.
+
+	- date: Apr 7, 2013
+	  start time: 3:00PM
+	  end time: 3:55PM
+	  phase: Implementation
+	  comment: Worked on implementing refresh request. Added refresh_helpers.lisp and moved the refresh helpers to the file. Committed changes to the repo.
+
+	- date: Apr 7, 2013
+	  start time: 3:56PM
+	  end time: 4:44PM
+	  phase: Implementation
+	  comment: Studied code base to prepare for integrating modules into main function.
+
+	- date: Apr 7, 2013
+	  start time: 4:45PM
+	  end time: 6:23PM
+	  phase: Implementation
+	  comment: Worked on modifying app.html.
+
+	- date: Apr 8, 2013
+	  start time: 6:26PM
+	  end time: 9:02PM
+	  phase: Implementation
+	  comment: Created tests for takeTurn. Ran into bug in takeTurn. Found several problems, which are described in the bug for Apr 8.
+
+	- date: Apr 9, 2013
+	  start time: 6:48AM
+	  end time: 8:52PM
+	  phase: Implementation
+	  comment: Continued debugging takeTurn. Problems are described in defect for Apr 8.
+
+	- date: Apr 9, 2013
+	  start time: 1:45PM
+	  end time: 2:41PM
+	  phase: Implementation
+	  comment: Moved on to testing afterTurn (still need to finish debugging makeBet? waiting on Michael to finish debugging his code). Added implemented readyGamestateForNextTurn.
+
+	- date: Apr 9, 2013
+	  start time: 4:13PM
+	  end time: 8:02PM
+	  phase: Implementation
+	  comment: Continued debugging and testing takeTurn. Got case working for base bet that does not end a round. Moved on to testing a case where the betting round should be ended.
+
+	- date: Apr 9, 2013
+	  start time: 4:47PM
+	  end time: 9:54PM
+	  phase: Implementation
+	  comment: Worked on output functions.
+
+	- date: Apr 10, 2013
+	  start time: 4:32PM
+	  end time: 11:14PM
+	  phase: Implementation
+	  comment: Team implementation session to complete project integration.
+
+	- date: Apr 14, 2013
+	  start time: 6:36PM
+	  end time: 7:26PM
+	  phase: Implementation
+	  comment: Worked on creating test suit for utilities.lisp. Was unable to due to a problem. Acl2 will not allow testing data within structures. Tests are failing the EQLABLEP guard and never return true, which is a bug.
+	  
+	- date: Apr 16, 2013
+	  start time: 1:52 a.m.
+	  end time: 1:53 a.m.
+	  phase: PSP
+	  comment: <STRONG>This is a formatting break for PSP. The below logs represent the contributions of team member: THOMAS SHEHAN.</STRONG>
+	  
+	- date: Feb 16, 2013
+	  start time: 9:30pm
+	  end time: 9:42pm
+	  phase: Implementation
+	  comment: Created the write_request_file() function
+		
+	- date: Feb 16, 2013
+	  start time: 9:46pm
+	  end time: 9:47pm
+	  phase: Implementation
+	  comment: Created the remove_request_file() function
+		
+	- date: Feb 16, 2013
+	  start time: 9:47pm
+	  end time: 9:53pm
+	  phase: Implementation
+	  comment: Created the app() function
+	
+	- date: Feb 16, 2013
+	  start time: 9:55pm
+	  end time: 10:07pm
+	  phase: Implementation
+	  comment: Created the interface() function, partially from existing code
+	
+	- date: Feb 16, 2013
+	  start time: 10:08pm
+	  end time: 10:13pm
+	  phase: Implementation
+	  comment: Created the (toFile) function from existing code
+	
+	- date: Feb 16, 2013
+	  start time: 10:13pm
+	  end time: 10:16pm
+	  phase: Implementation
+	  comment: Created the (fromFile) function
+	
+	- date: Feb 16, 2013
+	  start time: 10:16pm
+	  end time: 10:22pm
+	  phase: Implementation
+	  comment: Modified the (main) function
+	
+	- date: Feb 17, 2013
+	  start time: 10:28am
+	  end time: 10:33am
+	  phase: Implementation
+	  comment: Created the knockout() function, outputs a javascript file
+	
+	- date: Feb 17, 2013
+	  start time: 10:33am
+	  end time: 10:35am
+	  phase: Implementation
+	  comment: Created the jquery() function, outputs a javascript file
+	
+	- date: Feb 17, 2013
+	  start time: 10:35am
+	  end time: 10:52am
+	  phase: Planning
+	  comment: Followed Knockout.js tutorials to learn how the library works
+	
+	- date: Feb 17, 2013
+	  start time: 10:53am
+	  end time: 11:02am
+	  phase: Implementation
+	  comment: Created the Knockout ViewModel and supporting code 
+	
+	- date: Feb 17, 2013
+	  start time: 11:02am
+	  end time: 11:15am
+	  phase: Implementation
+	  comment: Created the jQuery AJAX request functions
+	
+	- date: Feb 17, 2013
+	  start time: 11:17am
+	  end time: 11:23am
+	  phase: Implementation
+	  comment: Created the the HTML portion of the frontend
+	
+	- date: Feb 17, 2013
+	  start time: 11:24am
+	  end time: 11:25am
+	  phase: Implementation
+	  comment: Created the (requestType) function, to be changed later
+	
+	
+	- date: Feb 17, 2013
+	  start time: 11:25am
+	  end time: 11:37am
+	  phase: Implementation
+	  comment: Modified the (main) function to determine the request type and behave accordingly
+	
+	- date: Feb 23, 2013
+	  start time: 2:47pm
+	  end time: 3:04pm
+	  phase: Design
+	  comment: Created the JSON output format
+
+	- date: Feb 27, 2013
+	  start time: 9:53pm
+	  end time: 10:20pm
+	  phase: Planning
+	  comment: Attempted to come up with a clever strategy for parsing
+	
+	- date: Feb 27, 2013
+	  start time: 12:09pm
+	  end time: 1:17pm
+	  phase: Planning
+	  comment: Continued thinking about the parser and realized a simple solution was not possible
+
+	- date: Feb 27, 2013
+	  start time: 3:02pm
+	  end time: 4:15pm
+	  phase: Implementation
+	  comment: Started implementing the tokenize and getStringToken functions
+
+	- date: Feb 27, 2013
+	  start time: 8:27pm
+	  end time: 9:04pm
+	  phase: Implementation
+	  comment: Finished implementing the tokenize and getStringToken functions
+
+	- date: Feb 28, 2013
+	  start time: 11:12pm
+	  end time: 11:35pm
+	  phase: Implementation
+	  comment: Began the implementation of the parser function
+	
+
+	- date: Mar 2, 2013
+	  start time: 9:00am
+	  end time: 12:42pm
+	  phase: Implementation
+	  comment: Implemented the parser function
+
+	- date: Mar 2, 2013
+	  start time: 12:55pm
+	  end time: 1:02pm
+	  phase: Implementation
+	  comment: Implemented the makeNameContentPairs function
+
+	- date: Mar 2, 2013
+	  start time: 1:12pm
+	  end time: 1:34pm
+	  phase: Implementation
+	  comment: Modified the parser function to work with dictionaries
+
+	- date: Mar 2, 2013
+	  start time: 1:37pm
+	  end time: 1:53pm
+	  phase: Implementation
+	  comment: Implemented the JSON->request function
+
+	- date: Mar 2, 2013
+	  start time: 6:40pm
+	  end time: 6:48pm
+	  phase: Implementation
+	  comment: Refactored to include a JSON->tree function. This changes some function signatures		
+
+	- date: Mar 2, 2013
+	  start time: 7:26pm
+	  end time: 8:02pm
+	  phase: Implementation
+	  comment: Modified the python interface to work with the new parser
+	
+	- date: Mar 5, 2013
+	  start time: 4:19pm
+	  end time: 5:34pm
+	  phase: Implementation
+	  comment: Rewrote the tree->request function for efficiency
+	
+	- date: Mar 7, 2013
+	  start time: 10:37pm
+	  end time: 10:49pm
+	  phase: Implementation
+	  comment: Wrote the card->JSON function to turn a card structure into a JSON string
+
+	- date: Mar 7, 2013
+	  start time: 10:50pm
+	  end time: 11:13pm
+	  phase: Implementation
+	  comment: Wrote the helper_hand->JSON function to turn a list of card structures into a partial JSON string
+	
+	- date: Mar 7, 2013
+	  start time: 10:50pm
+	  end time: 11:13pm
+	  phase: Implementation
+	  comment: Wrote the hand->JSON function to turn a hand structure into a JSON string
+	
+	- date: Mar 12, 2013
+	  start time: 10:50am
+	  end time: 11:35am
+	  phase: Implementation
+	  comment: Attempted to modify the HTML/JS frontend
+
+	- date: Mar 14, 2013
+	  start time: 10:40am
+	  end time: 11:35am
+	  phase: Implementation
+	  comment: Got the HTML/JS frontend in place
+
+	- date: Mar 30, 2013
+	  start time: 8:57pm
+	  end time: 11:12pm
+	  phase: Implementation
+	  comment: Attempted to modify our main file to actually output a response structure, ran out of time working on a bug
+
+	- date: Apr 2, 2013
+	  start time: 10:38am
+	  end time: 11:02am
+	  phase: Implementation
+	  comment: Created the tree->hand function
+
+	- date: Apr 2, 2013
+	  start time: 11:07am
+	  end time: 11:22am
+	  phase: Implementation
+	  comment: Created the cardListList->cardStructList function
+
+	- date: Apr 2, 2013
+	  start time: 11:02am
+	  end time: 11:16am
+	  phase: Implementation
+	  comment: Created the JSON->hand function
+
+
+	- date: Apr 4, 2013
+	  start time: 10:35am
+	  end time: 11:09am
+	  phase: Implementation
+	  comment: Created the tree->player function
+
+	- date: Apr 4, 2013
+	  start time: 11:12am
+	  end time: 11:13am
+	  phase: Implementation
+	  comment: Created the JSON->player function
+
+	- date: Apr 4, 2013
+	  start time: 11:17am
+	  end time: 11:32am
+	  phase: Implementation
+	  comment: Created the player->JSON function
+
+	- date: Apr 7, 2013
+	  start time: 3:19pm
+	  end time: 3:25pm
+	  phase: Implementation
+	  comment: Created the tree->deck function
+
+	- date: Apr 7, 2013
+	  start time: 3:31pm
+	  end time: 3:34pm
+	  phase: Implementation
+	  comment: Created the JSON->deck function
+
+	- date: Apr 7, 2013
+	  start time: 3:38pm
+	  end time: 4:45pm
+	  phase: Implementation
+	  comment: Created the deck->JSON function
+
+	- date: Apr 7, 2013
+	  start time: 4:46pm
+	  end time: 5:50pm
+	  phase: Implementation
+	  comment: Created the tree->gamestate function
+
+	- date: Apr 7, 2013
+	  start time: 5:56pm
+	  end time: 5:57pm
+	  phase: Implementation
+	  comment: Created the JSON->gamestate function
+
+	- date: Apr 7, 2013
+	  start time: 6:03pm
+	  end time: 6:14pm
+	  phase: Implementation
+	  comment: Created the playerList->playerStructList function
+	
+	- date: Apr 7, 2013
+	  start time: 6:03pm
+	  end time: 6:14pm
+	  phase: Implementation
+	  comment: Created the others->JSON function
+
+	- date: Apr 16, 2013
+	  start time: 8:25 a.m.
+	  end time: 8:26 a.m.
+	  phase: PSP
+	  comment: <STRONG>This is a formatting break for PSP. The below logs represent the contributions of team member: Michael Short.</STRONG>
+	
+	- date: January 17, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Discussed ideas for a final and estimated complexity of each to know what would be feasible.
+
+	- date: January 22, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Narrowed our project search and branched out possible features of each, such as different types of poker games in one executable.
+
+	- date: January 24, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Created top level design for the poker program and started formulating possible functions for the PROBE.
+
+	- date: January 29, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Created proposal from our design and based the presentation off of it. Discussed engineering standards we would adhere to this semester.
+
+	- date: January 31, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Presented our proposal to the class and listened to other teams' ideas for their projects.
+
+	- date: February 5, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Began second level design in which top level functions were fleshed out, and gave first project report to Dr. Page.
+
+	- date: February 6, 2013
+	  start time: 5:37PM
+	  end time: 6:13PM
+	  phase: Design
+	  comment: Created card images consisting of an entire deck and uploaded to the project Google drive.
+
+	- date: February 7, 2013
+	  start time: 10:24AM
+	  end time: 11:45AM
+	  phase: Design
+	  comment: Expanded on the multi-level design, and created a UML diagram of how our modules worked together.
+	
+	- date: February 10, 2013
+	  start time: 2:13PM
+	  end time: 2:53PM
+	  phase: Design
+	  comment: Went more in depth on the PROBE estimate and refined what the overall function list required.
+
+	- date: February 12, 2013
+	  start time: 10:33AM
+	  end time: 11:47AM
+	  phase: Design
+	  comment: Discussed and assigned modules to each team member to implement, and contributed to reviewing our second level design.
+
+	- date: February 13, 2013
+	  start time: 6:43PM
+	  end time: 7:27PM
+	  phase: Implementation 
+	  comment: Defined global structures that all the modules will use to transfer data between each other.
+
+	- date: February 14, 2013
+	  start time: 10:30AM
+	  end time: 11:47AM
+	  phase: Design
+	  comment: Wrote out in detail the things we discussed were missing from our design, such as extra helper functions we had discussed.
+
+	- date: February 19, 2013
+	  start time: 10:26AM
+	  end time: 11:44AM
+	  phase: Design
+	  comment: Discussed with Dr. Page our progress so far and how our Python script will interact with the ACL2 executable. Started implementation of our individual modules.
+
+	- date: February 21, 2013
+	  start time: 10:30AM
+	  end time: 10:55AM
+	  phase: Design
+	  comment: Formalized how the I/O files would be interpreted in our JSON parsing functions. Each file will have its own method for reading the data in.
+
+	- date: February 21, 2013
+	  start time: 10:55AM
+	  end time: 11:45AM
+	  phase: Implementation 
+	  comment: Continued individual implementation of the Bet Validation module. Laying down the framework and method headers to know what I need to accomplish later.
+
+	- date: February 21, 2013
+	  start time: 10:55AM
+	  end time: 11:45AM
+	  phase: Implementation 
+	  comment: Continued individual implementation of the Bet Validation module. Laying down the framework and method headers to know what I need to accomplish later.
+
+	- date: February 26, 2013
+	  start time: 10:26AM
+	  end time: 10:47AM
+	  phase: Design
+	  comment: Revised the design based on current implementation of the betting module
+
+	- date: February 26, 2013
+	  start time: 10:48AM
+	  end time: 11:42AM
+	  phase: Implementation 
+	  comment: Implemented helper functions for the main Bet method call (isBetValid,isBetSufficient)
+
+	- date: February 27, 2013
+	  start time: 5:35PM
+	  end time: 6:55PM
+	  phase: Implementation 
+	  comment: Developed a test suite of check-expects and defproperties for the currently implemented functions (that all passed)
+
+	- date: March 2, 2013
+	  start time: 3:08PM
+	  end time: 3:32PM
+	  phase: Implementation 
+	  comment: Created request defstruct for passing to the bet function, which contains the player and amount of chips
+
+	- date: March 5, 2013
+	  start time: 10:22AM
+	  end time: 11:13AM
+	  phase: Implementation 
+	  comment: Implemented main Bet function to tie in helper functions and remove chips from the gamestate
+
+	- date: March 5, 2013
+	  start time: 11:18AM
+	  end time: 11:40AM
+	  phase: Presentation
+	  comment: Discussed with Dr. Page the current state of the project and our progress so far (JSON utilities)
+
+	- date: March 6, 2013
+	  start time: 7:35PM
+	  end time: 7:59PM
+	  phase: Implementation 
+	  comment: Developed more test suites for the newly implemented functions and confirmed their correctness
+
+	- date: March 7, 2013
+	  start time: 10:27AM
+	  end time: 11:45AM
+	  phase: Implementation 
+	  comment: Started implementation on JoinGame module, creating the framework of the helper functions.
+
+	- date: March 12, 2013
+	  start time: 10:30AM
+	  end time: 11:01AM
+	  phase: Design
+	  comment: Reworked the initial design of JoinGame, and the necessary parameters that need to be passed.
+
+	- date: March 12, 2013
+	  start time: 11:02AM
+	  end time: 11:48AM
+	  phase: Implementation 
+	  comment: Continued implementing JoinGame and created header comments
+
+	- date: March 14, 2013
+	  start time: 10:25AM
+	  end time: 11:46AM
+	  phase: Implementation 
+	  comment: Finalized JoinGame and created main methods to tie in helper functionality
+
+	- date: March 26, 2013
+	  start time: 10:25AM
+	  end time: 10:56AM
+	  phase: Presentation
+	  comment: Progress report with Dr. Page on state of project. Demoed server functionality and JSON scripts.
+
+	- date: March 26, 2013
+	  start time: 11:01AM
+	  end time: 11:45AM
+	  phase: Implementation 
+	  comment: Helped Thomas integrate other modules to work with eachtoher.
+
+	- date: March 28, 2013
+	  start time: 10:25AM
+	  end time: 11:44AM
+	  phase: Design
+	  comment: Designed the main module and how we would integrate the individuals modules to the front end
+
+	- date: April 2, 2013
+	  start time: 10:27AM
+	  end time: 11:46AM
+	  phase: Implementation 
+	  comment: Created helper functions for the main module that will parse specific client requests
+
+	- date: April 4, 2013
+	  start time: 10:27AM
+	  end time: 10:52AM
+	  phase: Implementation 
+	  comment: Added fields to the gamestate structure required for sending status messages to the client
+
+	- date: April 4, 2013
+	  start time: 10:53AM
+	  end time: 11:13AM
+	  phase: Implementation 
+	  comment: Updated existing modules to be compatible with structure changes
+
+	- date: April 4, 2013
+	  start time: 11:14AM
+	  end time: 11:47AM
+	  phase: Implementation 
+	  comment: Continued working on main worker function that will be called by the python server to generate a proper response
+
+	- date: April 7, 2013
+	  start time: 1:50PM
+	  end time: 3:40PM
+	  phase: Implementation 
+	  comment: Created TakeTurn main function to incorperate the BetValidation, MakeBet, and AfterTurn sub modules
+
+	- date: April 7, 2013
+	  start time: 3:44PM
+	  end time: 6:28PM
+	  phase: Design
+	  comment: Discussed remaining code implementation and any design flaws that still existed, and potential fixes to incorperate
+
+	- date: April 9, 2013
+	  start time: 8:15PM
+	  end time: 9:35PM
+	  phase: Implementation 
+	  comment: Debugged MakeBet module based on information from Rick that the gamestate was not returning the proper values
+
+	- date: April 9, 2013
+	  start time: 10:05PM
+	  end time: 10:53PM
+	  phase: Implementation 
+	  comment: Unit tested the BetValidation module to make it consistent with the gamestate being passed in
+
+	- date: April 11, 2013
+	  start time: 6:32PM
+	  end time: 11:13PM
+	  phase: Implementation 
+	  comment: Attempted integrating Python and ACL2 in the main module. Consistent unknown errors prevented the game from fulling working
+	
+defect log:
+
+	- date: Jan 30, 2013
+	  type: HTML Design
+	  fix time: 15
+	  comment: Arrow picture was not rotating correctly. Fixed by inserting more pictures with arrow already rotated.
+	
+	- date: Feb 20, 2013
+	  type: Syntax
+	  fix time: 1
+	  comment: Referred to a field in one of my defstructures by the wrong name. 
+	  
+	- date: Mar 5, 2013
+	  type: Logic
+	  fix time: 10
+	  comment: My quick sort algorithm was not sorting correctly if the pivot point was duplicated in the list. Solved by taking the pivot point out of the list after chosen and appending it in between the below and above lists. 
+
+	- date: Mar 7, 2013
+	  type: Logic
+	  fix time: 30
+	  comment: I could not for the life of me figure out why my Quick Sort function was angry with me when I started using defstructures. I ended up rewriting it from scratch with defstructures in mind. 
+	  
+	- date: Mar 12, 2013
+	  type: Design
+	  fix time: 15
+	  comment: Went looking for an easy way to swap two values in a list in ACL2. Was trying to avoid creating my own function. Ended up getting sucked down the Wikipedia rabbit hole after awhile. 
+	  
+	- date: Mar 12, 2013
+	  type: Logic
+	  fix time: 21
+	  comment: My Quick Sort function was chocking on the defstructures. Finally remembered the debugging option and found out that it was trying to access the card-value of an empty list. 
+	  
+	- date: Mar 24, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: isThreeKind was breaking because I had originally copied over the Code from isPair which only needed to check two cards. Since isThreeKind needed to check 3 cards, it was trying to access cards outside of the hand. 
+	  
+	- date: Mar 24, 2013
+	  type: Logic
+	  fix time: 1
+	  comment: Didn't learn from my mistake. isFourKind did the same thing as isThreeKind. I facepalmed and moved on. 
+	  
+	- date: Mar 25, 2013
+	  type: Logic
+	  fix time: 10
+	  comment: isFullHouse was returning the extra cards out of order. It would always return the higher value card first even if the set of three was of a lower value than the set of two. 
+	  
+	- date: Mar 25, 2013
+	  type: Logic
+	  fix time: 2
+	  comment: My Quick Sort function was returning the suits backwards for some weird reason. Quick-fixed by reversing the list returned. Needed to move on.
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 20
+	  comment: I could not figure out how to get isFlush to return the high value of the flush without just sending the max of the five flush cards. Decided to table this issue for now and try to modify my sorting algorithm to sort by rank inside suit (e.g. Club 8, Club 7, Club 2, Heart King, Heart 5)
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 11
+	  comment: isStraight was not working for Ace-high straights. Spent enough time on it to realize that I could not find a trivial fix. Decided to table it as I needed to move on.
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: I tried to set up isSraightFlush to call isStraight and isFlush. I messed this up originally because I sent an empty hand to isFlush after it found the straight. 
+	  
+	- date: Apr 7, 2013
+	  type: Logic
+	  fix time: 15
+	  comment: My isStraight function assumed that it was given a mathematical set i.e. it was only checking that the first and last cards of a five-card hand were four units apart. I fixed this by adding all of the cards to a set and checking that the difference between the high card and low card is five and that the length of the set is five. 
+	  
+	- date: Apr 7, 2013
+	  type: Logic
+	  fix time: 8
+	  comment: My isFlush function was not returning the values necessary for tie-breaking. I sorted the cards that make up the flush by value and returned the entire hand for use in tie-breaking. 
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 45
+	  comment: The program crashed when updating the player hands to include the common cards. Kind of tricky to find.
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 15
+	  comment: Tried using the Proofpad debugger to find the previous bug. Could not get it to work and gave up. 
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 2
+	  comment: Tried to fix the hand bug above using DrRacket. DrRacket has a bug where it doesn't allow the make-struct macro. This is unfortunate because almost all of our testing constants use make-struct.
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: Ace-high hands lose. This is a problem. Not sure what I'll do to fix this one just yet. UPDATE: changed the value of ace to 14. 
+	  
+	- date: Apr 10, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: Gamestate is not being written correctly from the front end. Not sure where the bug is. Probably somewhere in the encoding/parsing. Bug proved fatal.  
+	  
+	- date: Apr 14, 2013
+	  type: Logic
+	  fix time: 44
+	  comment: isStraightFlush was returning nil no matter what. Fixed by changing the order of the sorted cards being passed into both isStraight and isFlush. 
+	  
+	- date: Apr 14, 2013
+	  type: Logic
+	  fix time: 8
+	  comment: addKickers function was returning the ranking as well as the kickers. Easy fix. 
+	  
+	- date: Apr 15, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: determineWinner will break if more than one hand has the exact same ranking (kicker cards and all). Even though this kind of thing is rare, this is a problem, because we can not deal with split pots effectively.
+	  
+	- date: Apr 16, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: A isStraight returns false for hands that have multiples of the same number included in the straight.
+	  
+	- date: Mar 30, 2013
+	  type: conceptual
+	  fix time: 20
+	  comment: Ran into bug where the shuffle function was returning Nil instead of doing useful work. I discovered that I was passing arguments to the fisher-gates-shuffle function in the wrong order, which was causing the input predicates to return false, therefore causing the function to return Nil.
+
+	- date: Mar 30, 2013
+	  type: conceptual
+	  fix time: 13
+	  comment: The shuffle method was not actually shuffling cards. I discovered that I had been calling the generate-randoms function with a bad input. I was using (len *newdeck*) instead of (len (deck-cards *newdeck*)).
+
+	- date: Apr 2, 2013
+	  type: system error
+	  fix time: 113
+	  comment:  Proofpad said there was an error with the certificate for the shuffle-helpers.lisp file. Issue was keeping the shuffleDeck function from working. Issue ended up being caused by a bad git commit from a teammate that overwrote my last push. 
+
+	- date: Apr 8, 2013
+	  type: system error
+	  fix time: 114
+	  comment:  Found error in takeTurn for the bet-1-request test. The current player was not being updated in makeBet. To fix this I created a new function updateCurrentPlayer. Ran into several smaller bugs in getting this to work? including: structure returned by makeBet was not passing gamestate-p test which caused the check in updatePlayer to fail (makeBet structure was incorrect? initially returned a nested gamestate, also added Nil to the head of gamestate-players, also returned an extra level of list nesting on the players list of gamestate).
+
+	- date: Apr 8, 2013
+	  type: system error
+	  fix time: 56
+	  comment:  Found error in afterTurn. The gamestate was not being returned correctly after the end of a round of betting. Added the readyGamestateForNextTurn to correct this problem.
+
+	- date: Apr 9, 2013
+	  type: system error
+	  fix time: 15
+	  comment:  Found error in makeBet. Having a player call a bet causes amount-to-call to be increased for all players. It shouldn't affect other players.
+
+	- date: Apr 10, 2013
+	  type: system error
+	  fix time: 25
+	  comment:  JSONEcode was not working. It did not have the (in-package "ACL2") directive to certify it.
+	
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 2
+	  comment: used the wrong arguments for file->string, looked in old file to find fix
+	
+	- date: Feb 16, 2013
+	  type: arguments
+	  fix time: 4
+	  comment: when refactoring main to toFile, used wrong argument types.
+	
+	- date: Feb 17, 2013
+	  type: html/js
+	  fix time: 2
+	  comment: misspelled the data-bind attribute, Knockout didn't work.
+	
+	- date: Feb 17, 2013
+	  type: parenthesization
+	  fix time: 2
+	  comment: forgot the correct parenthesization of let*, got errors.
+	
+	- date: Feb 17, 2013
+	  type: parenthesiazation
+	  fix time: 3
+	  comment: messed up the parenthesization of the nested if statements.
+	
+	- date: Feb 27, 2013
+	  type: incorrect types
+	  fix time: 3
+	  comment: tried to pass char lists where chars were expected
+	
+	- date: Feb 27, 2013
+	  type: off by one
+	  fix time: 30
+	  comment: forgot to add one to the length of the tokens when determining how many characters were consumed. This caused the tokenizer to fail in a very confusing way.
+
+	- date: Mar 2, 2013
+	  type: include
+	  fix time: 20
+	  comment:  included the wrong book, didn't realize this was the problem because I was working in drracket today. ProofPad includes all books by default.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 25
+	  comment:  incorrectly counted the length of consumed tokens. needed to count the length of the child element plus the recursively gotten rest of the current level. Instead only added 1 to the recursive value.
+
+	- date: Mar 2, 2013
+	  type: logic
+	  fix time: 15
+	  comment:  took the cdr of several lists when I needed the cadr.
+
+	- date: Mar 2, 2013
+	  type: naming
+	  fix time: 2
+	  comment: used the wrong function names for update-struct.
+
+	- date: Mar 7, 2013
+	  type: naming
+	  fix time: 8
+	  comment: wrapped a list in extra parenthesis. Got an eror message that I did not understand, which took a while to track down.
+
+	- date: Mar 12, 2013
+	  type: naming
+	  fix time: 30
+	  comment: recieving lots of error messages that I do not understand. When I try reverting mostly back to the old code I get no error message but the Javascript is not executing. I am probably missing something stupid.
+
+	- date: Mar 30, 2013
+	  type: collaboration
+	  fix time: 135
+	  comment: I did not modify my tree->request function to reflect michaels changes to the request structure
+
+	- date: Apr 2, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 3
+	  comment: forgot to use the str->rat function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 2
+	  comment: forgot to use the rat->str function to get the correct type
+
+	- date: Apr 4, 2013
+	  type: interface
+	  fix time: 1
+	  comment: forgot to include the decimal precision argument to rat->str
+
+	- date: Apr 4, 2013
+	  type: struct
+	  fix time: 6
+	  comment: misspelled the call-amount field as call_amount causing the parser to fail
+	
+	- date: February 13, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Including a defstruct in another defstruct required the (struct-name)-p method for assertion
+
+	- date: February 27, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Was using natp to check for non negative but tests included rational numbers
+
+	- date: March 1, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Request structure was giving a string for the player (name) instead of the player struct itself
+
+	- date: March 12, 2013
+	  type: Code
+	  fix time: 10
+	  comment: ProofPad throws error in defstructs when calling fields, even though it will compile.
+
+	- date: March 14, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Iterator needed when editing list of players, because the updated list needs to be returned to the gamestate.
+
+	- date: April 4, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Inconsistent gamestate struct due to fields being added to it. Updated code to include the changes
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Cons does not work for adding an element at the end of the list. Reversing was requied to keep the player list in the right order
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: There was an extra nil in the player list when returning from making a bet, causing other modules to fail
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: BetValidation also contained an improper player list ordering. Fixed by building the list backwards
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: MakeBet did not include the amount to call when subtracting the chips from the player
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 5
+	  comment: Calling a struct function on a string (and not the object), when it should just return the string
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 20
+	  comment: A gamestate struct with nils as fields will not pass the struct-p predicate, but a struct that is a valid gamestate will not pass through the modules properly
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 20
+	  comment: Cannot get rid of a mv variable (the state), so had to rework main module to pass the state of ACL2 along with the gamestate through the request functions.
+	  
+new objects:
+	  
+	- name: performRequest
+	  estimated lines: 13
+	  type: Computation
+	 
+	- name: setRequestType
+	  estimated lines: 13
+	  type: I/O
+	
+	- name: refreshViewmodel
+	  estimated lines: 13
+	  type: Computation
+	
+	- name: getPlayer
+	  estimated lines: 13
+	  type: Computation
+	
+	- name: getData
+	  estimated lines: 13
+	  type: Computation
+	
+	- name: AllStructs
+	  estimated lines: 233
+	  type: Structures
+	
+	- name: isRoundOver
+	  estimated lines: 34
+	  type: Boolean
+	  
+	- name: isHandOver
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: afterTurn
+	  estimated lines: 55
+	  type: Computation
+	  
+	- name: rankHands
+	  estimated lines: 34
+	  type: Computation
+	  
+	- name: handRank
+	  estimated lines: 34
+	  type: Computation
+
+	- name: isStraightFlush
+	  estimated lines: 34
+	  type: Boolean
+	  
+	- name: isFourKind
+	  estimated lines: 13
+	  type: Boolean
+	  
+	- name: isFullHouse
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isStraight
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isFlush
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isThreeKind
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isTwoPair
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isPair
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isHighcard
+	  estimated lines: 13
+	  type: Boolean
+	  
+	- name: dealHands
+	  estimated lines: 52
+	  type: calculation
+
+	- name: dealFlop
+	  estimated lines: 13
+	  type: calculation
+
+	- name: dealTurn
+	  estimated lines: 13
+	  type: calculation
+
+	- name: dealRiver
+	  estimated lines: 13
+	  type: calculation
+
+	- name: findPlayerInPlayersList
+	  estimated lines: 13
+	  type: calculation
+	  
+	- name: getStringToken
+	  estimated lines: 10
+	  type: calculation
+	
+	- name: tokenize
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: makeNameContentPairs
+	  estimated lines: 10
+	  type: calculation
+
+	- name: parser
+	  estimated lines: 30
+	  type: calculation
+		
+	- name: JSON->tree
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->request
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->request
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: card->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: toLetter
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: cardimg->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: cardListList->cardStructList
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: helper_hand->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: hand->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->hand
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->hand
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->deck
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: deck->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: JSON->deck
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: tree->player
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->player
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: player->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: playerListList->playerStructList
+	  estimated lines: 10
+	  type: calculation
+		
+	- name: tree->gamestate
+	  estimated lines: 20
+	  type: calculation
+		
+	- name: JSON->gamestate
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: playerlist->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: gamestate->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: helper_cardimgs->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: others->JSON
+	  estimated lines: 5
+	  type: calculation
+		
+	- name: response->JSON
+	  estimated lines: 5
+	  type: calculation	
+	  
+	- name: joinGame
+	  estimated lines: 55
+	  type: Computation
+	
+	- name: isGameStarted
+	  estimated lines: 13
+	  type: Boolean
+	
+	- name: generatePlayerKey
+	  estimated lines: 8
+	  type: Computation
+	
+	- name: generatePlayerStruct
+	  estimated lines: 13
+	  type: Computation
+	
+	- name: addPlayer
+	  estimated lines: 8
+	  type: Computation
+	  
+	- name: takeTurn
+	  estimated lines: 21
+	  type: Computation
+	
+	- name: isMyTurn
+	  estimated lines: 13
+	  type: Boolean
+	
+	- name: isBetValid
+	  estimated lines: 13
+	  type: Boolean
+	
+	- name: isBetSufficient
+	  estimated lines: 21
+	  type: Boolean
+	
+	
+	- name: makeBet
+	  estimated lines: 55
+	  type: Boolean
+	
+	- name: setPot
+	  estimated lines: 8
+	  type: Computation
+	
+	- name: setPlayerBank
+	  estimated lines: 8
+	  type: Computation
+	
+	- name: setBetHistory
+	  estimated lines: 13
+	  type: Computation
+	
+	- name: isFold
+	  estimated lines: 8
+	  type: Boolean
+	  
+	- name: createError
+	  estimated lines: 11
+	  type: calculation
+	
+actual added lines: 1858
+actual base lines: 0
+actual modified lines: 0
+actual removed lines: 0
+		

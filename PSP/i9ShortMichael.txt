@@ -1,0 +1,421 @@
+name: Michael Short (Stroustrup)
+date: April 16, 2013
+program: tFinal Multiplayer Poker
+instructor: Dr. Page
+
+time log:
+
+	- date: January 17, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Discussed ideas for a final and estimated complexity of each to know what would be feasible.
+
+	- date: January 22, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Narrowed our project search and branched out possible features of each, such as different types of poker games in one executable.
+
+	- date: January 24, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Created top level design for the poker program and started formulating possible functions for the PROBE.
+
+	- date: January 29, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Created proposal from our design and based the presentation off of it. Discussed engineering standards we would adhere to this semester.
+
+	- date: January 31, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Presented our proposal to the class and listened to other teams' ideas for their projects.
+
+	- date: February 5, 2013
+	  start time: 10:30AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Began second level design in which top level functions were fleshed out, and gave first project report to Dr. Page.
+
+	- date: February 6, 2013
+	  start time: 5:37PM
+	  end time: 6:13PM
+	  phase: design
+	  comment: Created card images consisting of an entire deck and uploaded to the project Google drive.
+
+	- date: February 7, 2013
+	  start time: 10:24AM
+	  end time: 11:45AM
+	  phase: design
+	  comment: Expanded on the multi-level design, and created a UML diagram of how our modules worked together.
+	
+	- date: February 10, 2013
+	  start time: 2:13PM
+	  end time: 2:53PM
+	  phase: design
+	  comment: Went more in depth on the PROBE estimate and refined what the overall function list required.
+
+	- date: February 12, 2013
+	  start time: 10:33AM
+	  end time: 11:47AM
+	  phase: design
+	  comment: Discussed and assigned modules to each team member to implement, and contributed to reviewing our second level design.
+
+	- date: February 13, 2013
+	  start time: 6:43PM
+	  end time: 7:27PM
+	  phase: code
+	  comment: Defined global structures that all the modules will use to transfer data between each other.
+
+	- date: February 14, 2013
+	  start time: 10:30AM
+	  end time: 11:47AM
+	  phase: design
+	  comment: Wrote out in detail the things we discussed were missing from our design, such as extra helper functions we had discussed.
+
+	- date: February 19, 2013
+	  start time: 10:26AM
+	  end time: 11:44AM
+	  phase: design
+	  comment: Discussed with Dr. Page our progress so far and how our Python script will interact with the ACL2 executable. Started implementation of our individual modules.
+
+	- date: February 21, 2013
+	  start time: 10:30AM
+	  end time: 10:55AM
+	  phase: design
+	  comment: Formalized how the I/O files would be interpreted in our JSON parsing functions. Each file will have its own method for reading the data in.
+
+	- date: February 21, 2013
+	  start time: 10:55AM
+	  end time: 11:45AM
+	  phase: code
+	  comment: Continued individual implementation of the Bet Validation module. Laying down the framework and method headers to know what I need to accomplish later.
+
+	- date: February 21, 2013
+	  start time: 10:55AM
+	  end time: 11:45AM
+	  phase: code
+	  comment: Continued individual implementation of the Bet Validation module. Laying down the framework and method headers to know what I need to accomplish later.
+
+	- date: February 26, 2013
+	  start time: 10:26AM
+	  end time: 10:47AM
+	  phase: design
+	  comment: Revised the design based on current implementation of the betting module
+
+	- date: February 26, 2013
+	  start time: 10:48AM
+	  end time: 11:42AM
+	  phase: code
+	  comment: Implemented helper functions for the main Bet method call (isBetValid,isBetSufficient)
+
+	- date: February 27, 2013
+	  start time: 5:35PM
+	  end time: 6:55PM
+	  phase: code
+	  comment: Developed a test suite of check-expects and defproperties for the currently implemented functions (that all passed)
+
+	- date: March 2, 2013
+	  start time: 3:08PM
+	  end time: 3:32PM
+	  phase: code
+	  comment: Created request defstruct for passing to the bet function, which contains the player and amount of chips
+
+	- date: March 5, 2013
+	  start time: 10:22AM
+	  end time: 11:13AM
+	  phase: code
+	  comment: Implemented main Bet function to tie in helper functions and remove chips from the gamestate
+
+	- date: March 5, 2013
+	  start time: 11:18AM
+	  end time: 11:40AM
+	  phase: report
+	  comment: Discussed with Dr. Page the current state of the project and our progress so far (JSON utilities)
+
+	- date: March 6, 2013
+	  start time: 7:35PM
+	  end time: 7:59PM
+	  phase: code
+	  comment: Developed more test suites for the newly implemented functions and confirmed their correctness
+
+	- date: March 7, 2013
+	  start time: 10:27AM
+	  end time: 11:45AM
+	  phase: code
+	  comment: Started implementation on JoinGame module, creating the framework of the helper functions.
+
+	- date: March 12, 2013
+	  start time: 10:30AM
+	  end time: 11:01AM
+	  phase: design
+	  comment: Reworked the initial design of JoinGame, and the necessary parameters that need to be passed.
+
+	- date: March 12, 2013
+	  start time: 11:02AM
+	  end time: 11:48AM
+	  phase: code
+	  comment: Continued implementing JoinGame and created header comments
+
+	- date: March 14, 2013
+	  start time: 10:25AM
+	  end time: 11:46AM
+	  phase: code
+	  comment: Finalized JoinGame and created main methods to tie in helper functionality
+
+	- date: March 26, 2013
+	  start time: 10:25AM
+	  end time: 10:56AM
+	  phase: report
+	  comment: Progress report with Dr. Page on state of project. Demoed server functionality and JSON scripts.
+
+	- date: March 26, 2013
+	  start time: 11:01AM
+	  end time: 11:45AM
+	  phase: code
+	  comment: Helped Thomas integrate other modules to work with eachtoher.
+
+	- date: March 28, 2013
+	  start time: 10:25AM
+	  end time: 11:44AM
+	  phase: design
+	  comment: Designed the main module and how we would integrate the individuals modules to the front end
+
+	- date: April 2, 2013
+	  start time: 10:27AM
+	  end time: 11:46AM
+	  phase: code
+	  comment: Created helper functions for the main module that will parse specific client requests
+
+	- date: April 4, 2013
+	  start time: 10:27AM
+	  end time: 10:52AM
+	  phase: code
+	  comment: Added fields to the gamestate structure required for sending status messages to the client
+
+	- date: April 4, 2013
+	  start time: 10:53AM
+	  end time: 11:13AM
+	  phase: code
+	  comment: Updated existing modules to be compatible with structure changes
+
+	- date: April 4, 2013
+	  start time: 11:14AM
+	  end time: 11:47AM
+	  phase: code
+	  comment: Continued working on main worker function that will be called by the python server to generate a proper response
+
+	- date: April 7, 2013
+	  start time: 1:50PM
+	  end time: 3:40PM
+	  phase: code
+	  comment: Created TakeTurn main function to incorperate the BetValidation, MakeBet, and AfterTurn sub modules
+
+	- date: April 7, 2013
+	  start time: 3:44PM
+	  end time: 6:28PM
+	  phase: design
+	  comment: Discussed remaining code implementation and any design flaws that still existed, and potential fixes to incorperate
+
+	- date: April 9, 2013
+	  start time: 8:15PM
+	  end time: 9:35PM
+	  phase: code
+	  comment: Debugged MakeBet module based on information from Rick that the gamestate was not returning the proper values
+
+	- date: April 9, 2013
+	  start time: 10:05PM
+	  end time: 10:53PM
+	  phase: code
+	  comment: Unit tested the BetValidation module to make it consistent with the gamestate being passed in
+
+	- date: April 11, 2013
+	  start time: 6:32PM
+	  end time: 11:13PM
+	  phase: code
+	  comment: Attempted integrating Python and ACL2 in the main module. Consistent unknown errors prevented the game from fulling working
+
+
+defect log:
+
+	- date: February 13, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Including a defstruct in another defstruct required the (struct-name)-p method for assertion
+
+	- date: February 27, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Was using natp to check for non negative but tests included rational numbers
+
+	- date: March 1, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Request structure was giving a string for the player (name) instead of the player struct itself
+
+	- date: March 12, 2013
+	  type: Code
+	  fix time: 10
+	  comment: ProofPad throws error in defstructs when calling fields, even though it will compile.
+
+	- date: March 14, 2013
+	  type: Code
+	  fix time: 10
+	  comment: Iterator needed when editing list of players, because the updated list needs to be returned to the gamestate.
+
+	- date: April 4, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Inconsistent gamestate struct due to fields being added to it. Updated code to include the changes
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 15
+	  comment: Cons does not work for adding an element at the end of the list. Reversing was requied to keep the player list in the right order
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: There was an extra nil in the player list when returning from making a bet, causing other modules to fail
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: BetValidation also contained an improper player list ordering. Fixed by building the list backwards
+
+	- date: April 9, 2013
+	  type: Code
+	  fix time: 10
+	  comment: MakeBet did not include the amount to call when subtracting the chips from the player
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 5
+	  comment: Calling a struct function on a string (and not the object), when it should just return the string
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 20
+	  comment: A gamestate struct with nils as fields will not pass the struct-p predicate, but a struct that is a valid gamestate will not pass through the modules properly
+
+	- date: April 11, 2013
+	  type: Code
+	  fix time: 20
+	  comment: Cannot get rid of a mv variable (the state), so had to rework main module to pass the state of ACL2 along with the gamestate through the request functions
+
+
+	  
+new objects:
+
+	- name: checkPlayersReady
+	  estimated lines: 6
+	  type: calculation
+
+	- name: isGameStarted
+	  estimated lines: 4
+	  type: calculation
+
+	- name: generatePlayerStruct
+	  estimated lines: 7
+	  type: calculation
+
+	- name: addPlayer
+	  estimated lines: 12
+	  type: calculation
+
+	- name: findPlayerToReady
+	  estimated lines: 18
+	  type: calculation
+
+	- name: readyPlayer
+	  estimated lines: 12
+	  type: calculation
+
+	- name: playerExists
+	  estimated lines: 6
+	  type: calculation
+
+	- name: joinGame
+	  estimated lines: 7
+	  type: calculation
+
+	- name: addPot
+	  estimated lines: 11
+	  type: calculation
+
+	- name: removePlayerChips
+	  estimated lines: 9
+	  type: calculation
+
+	- name: addToCallAmount
+	  estimated lines: 6
+	  type: calculation
+
+	- name: findPlayer
+	  estimated lines: 14
+	  type: calculation
+
+	- name: setBetHistory
+	  estimated lines: 3
+	  type: calculation
+
+	- name: getPlayer
+	  estimated lines: 6
+	  type: calculation
+
+	- name: makeBet
+	  estimated lines: 19
+	  type: calculation
+
+	- name: getPlayer
+	  estimated lines: 6
+	  type: calculation
+
+	- name: curPlayerTurn
+	  estimated lines: 6
+	  type: calculation
+
+	- name: createError
+	  estimated lines: 11
+	  type: calculation
+
+	- name: updateCurrentPlayer
+	  estimated lines: 11
+	  type: calculation
+
+	- name: takeTurn
+	  estimated lines: 6
+	  type: calculation
+
+	- name: isBetLegal
+	  estimated lines: 5
+	  type: calculation
+
+	- name: isBetSufficient
+	  estimated lines: 5
+	  type: calculation
+
+	- name: getPlayer
+	  estimated lines: 6
+	  type: calculation
+
+	- name: isBetValid
+	  estimated lines: 10
+	  type: calculation
+	 
+	
+actual added lines: 206
+actual base lines: 0
+actual modified lines: 0
+actual removed lines: 0
+
+
+
+
+
+
+

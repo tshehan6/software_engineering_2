@@ -1,0 +1,476 @@
+name: Thomas Lindley
+date: March 28, 2013
+program: Team Stroustrup Project
+instructor: Dr. Page
+
+time log:
+
+	- date: Jan 17, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Bounced around ideas about what to work on for the semester project.
+
+	- date: Jan 22, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Decided to focus on the poker application idea. Began fleshing out a project schedule and design.  
+
+	- date: Jan 24, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Began working on the t2 and t3 deliverables. Focused primarily on the one level design and laid out a basic list of our engineering standards and procedures.
+	  
+	- date: Jan 29, 2013
+	  start time: 10:30 a.m.
+	  end time: 12:30 p.m.
+	  phase: Design
+	  comment: Worked on t2 and t3 deliverables. Thoroughly analyzed structure of project and made PROBE estimates.
+	
+	- date: Jan 31, 2013
+	  start time: 11:00 a.m.
+	  end time: 11:12 a.m.
+	  phase: Presentation
+	  comment: Presented topic to class. 
+	  
+	- date: Feb 5, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on second level design.
+
+	- date: Feb 7, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on the multi-level design deliverable. Also worked out a few new estimations on the PROBE estimate as we had some new functions to assess. 
+
+	- date: Feb 12, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: We worked on the design review and allocated responsibilities. I will be working on the take turn module as well as the join game module.
+
+	- date: Feb 14, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Worked on the revised design deliverable. Michael created a UML while the rest of us added in helper functions and formalized our naming convention. It was decided that I would update the PROBE estimate to reflect changes in the design.
+	
+	- date: Feb 17, 2013
+	  start time: 2:34 p.m.
+	  end time: 4:08 p.m.
+	  phase: Design
+	  comment: Revised the probe estimate to reflect the newly revised design. This included updating function names and adding in new functions with the group's estimations. 
+
+	- date: Feb 19, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Had a progress report with Dr. Page. Talked about GitHub, our newly developed interface, and the revised plan for our JSON to defstructure transformation.
+
+	- date: Feb 20, 2013
+	  start time: 7:05 p.m.
+	  end time: 8:53 p.m.
+	  phase: Code
+	  comment: Began writing out test cases for poker game logic. This included writing tests to check the strength of a hand and the winner out of several hands. 
+	  
+	- date: Feb 21, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Started to look at a formal defect database design document. Also added some test cases to test suite. 
+	  
+	- date: Feb 26, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Created a preliminary defect database design document, and updated the design document to include the most recent changes.
+	  
+	- date: Feb 28, 2013
+	  start time: 7:12 a.m.
+	  end time: 9:43 a.m.
+	  phase: Design
+	  comment: Added new section to the defect database design. Updated the PROBE document to include the most recent changes. Also finished designing test suite for hand ranking portion of the project.
+	
+	- date: Feb 28, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Modified the design document to include the File Output format and submitted changes in the defect database for review from other team members. 
+	
+	- date: Mar 5, 2013
+	  start time: 8:07 a.m.
+	  end time: 9:50 a.m.
+	  phase: Code
+	  comment: Worked on my Quick Sort algorithm for sorting the cards in a hand. 
+	
+	- date: Mar 5, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Had a progress report with Dr. Page. Talked about the interfacing of our project, and demoed a new prototype of the project. Also talked about the advantages and disadvantages of using Quick Sort to sort the cards in a hand. He suggested I implement both Quick Sort and Bubble Sort and compare the performance. 
+
+	- date: Mar 7, 2013
+	  start time: 10:30 a.m.
+	  end time: 11:45 a.m.
+	  phase: Code
+	  comment: Worked on implementing Bubble Sort. Also began to modify Quick Sort algorithm to work with Card defstructures (previously, it only worked with integers).
+	  
+	- date: Mar 12, 2013
+	  start time: 10:31 a.m.
+	  end time: 11:42 a.m.
+	  phase: Code
+	  comment: Finished implementing Quick Sort for defstructures. Got stuck trying to implement Bubble Sort. I couldn't find an easy way to swap two items without having to write a function myself, so I tabled the item for now. I will likely return to it after I complete the rest of my responsibilities for the project. 
+
+	- date: Mar 14, 2013
+	  start time: 10:35 a.m.
+	  end time: 11:15 a.m.
+	  phase: Design
+	  comment: Planned out my structure for card rank. I needed to spend quite a bit of time on it because without having the correct values, I could not accurately assess a cards rank compared to another similar hand (e.g. two full houses). I decided that each hand rank should have an integer value for the type of hand, and the important cards that define that hand.
+
+	- date: Mar 14, 2013
+	  start time: 11:20 a.m.
+	  end time: 11:47 a.m.
+	  phase: Code
+	  comment: Worked on the first couple of hand rank helper functions. No problems yet.
+
+	- date: Mar 24, 2013
+	  start time: 4:20 p.m.
+	  end time: 6:13 p.m.
+	  phase: Code
+	  comment: Finished up isHighCard, isPair, isThreeKind, and isFourKind. Decided that I should write these functions first as they could possibly be used to find some other hands.
+
+	- date: Mar 25, 2013
+	  start time: 8:46 p.m.
+	  end time: 11:02 p.m.
+	  phase: Code
+	  comment: Finished up isTwoPair and isFullHouse. Also modified my Quick Sort function to sort by suit or rank. This is handy because I can now use this to sort cards to easily check for a Flush. 
+
+	- date: Mar 26, 2013
+	  start time: 4:10 a.m.
+	  end time: 5:56 a.m.
+	  phase: Code
+	  comment: Finished up isFlush, isStraight, and isStraightFlush. Didn't take too long, and I was surprised at how short the functions turned out. 
+
+	- date: Mar 26, 2013
+	  start time: 10:52 a.m.
+	  end time: 11:05 a.m.
+	  phase: Design
+	  comment: Had a meeting with Dr. Page. We showed him the new front end for our project and again went over how that bit works. I explained to him my card ranking functions that I implemented, as well as how I adjusted my sorting algorithm to sort by suit or rank.
+
+	- date: Mar 26, 2013
+	  start time: 11:06 a.m.
+	  end time: 11:45 a.m.
+	  phase: Design
+	  comment: Basically had a scrum meeting discussing what we need to have done by when. Commented on the need of an official timeline for when we should have things done.
+
+	- date: Mar 28, 2013
+	  start time: 10:36 a.m.
+	  end time: 11:41 a.m.
+	  phase: Design
+	  comment: Talked about the upcoming presentation, primarily about how we could fill up the time with good content. Decided on a thorough explanation of the structure of our program as well as demo of an actual game. We also worked on a timeline for when our things should be due. It was decided that something like this timeline would be included in our presentation. 
+
+	- date: Apr 7, 2013
+	  start time: 11:22 a.m.
+	  end time: 1:45 p.m.
+	  phase: Implementation
+	  comment: Fixed a couple of issues in my hand ranking helpers. Also, added the gamestate check functions (isRoundOver and isHandOver).
+
+	- date: Apr 7, 2013
+	  start time: 3:15 p.m.
+	  end time: 4:32 p.m.
+	  phase: Implementation
+	  comment: Modified QuickSort function to sort players instead of player hands. 
+	 
+	- date: Apr 8, 2013
+	  start time: 10:15 a.m.
+	  end time: 12:16 p.m.
+	  phase: Implementation
+	  comment: Merged the common cards with the players hand. This was necessary for hand ranking.
+	  
+	- date: Apr 8, 2013
+	  start time: 12:29 p.m.
+	  end time: 1:24 p.m.
+	  phase: Implementation
+	  comment: Got afterTurn() to modify and return the correct gamestate. Now ready to link to other parts of the project.
+	  
+	- date: Apr 8, 2013
+	  start time: 1:42 p.m.
+	  end time: 2:13 p.m.
+	  phase: Implementation
+	  comment: Commented AfterTurn module. Wanted to finish commenting before anyone else had to use my code. 
+	  
+	- date: Apr 10, 2013
+	  start time: 5:33 p.m.
+	  end time: 6:24 p.m.
+	  phase: Implementation
+	  comment: Met with group to see where we were with the integration process. Left briefly to get food.
+	  
+	- date: Apr 10, 2013
+	  start time: 6:30 p.m.
+	  end time: 11:45 p.m.
+	  phase: Implementation
+	  comment: Tried to help Michael debug the project. We kept running into bugs with writing the gamestate. I suspect it has something to do with the encoding or the parser. 
+	  
+	- date: Apr 11, 2013
+	  start time: 12:16 a.m.
+	  end time: 1:33 a.m.
+	  phase: Implementation
+	  comment: Tried to look for the bug myself at home. Basically a last-ditch effort. It could be messing up because we're didn't design to add multiple users from the same window. 
+	  
+	- date: Apr 11, 2013
+	  start time: 8:19 a.m.
+	  end time: 10:30 a.m.
+	  phase: Presentation
+	  comment: Prepared for presentation. Created the slides for defect prevention and project schedule. Helped order the final presentation and participated in a walkthrough. 
+	  
+	- date: Apr 11, 2013
+	  start time: 11:10 p.m.
+	  end time: 11:35 p.m.
+	  phase: Presentation
+	  comment: Presented project to class, Dr. Page, and special guests. Went okay for a failed project, I think. 
+	  
+	- date: Apr 11, 2013
+	  start time: 9:46 p.m.
+	  end time: 11:58 p.m.
+	  phase: Implementation
+	  comment: Tried to fix the project again. No luck so far. I've learned a lot about the parts of the project I didn't implement, though.
+	  
+	- date: Apr 13, 2013
+	  start time: 11:06 a.m.
+	  end time: 4:53 p.m.
+	  phase: Implementation
+	  comment: Looked for the encoding bug. Found a bug in encoding, but it didn't help solve the current problem. Stopped when I received an email from Tom explaining that Dr. Page intends for the next group to fix our project. 
+	  
+	- date: Apr 14, 2013
+	  start time: 12:03 a.m.
+	  end time: 1:05 a.m.
+	  phase: Implementation
+	  comment: Started looking into changing the values in the rankings to 14 for ace-high hands. Kept running into different problems. Ended up changing the value for the ace constant to 14 to narrow down my issue to only ace-low straights. 
+	  
+	- date: Apr 14, 2013
+	  start time: 8:42 a.m.
+	  end time: 9:26 a.m.
+	  phase: Implementation
+	  comment: Fixed a bug in my isStraightFlush helper function. The function was always returning false. Had to change the sorting of the cards to make it work. 
+	  
+	- date: Apr 14, 2013
+	  start time: 3:47 p.m.
+	  end time: 4:43 p.m.
+	  phase: Implementation
+	  comment: Decided to add kicker cards to the handRank to allow for multiple hands of the same integer rank to be evaluated.
+	  
+	- date: Apr 14, 2013
+	  start time: 5:53 p.m.
+	  end time: 6:45 p.m.
+	  phase: Implementation
+	  comment: Started outlining a determineWinner function. This will be called by the main function and will return the list of winners. 
+	  
+	- date: Apr 15, 2013
+	  start time: 5:15 a.m.
+	  end time: 7:52 a.m.
+	  phase: Implementation
+	  comment: Finished the determineWinner function. Took awhile to work out the structure. Packaged the code and sent it off to Team Morris.
+	  
+	- date: Apr 16, 2013
+	  start time: 12:33 a.m.
+	  end time: 3:02 p.m.
+	  phase: PSP
+	  comment: Worked on getting everybody's PSP logs together in the same file for the PSP report. The logs contain many syntax and structural errors, so the integration has been a bit tedious. 
+
+defect log:
+
+	- date: Jan 30, 2013
+	  type: HTML Design
+	  fix time: 15
+	  comment: Arrow picture was not rotating correctly. Fixed by inserting more pictures with arrow already rotated.
+	
+	- date: Feb 20, 2013
+	  type: Syntax
+	  fix time: 1
+	  comment: Referred to a field in one of my defstructures by the wrong name. 
+	  
+	- date: Mar 5, 2013
+	  type: Logic
+	  fix time: 10
+	  comment: My quick sort algorithm was not sorting correctly if the pivot point was duplicated in the list. Solved by taking the pivot point out of the list after chosen and appending it in between the below and above lists. 
+
+	- date: Mar 7, 2013
+	  type: Logic
+	  fix time: 30
+	  comment: I could not for the life of me figure out why my Quick Sort function was angry with me when I started using defstructures. I ended up rewriting it from scratch with defstructures in mind. 
+	  
+	- date: Mar 12, 2013
+	  type: Design
+	  fix time: 15
+	  comment: Went looking for an easy way to swap two values in a list in ACL2. Was trying to avoid creating my own function. Ended up getting sucked down the Wikipedia rabbit hole after awhile. 
+	  
+	- date: Mar 12, 2013
+	  type: Logic
+	  fix time: 21
+	  comment: My Quick Sort function was chocking on the defstructures. Finally remembered the debugging option and found out that it was trying to access the card-value of an empty list. 
+	  
+	- date: Mar 24, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: isThreeKind was breaking because I had originally copied over the code from isPair which only needed to check two cards. Since isThreeKind needed to check 3 cards, it was trying to access cards outside of the hand. 
+	  
+	- date: Mar 24, 2013
+	  type: Logic
+	  fix time: 1
+	  comment: Didn't learn from my mistake. isFourKind did the same thing as isThreeKind. I facepalmed and moved on. 
+	  
+	- date: Mar 25, 2013
+	  type: Logic
+	  fix time: 10
+	  comment: isFullHouse was returning the extra cards out of order. It would always return the higher value card first even if the set of three was of a lower value than the set of two. 
+	  
+	- date: Mar 25, 2013
+	  type: Logic
+	  fix time: 2
+	  comment: My Quick Sort function was returning the suits backwards for some weird reason. Quick-fixed by reversing the list returned. Needed to move on.
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 20
+	  comment: I could not figure out how to get isFlush to return the high value of the flush without just sending the max of the five flush cards. Decided to table this issue for now and try to modify my sorting algorithm to sort by rank inside suit (e.g. Club 8, Club 7, Club 2, Heart King, Heart 5)
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 11
+	  comment: isStraight was not working for Ace-high straights. Spent enough time on it to realize that I could not find a trivial fix. Decided to table it as I needed to move on.
+	  
+	- date: Mar 26, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: I tried to set up isSraightFlush to call isStraight and isFlush. I messed this up originally because I sent an empty hand to isFlush after it found the straight. 
+	  
+	- date: Apr 7, 2013
+	  type: Logic
+	  fix time: 15
+	  comment: My isStraight function assumed that it was given a mathematical set i.e. it was only checking that the first and last cards of a five-card hand were four units apart. I fixed this by adding all of the cards to a set and checking that the difference between the high card and low card is five and that the length of the set is five. 
+	  
+	- date: Apr 7, 2013
+	  type: Logic
+	  fix time: 8
+	  comment: My isFlush function was not returning the values necessary for tie-breaking. I sorted the cards that make up the flush by value and returned the entire hand for use in tie-breaking. 
+	 
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 45
+	  comment: The program crashed when updating the player hands to include the common cards. Kind of tricky to find.
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 15
+	  comment: Tried using the Proofpad debugger to find the previous bug. Could not get it to work and gave up. 
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 2
+	  comment: Tried to fix the hand bug above using DrRacket. DrRacket has a bug where it doesn't allow the make-struct macro. This is unfortunate because almost all of our testing constants use make-struct.
+	  
+	- date: Apr 8, 2013
+	  type: Logic
+	  fix time: 5
+	  comment: Ace-high hands lose. This is a problem. Not sure what I'll do to fix this one just yet. UPDATE: changed the value of ace to 14. 
+	  
+	- date: Apr 10, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: Gamestate is not being written correctly from the front end. Not sure where the bug is. Probably somewhere in the encoding/parsing. Bug proved fatal.  
+	  
+	- date: Apr 14, 2013
+	  type: Logic
+	  fix time: 44
+	  comment: isStraightFlush was returning nil no matter what. Fixed by changing the order of the sorted cards being passed into both isStraight and isFlush. 
+	  
+	- date: Apr 14, 2013
+	  type: Logic
+	  fix time: 8
+	  comment: addKickers function was returning the ranking as well as the kickers. Easy fix. 
+	  
+	- date: Apr 15, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: determineWinner will break if more than one hand has the exact same ranking (kicker cards and all). Even though this kind of thing is rare, this is a problem, because we can not deal with split pots effectively.
+	  
+	- date: Apr 16, 2013
+	  type: Logic
+	  fix time: 0
+	  comment: A isStraight returns false for hands that have multiples of the same number included in the straight. 
+	  
+new objects:
+
+	- name: QuickSort
+	  estimated lines: 55
+	  type: Sort
+	  
+	- name: isRoundOver
+	  estimated lines: 34
+	  type: Boolean
+	  
+	- name: isHandOver
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: afterTurn
+	  estimated lines: 55
+	  type: Computation
+	  
+	- name: rankHands
+	  estimated lines: 34
+	  type: Computation
+	  
+	- name: handRank
+	  estimated lines: 34
+	  type: Computation
+
+	- name: isStraightFlush
+	  estimated lines: 34
+	  type: Boolean
+	  
+	- name: isFourKind
+	  estimated lines: 13
+	  type: Boolean
+	  
+	- name: isFullHouse
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isStraight
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isFlush
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isThreeKind
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isTwoPair
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isPair
+	  estimated lines: 21
+	  type: Boolean
+	  
+	- name: isHighcard
+	  estimated lines: 13
+	  type: Boolean
+	  
+actual added lines: 498
+actual base lines: 0
+actual modified lines: 0
+actual removed lines: 0
+	  
+	  
+	  
+						
+	
