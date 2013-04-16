@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+	<head>
+		<title>Defect Database</title> 
+		
+		<style>
+		td.fieldname {
+			text-align:right;
+			font-weight:bold;
+		}
+		body {
+			font-family:Verdana;
+		}
+		div.section-title {
+			font-family:Times New Roman;
+			font-size:200%;
+			font-weight:bold;
+			margin-top:20px;
+		}
+		
+		div.graph-title {
+			font-style: italic;
+		}
+		
+		table.log-table {
+			border-collapse:collapse;
+		}
+		table.log-table td {
+			border-width:1px;
+			border-style:solid;
+			border-color:#888888;
+			padding:5px 5px 5px 5px;
+		}
+		table.log-table th {
+			border-width:2px;
+			border-style:solid;
+			border-color:#888888;
+			background-color:#CCCCCC;
+			padding:5px 5px 5px 5px;
+		}
+		</style>
+		
+		
+	</head> 
+<body>
+<div class="section-title">Team Stroustrup - Defect Database</div>
+    <table class="log-table">
+        <tr>
+			<th>Reported By</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Fix Time</th>
+			<th>Status</th>
+            <th width="50%">Description/Reproduction Procedure</th>
+        </tr>
+	<tr><td>Thomas Lindley</td>
+        <td>April 10, 2013</td>
+        <td>Logic</td>
+        <td>0</td><td>Open Bug</td>
+        <td>Gamestate is not being written correctly from the front end. Not sure where the bug is. Probably somewhere in the encoding/parsing. Bug proved fatal.</td>
+    </tr>
+	<tr><td>Thomas Lindley</td>
+        <td>April 15, 2013</td>
+        <td>Logic</td>
+        <td>0</td><td>Open Bug</td>
+        <td>determineWinner will break if more than one hand has the exact same ranking (kicker cards and all). Even though this kind of thing is rare, this is a problem, because we can not deal with split pots effectively.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 16, 2013</td>
+        <td>Logic</td>
+        <td>0</td><td>Open Bug</td>
+        <td>A isStraight returns false for hands that have multiples of the same number included in the straight.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>Jan 30, 2013</td>
+        <td>HTML Design</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Arrow picture was not rotating correctly. Fixed by inserting more pictures with arrow already rotated.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>Feb 20, 2013</td>
+        <td>Syntax</td>
+        <td>1</td><td>Bug Fixed</td>
+        <td>Referred to a field in one of my defstructures by the wrong name.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 5, 2013</td>
+        <td>Logic</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>My quick sort algorithm was not sorting correctly if the pivot point was duplicated in the list. Solved by taking the pivot point out of the list after chosen and appending it in between the below and above lists.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 7, 2013</td>
+        <td>Logic</td>
+        <td>30</td><td>Bug Fixed</td>
+        <td>I could not for the life of me figure out why my Quick Sort function was angry with me when I started using defstructures. I ended up rewriting it from scratch with defstructures in mind.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 12, 2013</td>
+        <td>Design</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Went looking for an easy way to swap two values in a list in ACL2. Was trying to avoid creating my own function. Ended up getting sucked down the Wikipedia rabbit hole after awhile.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 12, 2013</td>
+        <td>Logic</td>
+        <td>21</td><td>Bug Fixed</td>
+        <td>My Quick Sort function was chocking on the defstructures. Finally remembered the debugging option and found out that it was trying to access the card-value of an empty list.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 24, 2013</td>
+        <td>Logic</td>
+        <td>5</td><td>Bug Fixed</td>
+        <td>isThreeKind was breaking because I had originally copied over the Code from isPair which only needed to check two cards. Since isThreeKind needed to check 3 cards, it was trying to access cards outside of the hand.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 24, 2013</td>
+        <td>Logic</td>
+        <td>1</td><td>Bug Fixed</td>
+        <td>Didn't learn from my mistake. isFourKind did the same thing as isThreeKind. I facepalmed and moved on.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 25, 2013</td>
+        <td>Logic</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>isFullHouse was returning the extra cards out of order. It would always return the higher value card first even if the set of three was of a lower value than the set of two.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 25, 2013</td>
+        <td>Logic</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>My Quick Sort function was returning the suits backwards for some weird reason. Quick-fixed by reversing the list returned. Needed to move on.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 26, 2013</td>
+        <td>Logic</td>
+        <td>20</td><td>Bug Fixed</td>
+        <td>I could not figure out how to get isFlush to return the high value of the flush without just sending the max of the five flush cards. Decided to table this issue for now and try to modify my sorting algorithm to sort by rank inside suit (e.g. Club 8, Club 7, Club 2, Heart King, Heart 5)</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 26, 2013</td>
+        <td>Logic</td>
+        <td>11</td><td>Bug Fixed</td>
+        <td>isStraight was not working for Ace-high straights. Spent enough time on it to realize that I could not find a trivial fix. Decided to table it as I needed to move on.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>March 26, 2013</td>
+        <td>Logic</td>
+        <td>5</td><td>Bug Fixed</td>
+        <td>I tried to set up isSraightFlush to call isStraight and isFlush. I messed this up originally because I sent an empty hand to isFlush after it found the straight.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 7, 2013</td>
+        <td>Logic</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>My isStraight function assumed that it was given a mathematical set i.e. it was only checking that the first and last cards of a five-card hand were four units apart. I fixed this by adding all of the cards to a set and checking that the difference between the high card and low card is five and that the length of the set is five.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 7, 2013</td>
+        <td>Logic</td>
+        <td>8</td><td>Bug Fixed</td>
+        <td>My isFlush function was not returning the values necessary for tie-breaking. I sorted the cards that make up the flush by value and returned the entire hand for use in tie-breaking.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 8, 2013</td>
+        <td>Logic</td>
+        <td>45</td><td>Bug Fixed</td>
+        <td>The program crashed when updating the player hands to include the common cards. Kind of tricky to find.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 8, 2013</td>
+        <td>Logic</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Tried using the Proofpad debugger to find the previous bug. Could not get it to work and gave up.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 8, 2013</td>
+        <td>Logic</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>Tried to fix the hand bug above using DrRacket. DrRacket has a bug where it doesn't allow the make-struct macro. This is unfortunate because almost all of our testing constants use make-struct.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 8, 2013</td>
+        <td>Logic</td>
+        <td>5</td><td>Bug Fixed</td>
+        <td>Ace-high hands lose. This is a problem. Not sure what I'll do to fix this one just yet. UPDATE: changed the value of ace to 14.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 10, 2013</td>
+        <td>Logic</td>
+        <td>0</td><td>Open Bug</td>
+        <td>Gamestate is not being written correctly from the front end. Not sure where the bug is. Probably somewhere in the encoding/parsing. Bug proved fatal.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 14, 2013</td>
+        <td>Logic</td>
+        <td>44</td><td>Bug Fixed</td>
+        <td>isStraightFlush was returning nil no matter what. Fixed by changing the order of the sorted cards being passed into both isStraight and isFlush.</td>
+    </tr>
+    <tr><td>Thomas Lindley</td>
+        <td>April 14, 2013</td>
+        <td>Logic</td>
+        <td>8</td><td>Bug Fixed</td>
+        <td>addKickers function was returning the ranking as well as the kickers. Easy fix.</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>March 30, 2013</td>
+        <td>conceptual</td>
+        <td>20</td><td>Bug Fixed</td>
+        <td>Ran into bug where the shuffle function was returning Nil instead of doing useful work. I discovered that I was passing arguments to the fisher-gates-shuffle function in the wrong order, which was causing the input predicates to return false, therefore causing the function to return Nil.</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>March 30, 2013</td>
+        <td>conceptual</td>
+        <td>13</td><td>Bug Fixed</td>
+        <td>The shuffle method was not actually shuffling cards. I discovered that I had been calling the generate-randoms function with a bad input. I was using (len *newdeck*) instead of (len (deck-cards *newdeck*)).</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>April 2, 2013</td>
+        <td>system error</td>
+        <td>113</td><td>Bug Fixed</td>
+        <td>Proofpad said there was an error with the certificate for the shuffle-helpers.lisp file. Issue was keeping the shuffleDeck function from working. Issue ended up being caused by a bad git commit from a teammate that overwrote my last push.</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>April 8, 2013</td>
+        <td>system error</td>
+        <td>114</td><td>Bug Fixed</td>
+        <td>Found error in takeTurn for the bet-1-request test. The current player was not being updated in makeBet. To fix this I created a new function updateCurrentPlayer. Ran into several smaller bugs in getting this to work? including: structure returned by makeBet was not passing gamestate-p test which caused the check in updatePlayer to fail (makeBet structure was incorrect? initially returned a nested gamestate, also added Nil to the head of gamestate-players, also returned an extra level of list nesting on the players list of gamestate).</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>April 8, 2013</td>
+        <td>system error</td>
+        <td>56</td><td>Bug Fixed</td>
+        <td>Found error in afterTurn. The gamestate was not being returned correctly after the end of a round of betting. Added the readyGamestateForNextTurn to correct this problem.</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>April 9, 2013</td>
+        <td>system error</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Found error in makeBet. Having a player call a bet causes amount-to-call to be increased for all players. It shouldn't affect other players.</td>
+    </tr>
+    <tr><td>Rick O'Hara</td>
+        <td>April 10, 2013</td>
+        <td>system error</td>
+        <td>25</td><td>Bug Fixed</td>
+        <td>JSONEcode was not working. It did not have the (in-package "ACL2") directive to certify it.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 16, 2013</td>
+        <td>arguments</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>used the wrong arguments for file->string, looked in old file to find fix</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 16, 2013</td>
+        <td>arguments</td>
+        <td>4</td><td>Bug Fixed</td>
+        <td>when refactoring main to toFile, used wrong argument types.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 17, 2013</td>
+        <td>html/js</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>misspelled the data-bind attribute, Knockout didn't work.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 17, 2013</td>
+        <td>parenthesization</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>forgot the correct parenthesization of let*, got errors.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 17, 2013</td>
+        <td>parenthesiazation</td>
+        <td>3</td><td>Bug Fixed</td>
+        <td>messed up the parenthesization of the nested if statements.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 27, 2013</td>
+        <td>incorrect types</td>
+        <td>3</td><td>Bug Fixed</td>
+        <td>tried to pass char lists where chars were expected</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>Feb 27, 2013</td>
+        <td>off by one</td>
+        <td>30</td><td>Bug Fixed</td>
+        <td>forgot to add one to the length of the tokens when determining how many characters were consumed. This caused the tokenizer to fail in a very confusing way.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 2, 2013</td>
+        <td>include</td>
+        <td>20</td><td>Bug Fixed</td>
+        <td>included the wrong book, didn't realize this was the problem because I was working in drracket today. ProofPad includes all books by default.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 2, 2013</td>
+        <td>logic</td>
+        <td>25</td><td>Bug Fixed</td>
+        <td>incorrectly counted the length of consumed tokens. needed to count the length of the child element plus the recursively gotten rest of the current level. Instead only added 1 to the recursive value.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 2, 2013</td>
+        <td>logic</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>took the cdr of several lists when I needed the cadr.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 2, 2013</td>
+        <td>naming</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>used the wrong function names for update-struct.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 7, 2013</td>
+        <td>naming</td>
+        <td>8</td><td>Bug Fixed</td>
+        <td>wrapped a list in extra parenthesis. Got an eror message that I did not understand, which took a while to track down.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 12, 2013</td>
+        <td>naming</td>
+        <td>30</td><td>Bug Fixed</td>
+        <td>recieving lots of error messages that I do not understand. When I try reverting mostly back to the old code I get no error message but the Javascript is not executing. I am probably missing something stupid.</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>March 30, 2013</td>
+        <td>collaboration</td>
+        <td>135</td><td>Bug Fixed</td>
+        <td>I did not modify my tree->request function to reflect michaels changes to the request structure</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>April 2, 2013</td>
+        <td>interface</td>
+        <td>3</td><td>Bug Fixed</td>
+        <td>forgot to use the str->rat function to get the correct type</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>April 4, 2013</td>
+        <td>interface</td>
+        <td>3</td><td>Bug Fixed</td>
+        <td>forgot to use the str->rat function to get the correct type</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>April 4, 2013</td>
+        <td>interface</td>
+        <td>2</td><td>Bug Fixed</td>
+        <td>forgot to use the rat->str function to get the correct type</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>April 4, 2013</td>
+        <td>interface</td>
+        <td>1</td><td>Bug Fixed</td>
+        <td>forgot to include the decimal precision argument to rat->str</td>
+    </tr>
+    <tr><td>Thomas Shehan</td>
+        <td>April 4, 2013</td>
+        <td>struct</td>
+        <td>6</td><td>Bug Fixed</td>
+        <td>misspelled the call-amount field as call_amount causing the parser to fail</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>Feb 13, 2013</td>
+        <td>Code</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Including a defstruct in another defstruct required the (struct-name)-p method for assertion</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>Feb 27, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>Was using natp to check for non negative but tests included rational numbers</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>March 1, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>Request structure was giving a string for the player (name) instead of the player struct itself</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>March 12, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>ProofPad throws error in defstructs when calling fields, even though it will compile.</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>March 14, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>Iterator needed when editing list of players, because the updated list needs to be returned to the gamestate.</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 4, 2013</td>
+        <td>Code</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Inconsistent gamestate struct due to fields being added to it. Updated code to include the changes</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 9, 2013</td>
+        <td>Code</td>
+        <td>15</td><td>Bug Fixed</td>
+        <td>Cons does not work for adding an element at the end of the list. Reversing was requied to keep the player list in the right order</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 9, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>There was an extra nil in the player list when returning from making a bet, causing other modules to fail</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 9, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>BetValidation also contained an improper player list ordering. Fixed by building the list backwards</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 9, 2013</td>
+        <td>Code</td>
+        <td>10</td><td>Bug Fixed</td>
+        <td>MakeBet did not include the amount to call when subtracting the chips from the player</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 11, 2013</td>
+        <td>Code</td>
+        <td>5</td><td>Bug Fixed</td>
+        <td>Calling a struct function on a string (and not the object), when it should just return the string</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 11, 2013</td>
+        <td>Code</td>
+        <td>20</td><td>Bug Fixed</td>
+        <td>A gamestate struct with nils as fields will not pass the struct-p predicate, but a struct that is a valid gamestate will not pass through the modules properly</td>
+    </tr>
+    <tr><td>Michael Short</td>
+        <td>April 11, 2013</td>
+        <td>Code</td>
+        <td>20</td><td>Bug Fixed</td>
+        <td>Cannot get rid of a mv variable (the state), so had to rework main module to pass the state of ACL2 along with the gamestate through the request functions.</td>
+    </tr>
+</table>
+</body>
+</html> 
